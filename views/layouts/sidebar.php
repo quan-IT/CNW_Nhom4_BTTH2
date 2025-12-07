@@ -3,134 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sidebar Toggle</title>
-
+  <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <style>
-      /* Sidebar mặc định */
-      .sidebar {
-          width: 80px;
-          transition: width 0.3s;
-          overflow: hidden;
-      }
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-      /* Sidebar khi mở */
-      .sidebar.open {
-          width: 220px;
-      }
-
-      /* Ẩn text khi sidebar thu nhỏ */
-      .sidebar .text {
-          display: none;
-          white-space: nowrap;
-      }
-
-      .sidebar.open .text {
-          display: inline;
-      }
-
-      .menu-item {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-      }
-
-      /* Nội dung dịch sang phải khi sidebar mở */
-      #content {
-          transition: margin-left 0.3s;
-          margin-left: 80px;
-      }
-
-      #content.shift {
-          margin-left: 220px;
-      }
-  </style>
 </head>
+<body>
+  
+<!-- layouts/sidebar.php -->
+<div class="col-sm-auto bg-light sticky-top sidebar">
+    <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
 
-<body class="bg-light">
+        <!-- Logo -->
+        <a href="/" class="d-block p-3 link-dark text-decoration-none" data-bs-toggle="tooltip"
+           data-bs-placement="right" title="Trang chủ">
+            <i class="bi-bootstrap fs-1"></i>
+        </a>
 
-<!-- Button Toggle -->
-<button id="toggleBtn" class="btn btn-dark m-2">
-    <i class="bi bi-list fs-3"></i>
-</button>
+        <!-- Menu -->
+        <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto 
+                   text-center justify-content-between w-100 px-3 align-items-center">
 
-<div class="d-flex">
-
-    <!-- SIDEBAR -->
-    <div id="sidebar" class="sidebar bg-light border-end vh-100 position-fixed">
-
-        <div class="p-3">
-            <div class="menu-item mb-4">
-                <i class="bi-bootstrap fs-2"></i>
-                <span class="text fs-4 fw-bold">Bootstrap</span>
-            </div>
-
-            <hr>
-
-            <a href="index.php" class="menu-item nav-link py-2">
-                <i class="bi-house fs-4"></i>
-                <span class="text fs-5">Home</span>
-            </a>
-
-            <a href="dashboard.php" class="menu-item nav-link py-2">
-                <i class="bi-speedometer2 fs-4"></i>
-                <span class="text fs-5">Dashboard</span>
-            </a>
-
-            <a href="orders.php" class="menu-item nav-link py-2">
-                <i class="bi-table fs-4"></i>
-                <span class="text fs-5">Orders</span>
-            </a>
-
-            <a href="products.php" class="menu-item nav-link py-2">
-                <i class="bi-heart fs-4"></i>
-                <span class="text fs-5">Products</span>
-            </a>
-
-            <a href="customers.php" class="menu-item nav-link py-2">
-                <i class="bi-people fs-4"></i>
-                <span class="text fs-5">Customers</span>
-            </a>
-
-            <hr>
-
-            <div class="dropdown">
-                <a class="menu-item nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <i class="bi-person-circle fs-4"></i>
-                    <span class="text fs-5">Account</span>
+            <li class="nav-item">
+                <a href="index.php" class="nav-link py-3 px-2" title="Home" data-bs-toggle="tooltip">
+                    <i class="bi-house fs-3"></i>
                 </a>
+            </li>
 
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item">Tài khoản</a></li>
-                    <li><a class="dropdown-item">Cài đặt</a></li>
-                    <li><a class="dropdown-item">Đăng xuất</a></li>
-                </ul>
-            </div>
+            <li>
+                <a href="dashboard.php" class="nav-link py-3 px-2" title="Dashboard" data-bs-toggle="tooltip">
+                    <i class="bi-speedometer2 fs-3"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="orders.php" class="nav-link py-3 px-2" title="Orders" data-bs-toggle="tooltip">
+                    <i class="bi-table fs-3"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="products.php" class="nav-link py-3 px-2" title="Products" data-bs-toggle="tooltip">
+                    <i class="bi-heart fs-3"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="customers.php" class="nav-link py-3 px-2" title="Users" data-bs-toggle="tooltip">
+                    <i class="bi-people fs-3"></i>
+                </a>
+            </li>
+
+        </ul>
+
+        <!-- User dropdown -->
+        <div class="dropdown pb-3">
+            <a class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+               id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi-person-circle h2"></i>
+            </a>
+
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+                <li><a class="dropdown-item" href="#">Tài khoản</a></li>
+                <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+                <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+            </ul>
         </div>
-    </div>
 
-    <!-- CONTENT -->
-    <div id="content" class="p-4">
-        <h1>Content area...</h1>
-        <p>Bấm nút menu để đóng/mở sidebar.</p>
     </div>
-
 </div>
 
-<!-- JS Toggle -->
-<script>
-    const sidebar = document.getElementById("sidebar");
-    const content = document.getElementById("content");
-    const toggleBtn = document.getElementById("toggleBtn");
-
-    toggleBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-        content.classList.toggle("shift");
-    });
-</script>
 
 </body>
 </html>
