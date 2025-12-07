@@ -1,66 +1,65 @@
-// assets/js/register.js
 $(document).ready(function () {
 
-    // Hàm hiển thị lỗi
+    // Hiển thị lỗi
     function showError(input, message) {
         const formGroup = input.closest('.form-group');
         formGroup.classList.add('has-error');
         formGroup.classList.remove('has-success');
 
-        // Xóa lỗi cũ nếu có
-        formGroup.querySelector('.error-message')?.remove();
+        // Xóa lỗi cũ
+        $(formGroup).find('.error-message').remove();
+        $(formGroup).find('.valid-icon').remove();
 
-        const error = document.createElement('label');
-        error.className = 'error-message';
-        error.style.color = '#e74c3c';
-        error.style.fontSize = '12px';
-        error.style.marginTop = '5px';
-        error.style.display = 'block';
-        error.innerText = message;
-
-        input.after(error);
+        // Thêm lỗi dưới input
+        const error = $('<span class="error-message"></span>').text(message);
+        $(formGroup).append(error);
     }
 
-    // Hàm hiển thị thành công (icon check xanh)
+    // Hiển thị thành công
     function showSuccess(input) {
         const formGroup = input.closest('.form-group');
         formGroup.classList.remove('has-error');
         formGroup.classList.add('has-success');
 
-        formGroup.querySelector('.error-message')?.remove();
-        if (!formGroup.querySelector('.valid')) {
-            const validIcon = document.createElement('label');
-            validIcon.className = 'valid';
-            input.parentNode.appendChild(validIcon);
-        }
+        $(formGroup).find('.error-message').remove();
+        $(formGroup).find('.valid-icon').remove();
+
+        // Icon check xanh bên phải input
+        const icon = $('<span class="valid-icon">&#10004;</span>');
+        $(formGroup).append(icon);
     }
 
-    // Xóa thông báo khi người dùng nhập lại
+    // Xóa khi nhập
     function clearValidation(input) {
         const formGroup = input.closest('.form-group');
         formGroup.classList.remove('has-error', 'has-success');
-        formGroup.querySelector('.error-message')?.remove();
-        formGroup.querySelector('.valid')?.remove();
+        $(formGroup).find('.error-message').remove();
+        $(formGroup).find('.valid-icon').remove();
     }
 
     // Validate từng field khi blur
-    $('#username, #fullname, #email, #pass, #re_pass').on('blur', function () {
-        validateField($(this));
-    }).on('input', function () {
-        clearValidation(this);
-    });
+    $('#username, #fullname, #email, #pass, #re_pass')
+        .on('blur', function () {
+            validateField($(this));
+        })
+        .on('input', function () {
+            clearValidation(this);
+        });
 
-    // Validate checkbox terms
+    // Checkbox
     $('#agree-term').on('change', function () {
         const formGroup = this.closest('.form-group');
+        $(formGroup).find('.error-message').remove();
+
         if (this.checked) {
             formGroup.classList.remove('has-error');
         } else {
             formGroup.classList.add('has-error');
+            $(formGroup).append(`<span class="error-message">You must agree</span>`);
         }
     });
 
-    // Hàm validate từng field
+    // Validate field
     function validateField($input) {
         const value = $input.val().trim();
         const id = $input.attr('id');
@@ -87,15 +86,14 @@ $(document).ready(function () {
                     showError($input[0], 'Full name must be at least 2 characters');
                     return false;
                 }
-                if (!/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$/.test(value)) {
+                if (!/^[a-zA-ZÀ-ỹ\s]+$/.test(value)) {
                     showError($input[0], 'Full name contains invalid characters');
                     return false;
                 }
                 break;
 
             case 'email':
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) {
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
                     showError($input[0], 'Please enter a valid email address');
                     return false;
                 }
@@ -109,8 +107,7 @@ $(document).ready(function () {
                 break;
 
             case 're_pass':
-                const pass = $('#pass').val();
-                if (value !== pass) {
+                if (value !== $('#pass').val()) {
                     showError($input[0], 'Passwords do not match');
                     return false;
                 }
@@ -121,39 +118,25 @@ $(document).ready(function () {
         return true;
     }
 
-    // Validate toàn bộ form khi submit
+    // Submit form
     $('#register-form').on('submit', function (e) {
         let isValid = true;
 
-        // Validate tất cả các field
         $('#username, #fullname, #email, #pass, #re_pass').each(function () {
             if (!validateField($(this))) {
                 isValid = false;
             }
         });
 
-        // Kiểm tra checkbox điều khoản
         if (!$('#agree-term').is(':checked')) {
             const formGroup = $('#agree-term').closest('.form-group');
-            formGroup.classList.add('has-error');
-            if (!formGroup.querySelector('.error-message')) {
-                const error = document.createElement('label');
-                error.className = 'error-message';
-                error.style.color = '#e74c3c';
-                error.style.fontSize = '12px';
-                error.innerText = 'You must agree to the terms of service';
-                $('#agree-term').parent().append(error);
-            }
+            $(formGroup).addClass('has-error');
+            $(formGroup).find('.error-message').remove();
+            $(formGroup).append('<span class="error-message">You must agree to the terms</span>');
             isValid = false;
         }
 
-        if (!isValid) {
-            e.preventDefault(); // Ngăn submit nếu có lỗi
-            return false;
-        }
-
-        // Nếu hợp lệ thì cho submit (có thể thêm AJAX ở đây)
-        // alert('Đăng ký thành công!'); // Thông báo tạm thời
+        if (!isValid) e.preventDefault();
     });
 
 });
