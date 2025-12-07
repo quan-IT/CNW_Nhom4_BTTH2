@@ -3,7 +3,11 @@
 
 require_once 'models/Course.php';
 require_once 'models/Lesson.php';
-require_once 'models/Category.php'; // Cần Category Model để lấy danh mục
+require_once 'models/Category.php';
+
+require_once "config/database.php";
+$db = new Database();
+
 
 class CourseController
 {
@@ -11,13 +15,16 @@ class CourseController
     private $lessonModel;
     private $categoryModel;
 
+    private $db;
+
     // Giả định có hàm checkAuth() để kiểm tra Giảng viên đã đăng nhập và có vai trò hợp lệ không [cite: 100]
 
-    public function __construct()
+    public function __construct($db)
     {
-        $this->courseModel = new Course();
-        $this->lessonModel = new Lesson();
-        $this->categoryModel = new Category();
+        $this->db = $db;
+        $this->courseModel = new Course($this->$db);
+        $this->lessonModel = new Lesson($this->$db);
+        $this->categoryModel = new Category($this->$db);
         // Kiểm tra quyền truy cập giảng viên ở đây
         // if (!$this->checkInstructorAuth()) { header('Location: /login'); exit; }
     }
