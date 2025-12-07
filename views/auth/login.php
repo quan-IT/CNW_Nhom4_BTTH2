@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- base name folder -->
-  <base href="NAME FOLDER"> //
+  <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/'; ?>">
 	<title>Login V1</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
