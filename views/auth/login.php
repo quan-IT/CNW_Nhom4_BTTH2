@@ -58,7 +58,7 @@
 						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<xi class="fa fa-envelope"></xi>
+							<i class="fa fa-envelope"></i>
 						</span>
 					</div>
 
