@@ -1,7 +1,7 @@
 <?php
 class AuthController{
   public function login(){
-    require "./views/layout/sidebar.php";
+    require "./views/layouts/sidebar.php";
   }
 
   public function register(){
