@@ -1,5 +1,5 @@
-<?php include 'header.php'; ?>
-<?php include 'sidebar.php'; ?>
+<?php include 'views/layouts/header.php'; ?>
+<?php include 'views/layouts/sidebar.php'; ?>
 
 <div class="col-sm p-4 min-vh-100">
 
