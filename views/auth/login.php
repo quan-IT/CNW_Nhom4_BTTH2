@@ -39,7 +39,7 @@
 						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="bi bi-envelope" aria-hidden="true"></i>
+							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
 
@@ -47,7 +47,7 @@
 						<input class="input100" type="password" name="pass" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="bi bi-lock" aria-hidden="true"></i>
+							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
 					
