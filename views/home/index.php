@@ -11,7 +11,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
-
+<base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/'; ?>">
     <!-- Favicon -->
     <link href="assets/img/favicon.ico" rel="icon">
 
@@ -28,7 +28,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     
     <!-- Home Page CSS -->
-    <link href="./assets/css/home/home.css" rel="stylesheet">  
+    <link href="assets/css/home/home.css" rel="stylesheet">  
 </head>
 
 
@@ -58,8 +58,8 @@
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="views/auth/login.php" class="btn btn-primary py-2 px-4 d-none d-lg-block">Login</a>
-                <a href="views/auth/register.php" class="btn btn-primary py-2 px-4 d-none d-lg-block mr-2">Register</a>
+                <a href="index.php?url=auth/login" class="btn btn-primary py-2 px-4 d-none d-lg-block">Login</a>
+                <a href="index.php?url=auth/register" class="btn btn-primary py-2 px-4 d-none d-lg-block mr-2">Register</a>
                 </div>
         </nav>
     </div>
