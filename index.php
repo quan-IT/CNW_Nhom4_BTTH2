@@ -19,7 +19,7 @@ spl_autoload_register(function ($class) {
 require_once 'config/Database.php';
 
 // Lấy URL: domain.com/index.php?url=controller/action/param
-$url = isset($_GET['url']) ? $_GET['url'] : 'home';
+$url = isset($_GET['url']) ? $_GET['url'] : 'home/index';
 $url = trim($url, '/');
 $parts = explode('/', $url);
 
