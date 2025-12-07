@@ -59,21 +59,38 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>PHP & MySQL Cơ bản</td>
-                            <td>Trần Minh</td>
-                            <td>70%</td>
-                            <td><a href="#" class="btn btn-primary btn-sm">Tiếp tục</a></td>
-                        </tr>
+            <tbody>
+            <tr>
+                <td>PHP & MySQL Cơ bản</td>
+                <td>Trần Minh</td>
+                <td style="width: 200px;">
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 70%"
+                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small class="text-muted">70%</small>
+                </td>
+                <td>
+                    <a href="#" class="btn btn-primary btn-sm">Tiếp tục</a>
+                </td>
+            </tr>
 
-                        <tr>
-                            <td>HTML/CSS Nâng cao</td>
-                            <td>Nguyễn Hưng</td>
-                            <td>40%</td>
-                            <td><a href="#" class="btn btn-primary btn-sm">Tiếp tục</a></td>
-                        </tr>
-                    </tbody>
+            <tr>
+                <td>HTML/CSS Nâng cao</td>
+                <td>Nguyễn Hưng</td>
+                <td style="width: 200px;">
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 40%"
+                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small class="text-muted">40%</small>
+                </td>
+                <td>
+                    <a href="#" class="btn btn-primary btn-sm">Tiếp tục</a>
+                </td>
+            </tr>
+        </tbody>
+
                 </table>
 
             </div>
