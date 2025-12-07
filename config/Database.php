@@ -1,42 +1,40 @@
 <?php
-class Database
-{
+// config/Database.php
+
+class Database {
+    // Thông tin kết nối của bạn - Hầu hết XAMPP/WAMP mặc định là như sau:
     private $host = "localhost";
-    private $db_name = "btth2";
-    private $username = "root";
-    private $password = "";
-    private static $instance = null; // Singleton
-    private $conn;
+    private $db_name = "onlinecourse"; // Tên CSDL bạn vừa tạo
+    private $username = "root";       // Tên người dùng CSDL của bạn (thường là root)
+    private $password = "";           // Mật khẩu CSDL của bạn (thường để trống nếu dùng XAMPP/WAMP)
+    public $conn;
 
-    private function __construct()
-    {
+    /**
+     * Lấy kết nối CSDL
+     * @return PDO | null
+     */
+    public function getConnection() {
+        $this->conn = null;
+
         try {
-            $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8",
-                $this->username,
-                $this->password
-            );
-
-            // Thiết lập PDO
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8mb4", 
+                                  $this->username, 
+                                  $this->password);
+            
+            // Thiết lập chế độ báo lỗi (giúp debug dễ hơn)
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            die("Lỗi kết nối Database: " . $e->getMessage());
+            
+            // Yêu cầu sử dụng Prepared Statements một cách nghiêm ngặt
+            $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
+            
+        } catch(PDOException $exception) {
+            // Xử lý lỗi kết nối
+            echo "Lỗi kết nối CSDL: " . $exception->getMessage();
+            // Trong môi trường production, bạn nên ghi log thay vì hiển thị lỗi
+            die(); 
         }
-    }
 
-    // 👉 Lấy instance duy nhất
-    public static function getInstance()
-    {
-        if (self::$instance == null) {
-            self::$instance = new Database();
-        }
-        return self::$instance;
-    }
-
-    // 👉 Hàm trả về kết nối
-    public function getConnection()
-    {
         return $this->conn;
     }
 }
+?>
