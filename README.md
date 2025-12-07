@@ -15,3 +15,8 @@ Xây dựng chức năng hiển thị danh sách khóa học, xem chi tiết, t�
 ## Công việc 4:
 Thiết kế giao diện website (HTML, CSS, JavaScript), xử lý upload file.
 ### Người làm: Nguyễn Minh
+
+# Lưu ý:
+code database đang để là:
+$db_name = "btth2";
+nên hãy đổi tên thành btth2 hoặc sửa trong config\Database.php
