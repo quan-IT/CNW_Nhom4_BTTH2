@@ -341,13 +341,7 @@ label.valid {
 .material-icons-name {
   font-size: 18px; }
 
-.social-login {
-  align-items: center;
-  -moz-align-items: center;
-  -webkit-align-items: center;
-  -o-align-items: center;
-  -ms-align-items: center;
-  margin-top: 80px; }
+
 
 .social-label {
   display: inline-block;
@@ -425,13 +419,6 @@ label.valid {
   .signup-form, .signup-image {
     width: auto; }
 
-  .social-login {
-    justify-content: center;
-    -moz-justify-content: center;
-    -webkit-justify-content: center;
-    -o-justify-content: center;
-    -ms-justify-content: center; }
-
   .form-button {
     text-align: center; }
 
@@ -447,16 +434,10 @@ label.valid {
 
   .form-title {
     text-align: center; } }
-@media screen and (max-width: 400px) {
-  .social-login {
-    flex-direction: column;
-    -moz-flex-direction: column;
-    -webkit-flex-direction: column;
-    -o-flex-direction: column;
-    -ms-flex-direction: column; }
+
 
   .social-label {
     margin-right: 0px;
-    margin-bottom: 10px; } }
+    margin-bottom: 10px; } 
 
 /*# sourceMappingURL=style.css.map */
