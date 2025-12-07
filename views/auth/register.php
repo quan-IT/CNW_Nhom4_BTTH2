@@ -62,6 +62,10 @@
         </section>
 
     <!-- JS -->
-    <!-- <script src="assets/js/register/register.js"></script> -->
+<!-- jQuery (dùng bản trong vendor/jquery) -->
+<script src="assets/css/register/vendor/jquery/jquery.min.js"></script>
+
+<!-- File validate đăng ký của bạn -->
+<script src="assets/js/register/register.js"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
