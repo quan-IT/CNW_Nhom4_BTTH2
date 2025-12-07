@@ -34,7 +34,7 @@ if (!file_exists("controllers/$controllerName.php")) {
 }
 
 // Gọi controller
-$controller = new $controllerName();
+// $controller = new $controllerName();
 
 // Kiểm tra action
 if (!method_exists($controller, $action)) {
