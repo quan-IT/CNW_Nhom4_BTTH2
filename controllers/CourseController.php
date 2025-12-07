@@ -22,9 +22,9 @@ class CourseController
     public function __construct($db)
     {
         $this->db = $db;
-        $this->courseModel = new Course($this->$db);
-        $this->lessonModel = new Lesson($this->$db);
-        $this->categoryModel = new Category($this->$db);
+        $this->courseModel = new Course($this->db);
+        $this->lessonModel = new Lesson($this->db);
+        $this->categoryModel = new Category($this->db);
         // Kiểm tra quyền truy cập giảng viên ở đây
         // if (!$this->checkInstructorAuth()) { header('Location: /login'); exit; }
     }
