@@ -49,7 +49,7 @@
                         </form>
                     </div>
                     <div class="signup-image">
-                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
+                        <figure><img src="assets/css/register/images/signup-image.jpg" alt="sing up image"></figure>
                         <a href="#" class="signup-image-link">I am already member</a>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
         </section>
 
         <!-- Sing in  Form -->
-        <section class="sign-in">
+        <!-- <section class="sign-in">
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
@@ -97,7 +97,7 @@
             </div>
         </section>
 
-    </div>
+    </div> -->
 
     <!-- JS -->
     <script src="assets/css/register/vendor/jquery/jquery.min.js"></script>
