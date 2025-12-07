@@ -9,9 +9,7 @@
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="assets/css/login/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-<base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/'; ?>">
-<link rel="stylesheet" href="<?php echo $base ?>assets/css/login/vendor/bootstrap/css/bootstrap.min.css">
-
+	<link rel="stylesheet" type="text/css" href="assets/css/login/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
