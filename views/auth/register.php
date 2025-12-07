@@ -62,7 +62,6 @@
         </section>
 
     <!-- JS -->
-    <script src="assets/css/register/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/js/login/login.js></script>
+    <script src="assets/js/register/register.js"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
