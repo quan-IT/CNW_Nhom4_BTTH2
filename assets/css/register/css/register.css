@@ -439,5 +439,23 @@ label.valid {
   .social-label {
     margin-right: 0px;
     margin-bottom: 10px; } 
+.form-group {
+    position: relative;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 3px;
+    display: block;
+}
+
+.valid-icon {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: 18px;
+    color: #2ecc71;
+}
 
 /*# sourceMappingURL=style.css.map */
