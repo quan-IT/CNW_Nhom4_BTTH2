@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- base name folder -->
   <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/'; ?>">
-  <title>Login V1</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/images/icons/favicon.ico"/>
-  
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
-  
-  <!-- Font Awesome CDN (THAY THẾ DÒNG CŨ) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  
-  <!-- Vendor CSS -->
-  <link rel="stylesheet" type="text/css" href="assets/css/login/vendor/animate/animate.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/login/vendor/css-hamburgers/hamburgers.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/login/vendor/select2/select2.min.css">
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="assets/css/login/util.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/login/main.css">
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/css/login/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="assets/css/login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/css/login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/css/login/util.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/login/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
 	<div style="padding: 20px; background: white;">
@@ -58,7 +57,7 @@
 						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope"></i>
+							<i class="bi bi-envelope"></i>
 						</span>
 					</div>
 
