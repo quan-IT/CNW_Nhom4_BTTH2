@@ -1,5 +1,5 @@
 /* @extend display-flex; */
-display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials {
+display-flex, .display-flex, .display-flex-center, .signup-content, .socials {
   display: flex;
   display: -webkit-flex; }
 
@@ -148,7 +148,7 @@ body {
 .signup-content {
   padding: 75px 0; }
 
-.signup-form, .signup-image, .signin-form, .signin-image {
+.signup-form, .signup-image {
   width: 50%;
   overflow: hidden; }
 
@@ -182,8 +182,6 @@ figure {
   .form-submit:hover {
     background: #4292dc; }
 
-#signin {
-  margin-top: 16px; }
 
 .signup-image-link {
   font-size: 14px;
@@ -343,10 +341,6 @@ label.valid {
 .material-icons-name {
   font-size: 18px; }
 
-.signin-content {
-  padding-top: 67px;
-  padding-bottom: 87px; }
-
 .social-login {
   align-items: center;
   -moz-align-items: center;
@@ -399,14 +393,6 @@ label.valid {
 .zmdi-google {
   background: #e72734; }
 
-.signin-form {
-  margin-right: 90px;
-  margin-left: 80px; }
-
-.signin-image {
-  margin-left: 110px;
-  margin-right: 20px;
-  margin-top: 10px; }
 
 @media screen and (max-width: 1200px) {
   .container {
@@ -416,7 +402,7 @@ label.valid {
   .container {
     max-width: 1200px; } }
 @media screen and (max-width: 768px) {
-  .signup-content, .signin-content {
+  .signup-content{
     flex-direction: column;
     -moz-flex-direction: column;
     -webkit-flex-direction: column;
@@ -435,17 +421,8 @@ label.valid {
     /* box-sizing: border-box; */
     padding: 0 30px; }
 
-  .signin-image {
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 50px;
-    order: 2;
-    -moz-order: 2;
-    -webkit-order: 2;
-    -o-order: 2;
-    -ms-order: 2; }
 
-  .signup-form, .signup-image, .signin-form, .signin-image {
+  .signup-form, .signup-image {
     width: auto; }
 
   .social-login {
