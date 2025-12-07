@@ -397,7 +397,7 @@ iframe {
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 
-..validate-input {
+.validate-input {
   position: relative;
 }
 
