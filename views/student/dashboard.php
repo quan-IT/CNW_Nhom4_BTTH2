@@ -1,30 +1,15 @@
-<link rel="stylesheet" href="/assets/css/student.css">
+<?php include 'views/layouts/header.php'; ?>
+<?php include 'views/layouts/sidebar.php'; ?>
 
-<div class="page-container">
+<div class="col-sm p-4 min-vh-100">
 
-    <h2>Student Dashboard</h2>
+    <h2 class="mb-3">Dashboard</h2>
+    <hr>
 
-    <!-- Stats -->
-    <div class="stats-grid">
-        <div class="stat-card">Khóa đăng ký: 4</div>
-        <div class="stat-card">Hoàn thành: 1</div>
-        <div class="stat-card">Tiến độ TB: 46%</div>
-        <div class="stat-card">Thông báo mới: 2</div>
-    </div>
 
-    <!-- Continue learning -->
-    <h3>Tiếp tục học</h3>
 
-    <div class="course-continue">
-        <h4>PHP OOP MVC</h4>
-        <p>Tiến độ: 55%</p>
-        <button>Tiếp tục học</button>
-    </div>
 
-    <div class="course-continue">
-        <h4>Frontend HTML/CSS</h4>
-        <p>Tiến độ: 20%</p>
-        <button>Tiếp tục học</button>
-    </div>
 
 </div>
+
+<?php include 'layouts/footer.php'; ?>
