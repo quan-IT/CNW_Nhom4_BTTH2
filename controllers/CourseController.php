@@ -15,7 +15,7 @@ class CourseController {
     public function __construct() {
         $this->courseModel = new Course();
         $this->lessonModel = new Lesson();
-        $this->categoryModel = new Category();
+
         // Kiểm tra quyền truy cập giảng viên ở đây
         // if (!$this->checkInstructorAuth()) { header('Location: /login'); exit; }
     }
@@ -37,7 +37,7 @@ class CourseController {
 
     // Hiển thị form tạo khóa học
     public function create() {
-        $categories = $this->categoryModel->getAllCategories(); // Lấy danh mục để hiển thị trong form
+        
         // Gọi view: views/instructor/course/create.php 
         include 'views/instructor/course/create.php';
     }

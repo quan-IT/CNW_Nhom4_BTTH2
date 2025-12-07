@@ -8,7 +8,7 @@ class Course {
     private $table_name = "courses";
 
     public function __construct() {
-        $database = new Database();
+        $database = Database::getInstance();
         $this->db = $database->getConnection();
     }
 
