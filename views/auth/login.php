@@ -24,7 +24,23 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
+	<div style="padding: 20px; background: white;">
+  <h3>Icon Test:</h3>
+  
+  <!-- Font Awesome Icons -->
+  <p>Font Awesome:
+    <i class="fa fa-envelope"></i>
+    <i class="fa fa-lock"></i>
+    <i class="fa fa-user"></i>
+  </p>
+  
+  <!-- Bootstrap Icons -->
+  <p>Bootstrap Icons:
+    <i class="bi bi-envelope"></i>
+    <i class="bi bi-lock"></i>
+    <i class="bi bi-person"></i>
+  </p>
+</div>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
