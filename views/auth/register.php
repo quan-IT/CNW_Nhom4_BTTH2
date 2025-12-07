@@ -24,12 +24,12 @@
                         <h2 class="form-title">Sign up</h2>
                         <form method="POST" class="register-form" id="register-form">
                             <div class="form-group">
-                                <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <label for="username"><i class="zmdi zmdi-account"></i></label>
                                 <input type="text" name="username" id="username" placeholder="Username"/>
                             </div>
                             <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Full Name"/>
+                                <label for="fullname"><i class="zmdi zmdi-account"></i></label>
+                                <input type="text" name="fullname" id="fullname" placeholder="Full Name"/>
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
