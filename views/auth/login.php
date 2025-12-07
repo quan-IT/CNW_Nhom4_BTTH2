@@ -23,11 +23,6 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/login/main.css">
 <!--===============================================================================================-->
 </head>
-<body>
-	<div class="wrap-input100 alert-validate" data-validate="Error!">
-    <input class="input100" type="text">
-</div>
-
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
