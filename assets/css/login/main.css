@@ -3445,68 +3445,7 @@ iframe {
 	bottom: 0px;
 }
 
-/* Fix icon visibility */
-.symbol-input100 {
-    z-index: 1;
-    position: relative;
-}
 
-/* Validate styles - chỉ hiện khi có lỗi */
-.wrap-input100 {
-    position: relative;
-}
-
-.wrap-input100::before {
-    content: attr(data-validate);
-    position: absolute;
-    max-width: 70%;
-    background-color: #fff;
-    border: 1px solid #c80000;
-    border-radius: 2px;
-    padding: 4px 25px 4px 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 2px;
-    pointer-events: none;
-    font-family: 'Jost', sans-serif;
-    color: #c80000;
-    font-size: 13px;
-    line-height: 1.4;
-    text-align: left;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.4s;
-}
-
-.wrap-input100::after {
-    content: "\f06a";
-    font-family: FontAwesome;
-    font-size: 18px;
-    color: #c80000;
-    display: block;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 8px;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.4s;
-}
-
-.alert-validate::before {
-    visibility: visible;
-    opacity: 1;
-}
-
-.alert-validate::after {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Icon không bị che */
-.symbol-input100 i {
-    display: block;
-}
 
 
 
