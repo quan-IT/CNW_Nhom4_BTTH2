@@ -11,7 +11,7 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/css/login/vendor/animate/animate.css">
 <!--===============================================================================================-->	
@@ -24,7 +24,10 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
+	<div class="wrap-input100 alert-validate" data-validate="Error!">
+    <input class="input100" type="text">
+</div>
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
