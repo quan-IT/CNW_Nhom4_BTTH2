@@ -62,6 +62,6 @@
         </section>
 
     <!-- JS -->
-    <script src="assets/js/register/register.js"></script>
+    <!-- <script src="assets/js/register/register.js"></script> -->
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
