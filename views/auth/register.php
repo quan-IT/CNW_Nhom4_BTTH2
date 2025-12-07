@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up </title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <!-- Font Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha512-8k6Bfq5lHppZArYrusS4x+h0/pk3jfbQ3VIAtF+wNCz7r+G2kZZgwyUr0vbJIUKGwEuKXXSb9VInA36T1dN9ZA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/'; ?>">
     <!-- Main css -->
     <link rel="stylesheet" href="assets/css/register/css/register.css">
