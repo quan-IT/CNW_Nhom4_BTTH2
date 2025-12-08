@@ -27,4 +27,19 @@ class EnrollmentController
         $success = $this->EnrollmentModel->register($user_id, $course_id);
         return $success ? "Đăng ký thành công!" : "Đăng ký thất bại!";
     }
+
+    // Hiển thị danh sách khóa học của sinh viên đã đăng ký
+    public function my_courses()
+    {
+
+        $student_id = 1;
+        // ------------------------------------------
+
+        // Lấy danh sách khóa học của Sinh viên này
+        $stmt = $this->EnrollmentModel->getByUser($student_id);
+        $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Gọi view: views/instructor/course/manage.php
+        include 'views/student/my_courses.php';
+    }
 }
