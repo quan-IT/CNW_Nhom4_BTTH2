@@ -5,9 +5,10 @@ class Lesson
     private $table_name = "lessons";
 
     // Nhận kết nối CSDL từ controller
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $database = new Database(); // << Sửa thành new Database()
+        $this->db = $database->getConnection();
     }
 
     /**

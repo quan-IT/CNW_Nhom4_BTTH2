@@ -8,7 +8,7 @@ class Material {
     private $table_name = "materials";
 
     public function __construct() {
-        $database = Database::getInstance();
+        $database = new Database();
         $this->db = $database->getConnection();
     }
     
