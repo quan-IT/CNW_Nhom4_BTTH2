@@ -1,0 +1,45 @@
+<?php
+
+require_once 'models/Enrollment.php';
+
+require_once "config/database.php";
+$db = new Database();
+
+class EnrollmentController
+{
+    public $EnrollmentModel;
+
+    private $db;
+
+    public function __construct($db)
+    {
+        $this->db = $db;
+        $this->EnrollmentModel = new Enrollment($this->db);
+    }
+
+    // Đăng ký khóa học
+    public function register($user_id, $course_id)
+    {
+        if ($this->EnrollmentModel->isRegistered($user_id, $course_id)) {
+            return "Bạn đã đăng ký khóa học này!";
+        }
+
+        $success = $this->EnrollmentModel->register($user_id, $course_id);
+        return $success ? "Đăng ký thành công!" : "Đăng ký thất bại!";
+    }
+
+    // Hiển thị danh sách khóa học của sinh viên đã đăng ký
+    public function my_courses()
+    {
+
+        $student_id = 1;
+        // ------------------------------------------
+
+        // Lấy danh sách khóa học của Sinh viên này
+        $stmt = $this->EnrollmentModel->getByUser($student_id);
+        $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Gọi view: views/instructor/course/manage.php
+        include 'views/student/my_courses.php';
+    }
+}
