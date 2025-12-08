@@ -255,8 +255,10 @@
                         <th>Cấp độ</th>
                         <th>Thời lượng</th>
                         <th>Giá</th>
+                        <th>Ảnh</th>
                         <th>Bài học</th>
                         <th>Thao tác</th>
+                        
                     </tr>
                     </thead>
                     <tbody>
@@ -282,6 +284,16 @@
                             <td class="price-cell">
                                 <?= number_format($course['price'], 0, ',', '.') ?> VNĐ
                             </td>
+                            <td>
+                                <?php if (!empty($course['image'])): ?>
+                                    <img src="<?= htmlspecialchars($course['image']) ?>"
+                                        alt="Ảnh khóa học"
+                                        style="width: 80px; height: 48px; object-fit: cover; border-radius: 6px; border:1px solid #e5e7eb;">
+                                <?php else: ?>
+                                    <span style="font-size:12px; color:#9ca3af;">Chưa có</span>
+                                <?php endif; ?>
+                            </td>
+
                             <td>
                                 <a href="index.php?url=lesson/manageLessons/<?= htmlspecialchars($course['id']) ?>"
                                    class="action-link">Quản lý bài học</a>
