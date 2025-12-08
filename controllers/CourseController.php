@@ -48,36 +48,60 @@ class CourseController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // --- TẠM THỜI GÁN instructor_id CỐ ĐỊNH ---
-            // Sau này, bạn sẽ thay thế dòng này bằng $instructor_id = $_SESSION['user_id'];
-            $instructor_id = 1; // Giả định ID của một Giảng viên đã có trong CSDL (id=1)
+            $instructor_id = 1; 
             // ------------------------------------------
 
-            // Lấy dữ liệu an toàn (đã sửa lỗi Undefined Key trước đó)
+            // Lấy dữ liệu an toàn
             $title = $_POST['title'] ?? 'Khóa học mới'; 
             $description = $_POST['description'] ?? 'Mô tả khóa học';
-            $category_id = (int)($_POST['category_id'] ?? 1); // Giả định Category ID=1
+            $category_id = (int)($_POST['category_id'] ?? 1); 
             $price = (float)($_POST['price'] ?? 0.00); 
             $duration_weeks = (int)($_POST['duration_weeks'] ?? 1); 
             $level = $_POST['level'] ?? 'Beginner';
-            $image_path = "default.jpg"; 
             
-            // ... (Logic xử lý upload ảnh nếu có)
+            // ==========================================================
+            // >>> ĐÃ SỬA: LOGIC XỬ LÝ UPLOAD ẢNH DÙNG TÊN 'course_image' <<<
+            $image_path = "uploads/default.jpg"; // Đường dẫn mặc định (bạn cần có file này)
             
+            // Kiểm tra xem file có tồn tại và không bị lỗi upload
+            if (isset($_FILES['course_image']) && $_FILES['course_image']['error'] === UPLOAD_ERR_OK) {
+                $target_dir = "uploads/";
+                
+                // Đảm bảo thư mục upload tồn tại
+                if (!is_dir($target_dir)) {
+                    mkdir($target_dir, 0777, true);
+                }
+                
+                $file_name = $_FILES['course_image']['name'];
+                $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+                
+                // Tạo tên file duy nhất
+                $new_file_name = uniqid('course_', true) . '.' . $file_extension;
+                $target_file = $target_dir . $new_file_name;
+                
+                // Di chuyển file đã tải lên
+                if (move_uploaded_file($_FILES['course_image']['tmp_name'], $target_file)) {
+                    // Lưu đường dẫn tương đối vào CSDL (ví dụ: "uploads/course_65c...jpg")
+                    $image_path = $target_file; 
+                } 
+            }
+            // ==========================================================
+
             if ($this->courseModel->createCourse(
                 $title, 
                 $description, 
-                $instructor_id, // Sử dụng ID giả định
+                $instructor_id, 
                 $category_id, 
                 $price, 
                 $duration_weeks, 
                 $level, 
-                $image_path
+                $image_path // Truyền đường dẫn ảnh đã xử lý
             )) {
                 // Thành công: Chuyển hướng đến danh sách khóa học
                 header('Location: index.php?url=course/manage');
                 exit;
             } else {
-                // Thất bại
+                // Xử lý lỗi
                 // ...
             }
         }
