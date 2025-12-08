@@ -1,4 +1,5 @@
 <?php
+// models/Category.php
 class Category
 {
     private $conn;
@@ -8,13 +9,9 @@ class Category
     public $description;
     public $created_at;
 
-class Category {
-    private $db;
-    private $table_name = "categories";
-
-    public function __construct() {
-        $database = Database::getInstance();
-        $this->db = $database->getConnection();
+    public function __construct($db)
+    {
+        $this->conn = $db;
     }
 
     // Lấy tất cả danh mục
@@ -36,6 +33,7 @@ class Category {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Lấy khóa học theo danh mục
     public function getCourseByCategories($id)
     {
         $sql = "SELECT * 
