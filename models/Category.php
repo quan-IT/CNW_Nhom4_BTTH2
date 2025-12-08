@@ -5,14 +5,20 @@ class Category
 
     public $id;
     public $name;
+    public $description;
+    public $created_at;
 
-    public function __construct($db)
-    {
-        $this->conn = $db;
+class Category {
+    private $db;
+    private $table_name = "categories";
+
+    public function __construct() {
+        $database = Database::getInstance();
+        $this->db = $database->getConnection();
     }
 
     // Lấy tất cả danh mục
-    public function getAll()
+    public function getAllCategories()
     {
         $sql = "SELECT * FROM categories";
         $stmt = $this->conn->prepare($sql);
@@ -27,6 +33,18 @@ class Category
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getCourseByCategories($id)
+    {
+        $sql = "SELECT * 
+                FROM categories ca
+                join course co on co.category_id=ca.id
+                WHERE ca.id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
