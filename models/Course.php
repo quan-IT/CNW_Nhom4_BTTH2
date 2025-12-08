@@ -1,14 +1,14 @@
 <?php
 // models/Course.php
-
 class Course
 {
     private $db;
     private $table_name = "courses";
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $database = new Database(); 
+        $this->db = $database->getConnection();
     }
 
     // Lấy tất cả khóa học của một giảng viên
