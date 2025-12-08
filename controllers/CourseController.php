@@ -15,6 +15,7 @@ class CourseController {
     public function __construct() {
         $this->courseModel = new Course();
         $this->lessonModel = new Lesson();
+        $this->categoryModel = new Category();
 
         // Kiểm tra quyền truy cập giảng viên ở đây
         // if (!$this->checkInstructorAuth()) { header('Location: /login'); exit; }
@@ -37,7 +38,7 @@ class CourseController {
 
     // Hiển thị form tạo khóa học
     public function create() {
-        
+        $categories = $this->categoryModel->getAllCategories(); // <<< Dòng này phải chạy đúng
         // Gọi view: views/instructor/course/create.php 
         include 'views/instructor/course/create.php';
     }
@@ -125,12 +126,12 @@ class CourseController {
             // $this->lessonModel->deleteAllLessonsByCourse($course_id); 
 
             if ($this->courseModel->deleteCourse($course_id)) {
-                header('Location: instructor/courses/manage');
+                header('Location: index.php?url=course/manage');
                 exit;
             }
         }
         // Xử lý không tìm thấy/không có quyền xóa
-        header('Location: instructor/courses/manage');
+        header('Location: index.php?url=course/manage');
         exit;
     }
     

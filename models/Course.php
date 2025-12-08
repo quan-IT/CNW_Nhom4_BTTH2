@@ -14,10 +14,18 @@ class Course {
 
     // Lấy tất cả khóa học của một giảng viên
     public function getCoursesByInstructor($instructor_id) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE instructor_id = :instructor_id ORDER BY created_at DESC";
+        $query = "SELECT 
+                    t1.*, 
+                    t2.name AS category_name 
+                  FROM " . $this->table_name . " t1
+                  LEFT JOIN categories t2 ON t1.category_id = t2.id
+                  WHERE t1.instructor_id = :instructor_id 
+                  ORDER BY t1.created_at DESC";
+        
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':instructor_id', $instructor_id);
+        $stmt->bindParam(':instructor_id', $instructor_id, PDO::PARAM_INT);
         $stmt->execute();
+        
         return $stmt;
     }
 

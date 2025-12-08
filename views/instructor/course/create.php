@@ -369,17 +369,19 @@ Mô tả chi tiết nội dung khóa học...
                     <span class="hint">Chọn nhóm phù hợp.</span>
                 </div>
                 <select id="category_id" name="category_id" required>
+                    <option value="">-- Chọn Danh Mục Khóa Học --</option> 
+
                     <?php 
-                    if (isset($categories) && is_array($categories)):
+                    if (isset($categories) && is_array($categories) && !empty($categories)):
+                        // Duyệt qua dữ liệu thực tế từ CSDL
                         foreach ($categories as $category): ?>
                             <option value="<?= htmlspecialchars($category['id']) ?>">
                                 <?= htmlspecialchars($category['name']) ?>
                             </option>
                     <?php endforeach; 
                     endif;
-                    if (empty($categories)): ?>
-                        <option value="1">Lập trình (Tạm thời)</option>
-                    <?php endif; ?>
+                    // XÓA KHỐI IF (EMPTY($CATEGORIES)) ĐỂ TRÁNH TRÙNG LẶP
+                    ?>
                 </select>
             </div>
 
@@ -405,9 +407,9 @@ Mô tả chi tiết nội dung khóa học...
                     <span class="hint">Trình độ mục tiêu.</span>
                 </div>
                 <select id="level" name="level" required>
-                    <option value="Beginner">Cơ bản (Beginner)</option>
-                    <option value="Intermediate">Trung cấp (Intermediate)</option>
-                    <option value="Advanced">Nâng cao (Advanced)</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
                 </select>
             </div>
 

@@ -8,7 +8,7 @@ class Category {
     private $table_name = "categories";
 
     public function __construct() {
-        $database = new Database();
+        $database = Database::getInstance();
         $this->db = $database->getConnection();
     }
 

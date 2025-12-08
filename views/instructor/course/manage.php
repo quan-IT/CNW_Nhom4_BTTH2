@@ -14,11 +14,7 @@
             --bg-card: #ffffff;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -58,7 +54,6 @@
             text-align: right;
         }
 
-        /* Thanh info nhỏ phía trên bảng */
         .info-row {
             display: flex;
             flex-wrap: wrap;
@@ -80,7 +75,6 @@
             font-weight: 600;
         }
 
-        /* Card bao quanh bảng */
         .card {
             background: var(--bg-card);
             border-radius: 16px;
@@ -116,7 +110,6 @@
             border: 1px solid rgba(37, 99, 235, 0.2);
         }
 
-        /* Nút tạo mới */
         .create-btn {
             display: inline-flex;
             align-items: center;
@@ -134,7 +127,6 @@
             background-color: #1d4ed8;
         }
 
-        /* Bảng khóa học */
         .table-wrapper {
             margin-top: 12px;
             border-radius: 12px;
@@ -171,9 +163,7 @@
             background-color: #f9fafb;
         }
 
-        .price-cell {
-            white-space: nowrap;
-        }
+        .price-cell { white-space: nowrap; }
 
         .empty-state {
             padding: 18px 0;
@@ -188,9 +178,7 @@
             font-size: 13px;
         }
 
-        .action-link:hover {
-            text-decoration: underline;
-        }
+        .action-link:hover { text-decoration: underline; }
 
         .chip-id {
             display: inline-block;
@@ -202,13 +190,8 @@
         }
 
         @media (max-width: 768px) {
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .page-meta {
-                text-align: left;
-            }
+            .page-header { flex-direction: column; align-items: flex-start; }
+            .page-meta { text-align: left; }
         }
     </style>
 </head>
@@ -269,6 +252,8 @@
                         <th>ID</th>
                         <th>Tiêu đề</th>
                         <th>Danh mục</th>
+                        <th>Cấp độ</th>
+                        <th>Thời lượng</th>
                         <th>Giá</th>
                         <th>Bài học</th>
                         <th>Thao tác</th>
@@ -283,7 +268,17 @@
                                 </span>
                             </td>
                             <td><?= htmlspecialchars($course['title']) ?></td>
-                            <td><?= htmlspecialchars($course['category_id']) ?></td>
+                            <td>
+                                <?= htmlspecialchars($course['category_name'] ?? 'Chưa có') ?>
+                            </td>
+                            <td>
+                                <?= htmlspecialchars($course['level'] ?? '-') ?>
+                            </td>
+                            <td>
+                                <?= isset($course['duration_weeks']) && $course['duration_weeks'] > 0
+                                    ? (int)$course['duration_weeks'] . ' tuần'
+                                    : '—' ?>
+                            </td>
                             <td class="price-cell">
                                 <?= number_format($course['price'], 0, ',', '.') ?> VNĐ
                             </td>
