@@ -4,7 +4,7 @@
 require_once 'models/Lesson.php';
 require_once 'models/Material.php';
 require_once 'models/Course.php'; 
-require_once 'helpers/FileUploader.php'; // Cần một Helper để xử lý upload file
+// require_once 'helpers/FileUploader.php'; // Cần một Helper để xử lý upload file
 
 class LessonController {
     private $lessonModel;

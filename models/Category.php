@@ -8,9 +8,13 @@ class Category
     public $description;
     public $created_at;
 
-    public function __construct($db)
-    {
-        $this->conn = $db;
+class Category {
+    private $db;
+    private $table_name = "categories";
+
+    public function __construct() {
+        $database = Database::getInstance();
+        $this->db = $database->getConnection();
     }
 
     // Lấy tất cả danh mục
