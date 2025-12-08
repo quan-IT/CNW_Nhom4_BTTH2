@@ -2,7 +2,7 @@
 class Database
 {
     private $host = "localhost";
-    private $db_name = "btth2";
+    private $db_name = "onlinecourse";
     private $username = "root";
     private $password = "";
     private static $instance = null; // Singleton
