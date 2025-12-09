@@ -38,12 +38,13 @@ class AdminController
 
     public function dashboard()
     {
-        $stats = [
-            'users'       => $this->userModel->countAll(),
-            'courses'     => $this->courseModel->countAll(), 
-            'enrollments' => $this->enrollmentModel->countAll() 
-        ];
-
+        // $stats = [
+        //     'users'       => $this->userModel->countAll(),
+        //     'courses'     => $this->courseModel->countAll(), 
+        //     'enrollments' => $this->enrollmentModel->countAll() 
+        // ];
+        //mình đã thay hiển thị view qua layout rồi nhé| admin_layout nhé thân!
+        $view = 'views/admin/dashboard.php'
         include 'views/admin/dashboard.php';
     }
 
