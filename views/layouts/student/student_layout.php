@@ -44,3 +44,4 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
 
 </body>
 </html>
+<script src="assets/js/student/student.js"></script>
