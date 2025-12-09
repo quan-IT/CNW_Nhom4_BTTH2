@@ -8,9 +8,10 @@ class Enrollment
     public $course_id;
     public $created_at;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->conn = $db;
+        $db = new Database();
+        $this->conn = $db->getConnection();
     }
 
     // Đăng ký khóa học
