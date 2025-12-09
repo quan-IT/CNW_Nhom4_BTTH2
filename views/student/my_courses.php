@@ -88,7 +88,7 @@
                 <span class="course-status in-progress">In Progress</span>
             </div>
         </div>
-        v
+        
                 <div class="course-card">
             <div class="course-thumb js">
                 <i class="fab fa-js"></i>
