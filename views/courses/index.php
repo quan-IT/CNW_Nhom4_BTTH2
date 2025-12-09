@@ -43,12 +43,7 @@ $courses = [
                 </p>
 
                 <!-- Giá khóa học -->
-                <p class="course-price">
-                    Giá:
-                    <strong style="color:#dc2626;">
-                        <?= $course['price'] == 0 ? "Miễn phí" : number_format($course['price'], 0, ',', '.') . "đ" ?>
-                    </strong>
-                </p>
+    
 
                 <!-- Nút bấm chi tiết -->
                 <a href="index.php?url=student/courseprogress&id=<?= $course['id'] ?>"
