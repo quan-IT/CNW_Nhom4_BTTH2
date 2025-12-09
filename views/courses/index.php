@@ -20,7 +20,7 @@ $courses = [
 
 
 <h1 style="text-align:center; margin-bottom:50px; font-size:2.8rem; color:#1e293b; font-weight:700;">
-    My Courses
+     Danh Sách Khóa Học
 </h1>
 
 <div class="courses-grid">
