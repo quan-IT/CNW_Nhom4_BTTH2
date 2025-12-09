@@ -2,9 +2,9 @@
 // views/layouts/student/layout.php
 $current_url = $_GET['url'] ?? 'student/dashboard';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,11 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/student/student.css">
     <!-- <link rel="stylesheet" href="assets/css/student/mycourse.css"> -->
+    <link rel="stylesheet" href="assets/css/profile.css">
+    <link href="assets/css/student/courseproress.css" rel="stylesheet">
+     <link href="assets/css/courses.css" rel="stylesheet">
 </head>
+
 <body>
 
     <div class="dashboard-wrapper">
@@ -33,7 +37,8 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
 
             <!-- NỘI DUNG CHÍNH -->
             <div class="dashboard-content">
-                <?php include $view; // Biến này từ Controller ?>
+                <?php include $view; // Biến này từ Controller 
+                ?>
             </div>
 
         </main>
@@ -43,5 +48,6 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
     <?php include 'views/layouts/student/footer.php'; ?>
 
 </body>
+
 </html>
 <script src="assets/js/student/student.js"></script>

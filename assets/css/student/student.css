@@ -40,6 +40,7 @@ body {
   min-height: 100vh;
 }
 
+
 /* ==========================================
    SIDEBAR
    ========================================== */
@@ -640,51 +641,8 @@ body {
 }
 
 /* Ảnh + icon + % hoàn thành – nằm gọn trên cùng */
-.course-thumb {
-  height: 180px;
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  position: relative;
-  padding: 20px;
-}
 
-/* Icon lớn */
-.course-thumb i {
-  font-size: 4.5rem;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-}
 
-/* Dòng chữ tiến độ – không bị tràn */
-.course-thumb .progress-text {
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-align: center;
-  line-height: 1.4;
-  max-width: 90%;
-  word-wrap: break-word;
-}
-
-/* Màu riêng cho từng môn */
-.course-thumb.html {
-  background: linear-gradient(135deg, #e44d26, #f16529);
-}
-.course-thumb.js {
-  background: linear-gradient(135deg, #f0db4f, #f7df1e);
-}
-.course-thumb.python {
-  background: linear-gradient(135deg, #306998, #3776ab);
-}
-.course-thumb.react {
-  background: linear-gradient(135deg, #00d8ff, #61dafb);
-}
-.course-thumb.php {
-  background: linear-gradient(135deg, #7873be, #8993be);
-}
 
 /* Phần nội dung bên dưới */
 .course-body {
