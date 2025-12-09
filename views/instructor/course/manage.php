@@ -295,7 +295,7 @@
                             </td>
 
                             <td>
-                                <a href="index.php?url=lesson/manageLessons/<?= htmlspecialchars($course['id']) ?>"
+                                <a href="index.php?url=lesson/manage/<?= htmlspecialchars($course['id']) ?>"
                                    class="action-link">Quản lý bài học</a>
                             </td>
                             <td>
