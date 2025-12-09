@@ -10,20 +10,38 @@ class LessonController {
     private $lessonModel;
     private $materialModel;
     private $courseModel;
-
+    
     public function __construct() {
         $this->lessonModel = new Lesson();
         $this->materialModel = new Material();
         $this->courseModel = new Course();
         // Giả định: Kiểm tra quyền Giảng viên ở đây
     }
+    public function manage($course_id) { 
+        $instructor_id = 1; 
+        
+        // Kiểm tra quyền sở hữu
+        $course = $this->courseModel->getCourseById($course_id, $instructor_id);
+        if (!$course) { 
+            header('Location: index.php?url=course/manage');
+            exit;
+        }
+
+        // Lấy danh sách bài học và gọi fetchAll()
+        $stmt = $this->lessonModel->getLessonsByCourse($course_id);
+        $lessons = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Tải view
+        include 'views/instructor/lessons/manage.php';
+    }
     
     // Hiển thị form tạo bài học mới cho một khóa học cụ thể
     public function create($course_id) {
+        global $instructor_id;
         // BƯỚC 1: Kiểm tra Giảng viên có sở hữu CourseID này không
-        $course = $this->courseModel->getCourseById($course_id, $_SESSION['user_id']);
+        $course = $this->courseModel->getCourseById($course_id, $instructor_id);
         if (!$course) {
-             // Chuyển hướng hoặc báo lỗi
+             header('Location: index.php?url=course/manage');
              return;
         }
 
@@ -34,8 +52,9 @@ class LessonController {
     // Xử lý tạo bài học
     public function store($course_id) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            global $instructor_id;
             // BƯỚC 1: Kiểm tra Giảng viên có sở hữu CourseID này không
-            $course = $this->courseModel->getCourseById($course_id, $_SESSION['user_id']);
+            $course = $this->courseModel->getCourseById($course_id,$instructor_id );
             if (!$course) { return; }
 
             // BƯỚC 2: Lấy dữ liệu
@@ -47,10 +66,10 @@ class LessonController {
             // BƯỚC 3: Gọi Model để tạo
             if ($this->lessonModel->createLesson($course_id, $title, $content, $video_url, $order)) {
                 // Thành công
-                header("Location: /instructor/courses/{$course_id}/lessons");
+                header("Location: index.php?url=lesson/manage/{$course_id}&status=created");
                 exit;
             } else {
-                // Xử lý lỗi
+                header("Location: index.php?url=lesson/create/{$course_id}&error=failed");
             }
         }
     }
