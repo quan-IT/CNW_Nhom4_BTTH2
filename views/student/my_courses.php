@@ -1,4 +1,7 @@
+
+
 <?php
+//Dữ liệu mẫu, khi code chuẩn cần truyền id của user để lấy danh sách khóa học mà nó đăng kí
 $courses = [
     [
         'id' => 1,
