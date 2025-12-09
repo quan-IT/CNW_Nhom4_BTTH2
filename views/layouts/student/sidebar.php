@@ -20,10 +20,10 @@
                 <i class="fas fa-book-reader"></i> <span>My Courses</span>
             </a>
 
-            <a href="index.php?url=student/document"
+            <!-- <a href="index.php?url=student/document"
                 class="nav-item <?= ($current_url === 'student/quiz') ? 'active' : '' ?>">
                 <i class="fas fa-question-circle"></i> <span>My Document</span>
-            </a>
+            </a> -->
             <!-- <a href="index.php?url=student/courseprogress"
                 class="nav-item <?= ($current_url === 'student/quiz') ? 'active' : '' ?>">
                 <i class="fas fa-question-circle"></i> <span>My Course Progress</span>
