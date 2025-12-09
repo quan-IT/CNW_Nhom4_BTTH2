@@ -20,6 +20,7 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
     <link rel="stylesheet" href="assets/css/profile.css">
     <link href="assets/css/student/courseproress.css" rel="stylesheet">
      <link href="assets/css/courses.css" rel="stylesheet">
+       <link href="assets/css/student/mycourse.css" rel="stylesheet">
 </head>
 
 <body>

@@ -24,10 +24,10 @@
                 class="nav-item <?= ($current_url === 'student/quiz') ? 'active' : '' ?>">
                 <i class="fas fa-question-circle"></i> <span>My Document</span>
             </a>
-            <a href="index.php?url=student/courseprogress"
+            <!-- <a href="index.php?url=student/courseprogress"
                 class="nav-item <?= ($current_url === 'student/quiz') ? 'active' : '' ?>">
                 <i class="fas fa-question-circle"></i> <span>My Course Progress</span>
-            </a>
+            </a> -->
         </div>
 
         <div class="nav-section">
