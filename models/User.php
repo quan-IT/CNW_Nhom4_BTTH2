@@ -1,0 +1,166 @@
+<?php
+// models/User.php
+require_once 'config/Database.php';
+
+class User
+{
+    private $db;
+    private $table_name = "users";
+
+    public function __construct()
+    {
+        $database = new Database();
+        $this->db = $database->getConnection();
+    }
+
+    /**
+     * Đăng ký tài khoản
+     */
+    public function register($username, $email, $password, $fullname, $role = 0)
+    {
+        $sql = "INSERT INTO {$this->table_name}
+                (username, email, password, fullname, role, created_at)
+                VALUES (:username, :email, :password, :fullname, :role, NOW())";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':fullname', $fullname);
+        $stmt->bindParam(':role', $role, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    /**
+     * Đăng nhập (username hoặc email)
+     */
+    public function login($username, $password)
+    {
+        $sql = "SELECT * FROM {$this->table_name}
+                WHERE username = :username OR email = :username
+                LIMIT 1";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['password'])) {
+            return $user;
+        }
+        return false;
+    }
+
+    /**
+     * Lấy user theo ID
+     */
+    public function getUserById($id)
+    {
+        $sql = "SELECT id, username, email, fullname, role, created_at
+                FROM {$this->table_name}
+                WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Lấy tất cả user (ADMIN)
+     */
+    public function getAllUsers()
+    {
+        $sql = "SELECT id, username, email, fullname, role, created_at
+                FROM {$this->table_name}
+                ORDER BY created_at DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    /**
+     * Cập nhật thông tin user
+     */
+    public function updateUser($id, $fullname, $email)
+    {
+        $sql = "UPDATE {$this->table_name}
+                SET fullname = :fullname, email = :email
+                WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':fullname', $fullname);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    /**
+     * Đổi mật khẩu
+     */
+    public function changePassword($id, $newPassword)
+    {
+        $sql = "UPDATE {$this->table_name}
+                SET password = :password
+                WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':password', $newPassword);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    /**
+     * Cập nhật quyền (ADMIN)
+     * 0: học viên | 1: giảng viên | 2: admin
+     */
+    public function updateRole($id, $role)
+    {
+        $sql = "UPDATE {$this->table_name}
+                SET role = :role
+                WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':role', $role, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    /**
+     * Xóa user
+     */
+    public function deleteUser($id)
+    {
+        $sql = "DELETE FROM {$this->table_name}
+                WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    /**
+     * Kiểm tra tồn tại username hoặc email
+     */
+    public function checkExists($username, $email)
+    {
+        $sql = "SELECT id FROM {$this->table_name}
+                WHERE username = :username OR email = :email";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
+    }
+}
