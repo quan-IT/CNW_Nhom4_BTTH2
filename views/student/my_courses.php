@@ -33,12 +33,11 @@ $courses = [
                         <!-- ĐÃ SỬA: dùng đúng $course['img'] -->
                         <img src="<?= htmlspecialchars($course['img']) ?>"
                             alt="<?= htmlspecialchars($course['title']) ?>"
-                            class="img-cover"
-                            onerror="this.src='https://via.placeholder.com/800x450/6366f1/ffffff?text=No+Image';">
+                            class="img-cover">
 
-                        <!-- Vòng tròn tiến độ -->
-                        <?php if ($course['progress'] > 0): ?>
-                        <?php endif; ?>
+
+
+
                     </div>
 
                     <div class="course-body">
