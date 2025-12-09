@@ -10,7 +10,7 @@ class StudentController
 
     public function mycourse()
     {
-        $view = 'views\student\my_courses.php';
+        $view = 'views/student/my_courses.php';
         include 'views/layouts/student/student_layout.php';
     }
 
@@ -24,4 +24,6 @@ class StudentController
         $view = 'views/layouts/profile.php';
         include 'views/layouts/student/student_layout.php';
     }
+
+
 }

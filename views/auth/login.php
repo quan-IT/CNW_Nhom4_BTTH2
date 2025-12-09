@@ -65,8 +65,7 @@
 							Username / Password?
 						</a>
 					</div>
-
-					<div class="text-center p-t-136">
+					<div class="text-center p-t-50">
 						<a class="txt2" href="index.php?url=auth/register">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>

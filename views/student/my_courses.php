@@ -1,110 +1,58 @@
-    <h1 style="text-align:center; margin-bottom:50px; font-size:2.8rem; color:#1e293b; font-weight:700;">
-        My Courses
-    </h1>
+<?php
+$courses = [
+    [
+        'id' => 1,
+        'title' => 'HTML5 Mastery',
+        'image' => 'assets/java.png',
+        'price' => 0,
+        'instructor' => 'Nguyễn Văn A'
+    ],
+    [
+        'id' => 2,
+        'title' => 'Java Basic',
+        'image' => 'assets/java.png',
+        'price' => 499000,
+        'instructor' => 'Nguyễn Văn Trường'
+    ]
+];
+?>
 
-    <div class="courses-grid">
 
-        <!-- HTML5 Card -->
+
+<h1 style="text-align:center; margin-bottom:50px; font-size:2.8rem; color:#1e293b; font-weight:700;">
+    My Courses
+</h1>
+
+<div class="courses-grid">
+
+    <?php foreach ($courses as $course): ?>
         <div class="course-card">
-            <div class="course-thumb html">
-                <i class="fab fa-html5"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">HTML5 Mastery</h3>
-                <p class="course-desc">HTML Courses</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:100%"></div>
-                </div>
 
-                <span class="course-status completed">Completed</span>
+            <div class="course-thumb">
+                <img src="<?= $course['image'] ?>" alt="<?= $course['title'] ?>">
+            </div>
+
+            <div class="course-body">
+
+                <!-- Tên khóa học -->
+                <h3 class="course-title"><?= $course['title'] ?></h3>
+
+                <!-- Giảng viên -->
+                <p class="course-desc">
+                    Giảng viên: <?= $course['instructor'] ?>
+                </p>
+
+                <!-- Giá khóa học -->
+    
+
+                <!-- Nút bấm chi tiết -->
+                <a href="index.php?url=student/courseprogress&id=<?= $course['id'] ?>"
+                   class="btn btn-primary mt-2">
+                    Xem chi tiết
+                </a>
 
             </div>
         </div>
+    <?php endforeach; ?>
 
-        <!-- JavaScript Card -->
-        <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-                <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-                <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-                <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-        
-                <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-
-        <!-- Thêm bao nhiêu card cũng được, chỉ cần copy -->
-
-    </div>
-    </div>
-    </div>
+</div>

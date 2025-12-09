@@ -37,41 +37,32 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label>Phone</label>
-                    <input type="text" placeholder="Phone">
+                    <label>UserName</label>
+                    <input type="text" placeholder="UserName">
                 </div>
-
                 <div class="form-group">
-                    <label>Birthday</label>
-                    <input type="date">
+                    <label>Email</label>
+                    <input type="text" placeholder="Email">
                 </div>
             </div>
-
-            <div class="form-group full">
-                <label>Address Line 1</label>
-                <input type="text" placeholder="Address">
-            </div>
-
-            <div class="form-group full">
-                <label>Address Line 2</label>
-                <input type="text" placeholder="Address">
-            </div>
-
             <div class="form-row">
                 <div class="form-group">
-                    <label>State</label>
-                    <select>
-                        <option>Select State</option>
-                    </select>
+                    <label>Old Password</label>
+                    <input type="password" placeholder="">
                 </div>
-
                 <div class="form-group">
-                    <label>Country</label>
-                    <select>
-                        <option>Select Country</option>
-                    </select>
+                    <label>New Password</label>
+                    <input type="password" placeholder="">
                 </div>
             </div>
+
+
+
+
+
+
+
+
 
             <button class="btn btn-primary update-btn">Update Profile</button>
 
