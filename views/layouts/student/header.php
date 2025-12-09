@@ -1,6 +1,6 @@
 <header class="dashboard-header">
     <div class="header-left">
-        <h1>My Dashboard</h1>
+        <a href = "index.php?url=student/dashboard"><h1>My Dashboard</h1></a>
     </div>
 
     <div class="header-center">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="user-profile">
-            <img src="assets/img/avatar-default.jpg" alt="User">
+            <img src="assets\VN.png" alt="User">
         </div>
     </div>
 </header>

@@ -50,7 +50,7 @@
             <div class="courses-section">
                 <div class="section-header">
                     <h2><i class="fas fa-graduation-cap"></i> Learn</h2>
-                    <button class="btn-view-all">View All</button>
+                    <a href="index.php?url=student/mycourse"><button class="btn-view-all">View All</button></a>
                 </div>
 
                 <div class="courses-grid">
