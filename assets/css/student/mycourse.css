@@ -1,0 +1,137 @@
+/* ==========================================
+   MY COURSES PAGE - SIÊU ĐẸP 2025
+   ========================================== */
+
+.dashboard-content h1,
+.dashboard-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Grid 4 cột đẹp, responsive */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Card chính - bóng đẹp, hover mượt */
+.course-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    border: 1px solid #f1f;
+}
+
+.course-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Phần ảnh trên cùng - màu gradient đẹp */
+.course-thumb {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.5rem;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.course-thumb.html   { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
+.course-thumb.js     { background: linear(135deg, #f7df1e, #eab308); }
+.course-thumb.python { background: linear(135deg, #3776ab, #306998); }
+.course-thumb.react  { background: linear(135deg, #61dafb, #00d8ff); }
+.course-thumb.php    { background: linear(135deg, #8993be, #7873be); }
+.course-thumb.java   { background: linear(135deg, #f89820, #f57c00); }
+
+/* Nội dung bên dưới */
+.course-body {
+    padding: 28px;
+    text-align: center;
+}
+
+.course-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.course-desc {
+    color: #64748b;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Progress bar đẹp */
+.progress-container {
+    background: #e2e8f0;
+    height: 10px;
+    border-radius: 50px;
+    overflow: hidden;
+    margin: 16px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    border-radius: 50px;
+    transition: width 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Text tiến độ */
+.progress-text {
+    font-size: 0.95rem;
+    color: #475569;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+/* Status badge */
+.status {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status.completed {
+    background: #ecfdf5;
+    color: #065f46;
+}
+
+.status.in-progress {
+    background: #fffbeb;
+    color: #92400e;
+}
+
+.status.not-started {
+    background: #f8fafc;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .courses-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+    
+    .dashboard-content h1 {
+        font-size: 2rem;
+    }
+}
