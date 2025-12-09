@@ -1,0 +1,108 @@
+
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --green: #10b981;
+            --yellow: #f59e0b;
+            --orange: #fb923c;
+            --purple: #a78bfa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .course-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+        .course-thumb {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        .html { background: linear-gradient(135deg, #fb923c, #f97316); }
+        .js { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+        .python { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .react { background: linear-gradient(135deg, #22d3ee, #06b6d4); }
+
+        .course-body {
+            padding: 24px;
+        }
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .course-desc {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .progress-container {
+            background: #334155;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--green);
+            border-radius: 5px;
+            transition: width 0.6s ease;
+        }
+        .progress-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+        .status {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .status.completed {
+            background: #065f46;
+            color: #6ee7b7;
+        }
+        .status.inprogress {
+            background: #78350f;
+            color: #fcd34d;
+        }
+        .status.notstarted {
+            background: #1e293b;
+            color: #94a3b8;
+            border: 1px solid #475569;
+        }

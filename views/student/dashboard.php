@@ -1,88 +1,112 @@
-<?php include 'views/layouts/header.php'; ?>
 
-<div class="container-fluid">
-    <div class="row">
+            <!-- Profile Card & Projects Section -->
+            <div class="dashboard-grid">
+                <!-- User Profile Card -->
+                <div class="card profile-card">
+                    <div class="profile-avatar">
+                        <img src="assets\VN.png" alt="User Avatar">
+                    </div>
+                    <h3 class="profile-name">Hey, Student!</h3>
+                    <p class="profile-id">ID: 28782</p>
 
-        <?php include 'views/layouts/sidebar.php'; ?>
+                    <div class="profile-course">
+                        <label>Current Course:</label>
+                        <h4>Full Stack Development</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 30%"></div>
+                        </div>
+                        <p class="progress-label">Profile 30% complete</p>
+                    </div>
 
-        <main class="col-sm p-4 min-vh-100">
-
-            <h2 class="mb-3">Student Dashboard</h2>
-            <hr>
-
-            <!-- STAT CARDS -->
-            <div class="row g-3 mb-4">
-                <div class="col-md-3">
-                    <div class="card shadow-sm p-3">
-                        <h6 class="text-muted">Tổng khóa học</h6>
-                        <h3>12</h3>
+                    <div class="profile-badges">
+                        <span class="badge badge-fire"><i class="fas fa-fire"></i></span>
+                        <span class="badge badge-lock"><i class="fas fa-lock"></i></span>
+                        <span class="badge badge-lock"><i class="fas fa-lock"></i></span>
+                        <span class="badge badge-lock"><i class="fas fa-lock"></i></span>
+                        <span class="badge badge-lock"><i class="fas fa-lock"></i></span>
+                        <span class="badge badge-lock"><i class="fas fa-lock"></i></span>
+                        <span class="badge badge-lock"><i class="fas fa-lock"></i></span>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="card shadow-sm p-3">
-                        <h6 class="text-muted">Đang học</h6>
-                        <h3>5</h3>
+                <!-- Real World Projects Card -->
+                <div class="card projects-card">
+                    <div class="projects-content">
+                        <h2>Real World Projects</h2>
+                        <p>Engage with real-world challenges using our projects directory. Apply your knowledge to real scenarios in a practical environment.</p>
+                        <button class="btn-primary">Start Project</button>
                     </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card shadow-sm p-3">
-                        <h6 class="text-muted">Đã hoàn thành</h6>
-                        <h3>4</h3>
+                    <div class="projects-illustration">
+                        <img src="assets\vietnamese-national-day-slide14.png" alt="Projects">
                     </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card shadow-sm p-3">
-                        <h6 class="text-muted">Thời gian học</h6>
-                        <h3>42 giờ</h3>
+                    <div class="carousel-dots">
+                        <span class="dot"></span>
+                        <span class="dot active"></span>
                     </div>
                 </div>
             </div>
 
-            <!-- RECENT PROGRESS -->
-            <div class="card shadow-sm p-4 mb-4">
-                <h5 class="mb-3">Tiến độ gần đây</h5>
+            <!-- Courses Section -->
+            <div class="courses-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-graduation-cap"></i> Learn</h2>
+                    <button class="btn-view-all">View All</button>
+                </div>
 
-                <table class="table table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Khóa học</th>
-                            <th>Tiến độ</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
+                <div class="courses-grid">
+                    <!-- HTML Course -->
+                    <div class="course-card">
+                        <div class="course-icon" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <h3>HTML5</h3>
+                        <h4>HTML Courses</h4>
+                        <div class="course-progress">
+                            <span>12 of 12 lessons completed...</span>
+                            <span class="progress-percent">100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%; background: #48bb78;"></div>
+                        </div>
+                        <button class="course-status completed">Completed</button>
+                    </div>
 
-                    <tbody>
-                        <tr>
-                            <td>PHP & MySQL Cơ bản</td>
-                            <td style="width: 250px;">
-                                <div class="progress" style="height: 8px;">
-                                    <div class="progress-bar bg-success" style="width: 70%"></div>
-                                </div>
-                                <small class="text-muted">70%</small>
-                            </td>
-                            <td><a class="btn btn-primary btn-sm">Tiếp tục</a></td>
-                        </tr>
+                    <!-- JavaScript Course -->
+                    <div class="course-card">
+                        <div class="course-icon" style="background: linear-gradient(135deg, #f7df1e 0%, #efd81d 100%);">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <h3>JavaScript</h3>
+                        <h4>Javascript Courses</h4>
+                        <div class="course-progress">
+                            <span>1 of 12 lessons completed...</span>
+                            <span class="progress-percent">20%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 20%; background: #f7df1e;"></div>
+                        </div>
+                        <button class="course-status in-progress">In Progress</button>
+                    </div>
 
-                        <tr>
-                            <td>HTML/CSS Nâng cao</td>
-                            <td style="width: 250px;">
-                                <div class="progress" style="height: 8px;">
-                                    <div class="progress-bar bg-info" style="width: 40%"></div>
-                                </div>
-                                <small class="text-muted">40%</small>
-                            </td>
-                            <td><a class="btn btn-primary btn-sm">Tiếp tục</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                    <!-- Python Course -->
+                    <div class="course-card">
+                        <div class="course-icon" style="background: linear-gradient(135deg, #3776ab 0%, #306998 100%);">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h3>Python</h3>
+                        <h4>Learn Python</h4>
+                        <div class="course-progress">
+                            <span>0 of 15 lessons completed...</span>
+                            <span class="progress-percent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <button class="course-status not-started">Not Started</button>
+                    </div>
 
-        </main>
+                    <!-- React Course -->
 
-    </div>
-</div>
+                </div>
 
-<?php include 'views/layouts/footer.php'; ?>
+
