@@ -1,6 +1,28 @@
 <?php
 // views/layouts/student/layout.php
-$current_url = $_GET['url'] ?? 'admin/dashboard';
+$current_url = $_GET['url'] ?? 'test/dashboard';
+?>
+<?php
+// Dữ liệu mẫu cho Admin Dashboard
+$stats = [
+    'total_users' => 28782,
+    'active_users' => 24560,
+    'pending_courses' => 18,
+    'total_courses' => 156,
+    'total_revenue' => '₫2,456,780,000',
+    'new_users_today' => 142
+];
+
+$recent_users = [
+    ['name' => 'Nguyễn Văn An', 'email' => 'an@gmail.com', 'status' => 'active', 'joined' => '10/12/2025'],
+    ['name' => 'Trần Thị Lan', 'email' => 'lan@yahoo.com', 'status' => 'pending', 'joined' => '10/12/2025'],
+    ['name' => 'Lê Minh Tuấn', 'email' => 'tuan@outlook.com', 'status' => 'active', 'joined' => '09/12/2025'],
+];
+
+$pending_courses = [
+    ['title' => 'Advanced Machine Learning with TensorFlow', 'instructor' => 'Dr. Phạm Văn Hùng', 'submitted' => '10/12/2025'],
+    ['title' => 'Flutter Mobile Dev - Build Real Apps', 'instructor' => 'Nguyễn Thị Mai', 'submitted' => '09/12/2025'],
+];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +33,12 @@ $current_url = $_GET['url'] ?? 'admin/dashboard';
     <title>Admin Dashboard - Edukate</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/admin/dashboard.css">
+    <link rel="stylesheet" href="assets/css/admin/sidebar.css">
+    <link rel="stylesheet" href="assets/css/admin/header.css">
+    <link rel="stylesheet" href="assets/css/admin/manage.css">
+      <link rel="stylesheet" href="assets/css/admin/catagory.css">
+
+
 
 </head>
 
@@ -29,91 +57,10 @@ $current_url = $_GET['url'] ?? 'admin/dashboard';
 
             <!-- NỘI DUNG CHÍNH -->
             <div class="dashboard-content">
-                <?php //include $view; // Biến này từ Controller 
+                <?php include $view; // Biến này từ Controller 
                 ?>
-                <div class="header">
-                    <h1>Admin Dashboard</h1>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Tìm kiếm...">
-                        <i class="fas fa-search"></i>
-                    </div>
-                </div>
-
-                <!-- Stats Cards -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <i class="fas fa-users"></i>
-                        <div>
-                            <h3><?= number_format($stats['total_users']) ?></h3>
-                            <p>Tổng người dùng</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-user-check"></i>
-                        <div>
-                            <h3><?= number_format($stats['active_users']) ?></h3>
-                            <p>Người dùng hoạt động</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-book-open"></i>
-                        <div>
-                            <h3><?= $stats['total_courses'] ?></h3>
-                            <p>Tổng khóa học</p>
-                        </div>
-                    </div>
-                    <div class="stat-card pending">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h3><?= $stats['pending_courses'] ?></h3>
-                            <p>Khóa học chờ duyệt</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity + Pending Courses -->
-                <div class="content-grid">
-                    <!-- Recent Users -->
-                    <div class="widget">
-                        <h2>Người dùng mới đăng ký</h2>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Họ tên</th>
-                                    <th>Email</th>
-                                    <th>Trạng thái</th>
-                                    <th>Ngày tham gia</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($recent_users as $u): ?>
-                                    <tr>
-                                        <td><?= $u['name'] ?></td>
-                                        <td><?= $u['email'] ?></td>
-                                        <td><span class="status <?= $u['status'] ?>"><?= $u['status'] == 'active' ? 'Hoạt động' : 'Chờ duyệt' ?></span></td>
-                                        <td><?= $u['joined'] ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Pending Courses -->
-                    <div class="widget pending-courses">
-                        <h2>Khóa học chờ duyệt <span class="badge"><?= count($pending_courses) ?></span></h2>
-                        <?php foreach ($pending_courses as $c): ?>
-                            <div class="pending-item">
-                                <h4><?= $c['title'] ?></h4>
-                                <p>Giảng viên: <?= $c['instructor'] ?> • Nộp ngày <?= $c['submitted'] ?></p>
-                                <div class="actions">
-                                    <button class="btn-approve">Duyệt</button>
-                                    <button class="btn-reject">Từ chối</button>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
             </div>
+
 
         </main>
     </div>

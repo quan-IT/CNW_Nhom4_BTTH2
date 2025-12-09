@@ -1,0 +1,99 @@
+/* ========================================
+   ADMIN - QUẢN LÝ NGƯỜI DÙNG (100% đúng bảng users)
+   File: assets/css/admin/users.css
+======================================== */
+
+.page-header h1 { font-size:32px; font-weight:700; color:#1e293b; margin-bottom:8px; }
+.page-header p { color:#64748b; font-size:16px; }
+
+.users-controls {
+    display: flex; justify-content: space-between; align-items: center;
+    margin: 30px 0; flex-wrap: wrap; gap: 16px;
+}
+.filters { display: flex; gap: 12px; flex: 1; max-width: 800px; }
+.search-input {
+    padding: 14px 18px; border: 1px solid #e2e8f0; border-radius: 14px;
+    width: 340px; font-size: 15px; background: white;
+}
+.filter-select {
+    padding: 14px 18px; border: 1px solid #e2e8f0; border-radius: 14px;
+    background: white; font-size: 15px;
+}
+.actions { display: flex; gap: 12px; }
+.btn-export, .btn-add {
+    padding: 14px 24px; border: none; border-radius: 14px;
+    font-weight: 600; font-size: 15px; cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+}
+.btn-export { background:#10b981; color:white; }
+.btn-add { background:#3b82f6; color:white; }
+
+/* Bảng */
+.table-container {
+    background:white; border-radius:18px; overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08); margin-bottom:30px;
+}
+.users-table { width:100%; border-collapse:collapse; }
+.users-table th {
+    background:#f8fafc; padding:18px 16px; text-align:left;
+    font-weight:600; color:#475569; font-size:14px; border-bottom:2px solid #e2e8f0;
+}
+.users-table td { padding:18px 16px; border-bottom:1px solid #f1f5f9; vertical-align:middle; }
+.users-table tr:hover { background:#f8faff; }
+
+.user-cell {
+    display:flex; align-items:center; gap:12px;
+}
+.user-avatar-sm {
+    width:42px; height:42px; border-radius:50%;
+}
+
+/* Badge vai trò */
+.role-badge {
+    padding:6px 14px; border-radius:20px; font-size:13px; font-weight:600;
+}
+.role-0 { background:#dbeafe; color:#1d4ed8; } /* Học viên */
+.role-1 { background:#fef3c7; color:#d97706; } /* Giảng viên */
+.role-2 { background:#fee2e2; color:#dc2626; } /* Quản trị viên */
+
+.status-badge.active { background:#dcfce7; color:#166534; }
+
+/* Nút hành động */
+.action-group {
+    display:flex; gap:8px;
+}
+.btn-icon {
+    width:40px; height:40px; border:none; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:15px; transition:0.3s;
+}
+.btn-icon { background:#e0e7ff; color:#4338ca; }
+.btn-icon.danger { background:#fee2e2; color:#dc2626; }
+.btn-icon:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.15); }
+.btn-icon.disabled { opacity:0.5; cursor:not-allowed; }
+
+/* Phân trang */
+.pagination {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 0; color:#64748b;
+}
+.page-controls {
+    display:flex; align-items:center; gap:8px;
+}
+.page-btn {
+    width:44px; height:44px; border:none; background:#f1f5f9;
+    border-radius:12px; cursor:pointer; font-size:16px;
+}
+.page-btn.active { background:#3b82f6; color:white; }
+.page-btn:hover:not(.active) { background:#e0e7ff; color:#4338ca; }
+
+/* Responsive */
+@media (max-width:992px) {
+    .users-controls { flex-direction:column; align-items:stretch; }
+    .filters { max-width:100%; }
+    .search-input { width:100%; }
+}
+@media (max-width:768px) {
+    .table-container { overflow-x:auto; }
+    .users-table { min-width:900px; }
+}
