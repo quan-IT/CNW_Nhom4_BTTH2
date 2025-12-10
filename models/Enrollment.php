@@ -42,7 +42,7 @@ class Enrollment
     }
 
     // Lấy danh sách khóa học mà học viên đã đăng ký
-    public function getByUser($user_id)
+    public function getCourseByUser($user_id)
     {
         $sql = "SELECT e.*, c.title 
                 FROM enrollments e
