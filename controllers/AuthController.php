@@ -1,7 +1,7 @@
 <?php
 class AuthController{
   public function login(){
-    require "views/student/dashboard.php";
+    require "./views/auth/login.php";
   }
 
   public function register(){

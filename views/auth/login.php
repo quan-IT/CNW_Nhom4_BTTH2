@@ -49,12 +49,12 @@
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
-					</div>
+					</div>	
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<a class="login100-form-btn" href="index.php?url=student/dashboard">
 							Login
-						</button>
+						</a>
 					</div>
 
 					<div class="text-center p-t-12">
@@ -65,8 +65,7 @@
 							Username / Password?
 						</a>
 					</div>
-
-					<div class="text-center p-t-136">
+					<div class="text-center p-t-50">
 						<a class="txt2" href="index.php?url=auth/register">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
