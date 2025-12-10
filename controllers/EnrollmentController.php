@@ -9,12 +9,10 @@ class EnrollmentController
 {
     public $EnrollmentModel;
 
-    private $db;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
-        $this->EnrollmentModel = new Enrollment($this->db);
+        $this->EnrollmentModel = new Enrollment();
     }
 
     // Đăng ký khóa học
@@ -36,7 +34,7 @@ class EnrollmentController
         // ------------------------------------------
 
         // Lấy danh sách khóa học của Sinh viên này
-        $stmt = $this->EnrollmentModel->getByUser($student_id);
+        $stmt = $this->EnrollmentModel->getCourseByUser($student_id);
         $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Gọi view: views/instructor/course/manage.php
