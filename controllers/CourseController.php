@@ -29,6 +29,17 @@ class CourseController
         $view = 'views/courses/index.php';
         include 'views/layouts/student/student_layout.php';
     }
+    //Chi tiết khóa học
+    public function detail()
+    {
+        $course_id  = 5;
+
+        $course = $this->courseModel->getCourseById($course_id);
+        $lessons = $this->lessonModel->getLessonsByCourse($course_id);
+
+        $view = 'views/courses/detail.php';
+        include 'views/layouts/student/student_layout.php';
+    }
     // Hiển thị danh sách khóa học của giảng viên
     public function manage()
     {
