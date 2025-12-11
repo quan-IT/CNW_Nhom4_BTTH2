@@ -3,10 +3,7 @@ class Enrollment
 {
     private $conn;
 
-    public $id;
-    public $user_id;
-    public $course_id;
-    public $created_at;
+    public $id; //đang ko dùng
 
     public function __construct()
     {
@@ -42,17 +39,18 @@ class Enrollment
     }
 
     // Lấy danh sách khóa học mà học viên đã đăng ký
-    public function getByUser($user_id)
+    public function getCourseByUser($user_id)
     {
-        $sql = "SELECT e.*, c.title 
-                FROM enrollments e
-                JOIN courses c ON e.course_id = c.id
-                WHERE e.user_id = :user_id";
+        $sql = "SELECT c.*, e.created_at as enrolled_at
+            FROM enrollments e
+            JOIN courses c ON e.course_id = c.id
+            WHERE e.user_id = :user_id
+            ORDER BY e.created_at DESC";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':user_id', $user_id);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

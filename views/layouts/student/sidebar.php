@@ -20,14 +20,14 @@
                 <i class="fas fa-book-reader"></i> <span>My Courses</span>
             </a>
 
-            <a href="index.php?url=student/document"
+            <!-- <a href="index.php?url=student/document"
                 class="nav-item <?= ($current_url === 'student/quiz') ? 'active' : '' ?>">
                 <i class="fas fa-question-circle"></i> <span>My Document</span>
-            </a>
-            <a href="index.php?url=student/courseprogress"
+            </a> -->
+            <!-- <a href="index.php?url=student/courseprogress"
                 class="nav-item <?= ($current_url === 'student/quiz') ? 'active' : '' ?>">
                 <i class="fas fa-question-circle"></i> <span>My Course Progress</span>
-            </a>
+            </a> -->
         </div>
 
         <div class="nav-section">
@@ -36,10 +36,10 @@
                 class="nav-item <?= ($current_url === 'courses') ? 'active' : '' ?>">
                 <i class="fas fa-book"></i> <span>All Courses</span>
             </a>
-            <a href="index.php?url=student/projects"
+            <!-- <a href="index.php?url=student/projects"
                 class="nav-item <?= ($current_url === 'student/projects') ? 'active' : '' ?>">
                 <i class="fas fa-code"></i> <span>Projects</span>
-            </a>
+            </a> -->
         </div>
 
         <div class="nav-section">
@@ -48,7 +48,7 @@
                 class="nav-item <?= ($current_url === 'student/profile') ? 'active' : '' ?>">
                 <i class="fas fa-user-edit"></i> <span>Edit Profile</span>
             </a>
-            <a>
+            <a href = 'index.php?url=home/index'>
                 <i class="fas fa-sign-out-alt"></i> <span>Sign Out</span>
             </a>
         </div>
