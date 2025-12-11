@@ -33,13 +33,10 @@
         <div class="nav-section">
             <div class="nav-section-title">LEARN</div>
             <a href="index.php?url=course/courses"
-                class="nav-item <?= ($current_url === 'courses') ? 'active' : '' ?>">
+                class="nav-item <?= ($current_url === 'course/courses') ? 'active' : '' ?>">
                 <i class="fas fa-book"></i> <span>All Courses</span>
             </a>
-            <!-- <a href="index.php?url=student/projects"
-                class="nav-item <?= ($current_url === 'student/projects') ? 'active' : '' ?>">
-                <i class="fas fa-code"></i> <span>Projects</span>
-            </a> -->
+
         </div>
 
         <div class="nav-section">
