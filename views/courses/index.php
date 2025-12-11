@@ -12,7 +12,8 @@ $instructors = [
     105=>'Hoàng Thị Mai', 106=>'Đỗ Văn Nam',    107=>'Nguyễn Đức Minh', 108=>'Vũ Thị Lan',
     109=>'Trần Văn Tuấn', 110=>'Lý Văn Hùng',   111=>'Phạm Ngọc Ánh',   112=>'Đặng Văn Khánh'
 ];
-?>
+?>foreach $courses 
+$instructors[$courses['id']]
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -35,7 +36,7 @@ $instructors = [
                 <div class="thumb">
                     <img src="<?= $c['image'] ?>" alt="<?= htmlspecialchars($c['title']) ?>">
                 </div>
-                <div class="body">
+                <div class="body"> 
                     <h3 class="title"><?= htmlspecialchars($c['title']) ?></h3>
                     <p class="instructor">
                         <i class="fas fa-user-tie"></i> <?= $instructors[$c['instructor_id']] ?? 'Ẩn danh' ?>

@@ -27,4 +27,8 @@ class TestController
         include 'views/layouts/admin/admin_layout.php';
     }
 
+    public function instructor(){
+        include 'views/layouts/instructor/instructor_layout.php';
+    }
+
 }
