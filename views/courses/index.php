@@ -45,7 +45,7 @@
                 $id = $c['id'];
                 $title = $c['title'] ?? 'Không tên';
                 $image = $c['image'] ?? 'assets/java.png';
-                $instructorName = $c['fullname'] ?? 'Ẩn danh';
+                $instructorName = $c['instructor_name'] ?? 'Ẩn danh';
                 $levelLabel = ($c['level'] == 'Beginner') ? 'Sơ cấp' : (($c['level'] == 'Intermediate') ? 'Trung cấp' : 'Nâng cao');
                 $duration = isset($c['duration_weeks']) ? (int)$c['duration_weeks'] : 0;
                 $priceFormatted = isset($c['price']) ? number_format($c['price'], 0, ',', '.') . ' ₫' : 'Miễn phí';
