@@ -7,6 +7,7 @@
 // ];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Giả lập tên giảng viên (bạn sẽ JOIN với bảng users sau này)
 $instructors = [
     101=>'Nguyễn Văn An', 102=>'Trần Minh Quân', 103=>'Lê Thị Hương', 104=>'Phạm Văn Hùng',
@@ -16,6 +17,8 @@ $instructors = [
 ?>foreach $courses 
 $instructors[$courses['id']]
 =======
+=======
+>>>>>>> cc00c354762343ae13ddd1e68cf8c91cf3bf37ad
 // // Giả lập tên giảng viên (bạn sẽ JOIN với bảng users sau này)
 // $instructors = [
 //     101=>'Nguyễn Văn An', 102=>'Trần Minh Quân', 103=>'Lê Thị Hương', 104=>'Phạm Văn Hùng',
@@ -23,7 +26,10 @@ $instructors[$courses['id']]
 //     109=>'Trần Văn Tuấn', 110=>'Lý Văn Hùng',   111=>'Phạm Ngọc Ánh',   112=>'Đặng Văn Khánh'
 // ];
 ?>
+<<<<<<< HEAD
 >>>>>>> a3e8c20b290b891832d1d4c1193ad8f3061a3fe3
+=======
+>>>>>>> cc00c354762343ae13ddd1e68cf8c91cf3bf37ad
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -42,6 +48,7 @@ $instructors[$courses['id']]
         <h1>Tất cả khóa học</h1>
         <p class="subtitle">Khám phá các khóa học chất lượng cao</p>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div class="courses-grid">
         <?php foreach($courses as $c): ?>
@@ -62,13 +69,18 @@ $instructors[$courses['id']]
                             <i class="far fa-clock"></i> <?= $c['duration_weeks'] ?> tuần
                         </span>
 =======
+=======
+>>>>>>> cc00c354762343ae13ddd1e68cf8c91cf3bf37ad
         <div class="courses-grid">
             <?php foreach ($courses as $c): ?>
 
                 <a href="index.php?url=course/detail/<?= $c['id'] ?>" class="course-card">
                     <div class="thumb">
                         <img src="<?= $c['image'] ?>" alt="<?= htmlspecialchars($c['title']) ?>">
+<<<<<<< HEAD
 >>>>>>> a3e8c20b290b891832d1d4c1193ad8f3061a3fe3
+=======
+>>>>>>> cc00c354762343ae13ddd1e68cf8c91cf3bf37ad
                     </div>
                     <div class="body">
                         <h3 class="title"><?= htmlspecialchars($c['title']) ?></h3>
