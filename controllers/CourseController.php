@@ -33,11 +33,6 @@ class CourseController
     //Chi tiết khóa học
     public function detail($course_id)
     {
-<<<<<<< HEAD
-
-=======
-        //   = 5;
->>>>>>> 6a91b306f1d2d8753e2bd83aaf7de26e5a8e3ddd
 
         $course = $this->courseModel->getCourseById($course_id);
         $lessons = $this->lessonModel->getLessonsByCourse($course_id);

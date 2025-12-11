@@ -53,7 +53,7 @@
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="index.php?url=test/instructor" class="nav-item nav-link">Contact</a>
                 </div>
                 <a href="index.php?url=auth/login" class="btn btn-primary py-2 px-4 d-none d-lg-block">Login</a>
                 <a href="index.php?url=auth/register" class="btn btn-primary py-2 px-4 d-none d-lg-block mr-2">Register</a>

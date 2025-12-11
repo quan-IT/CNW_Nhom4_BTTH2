@@ -5,7 +5,7 @@
     </div>
 
     <nav class="nav-menu">
-        <a href="?url=test/dashboard" class="<?= ($current_url == 'admin/dashboard') ? 'active' : '' ?>">
+        <a href="?url=" class="<?= ($current_url == 'admin/dashboard') ? 'active' : '' ?>">
             <i class="fas fa-th-large"></i> Dashboard
         </a>
         <a href="?url=test/manage" class="<?= (strpos($current_url, 'test/manage') !== false) ? 'active' : '' ?>">
@@ -20,7 +20,7 @@
         <a href="?url=admin/reports">
             <i class="fas fa-chart-bar"></i> Học viên đã đăng ký
         </a>
-        <a href="?url=admin/reports">
+        <a href="">
             <i class="fas fa-chart-bar"></i> Tiến độ học viên
         </a>    
     </nav>

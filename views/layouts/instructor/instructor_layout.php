@@ -11,7 +11,7 @@
     <!-- <link rel="stylesheet" href="assets/css/instructor/sidebar.css"> -->
     <link rel="stylesheet" href="/onlinecourse/assets/css/instructor/sidebar.css">
     <link rel="stylesheet" href="/onlinecourse/assets/css/instructor/sidebar.css">
-    <link rel="stylesheet" href="assets/css/instructor/style.css">
+    <link rel="stylesheet" href="assets/css/instructor/instructor.css">
 
     <style>
     </style>
@@ -23,13 +23,12 @@
     <div class="dashboard-wrapper">
 
         <!-- SIDEBAR -->
-        <?php include './sidebar.php'; ?>
+        <?php include 'views/layouts/instructor/sidebar.php'; ?>
 
         <!-- MAIN CONTENT -->
         <main class="main-content">
-
-
-
+                 <?php include $view; // Biến này từ Controller 
+                ?>
         </main>
     </div>
 
