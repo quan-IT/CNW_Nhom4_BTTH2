@@ -33,11 +33,12 @@ $pending_courses = [
     <title>Admin Dashboard - Edukate</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/admin/dashboard.css">
-    <link rel="stylesheet" href="assets/css/admin/sidebar.css">
+
     <link rel="stylesheet" href="assets/css/admin/header.css">
     <link rel="stylesheet" href="assets/css/admin/manage.css">
-      <link rel="stylesheet" href="assets/css/admin/catagory.css">
-
+    <link rel="stylesheet" href="assets/css/admin/category.css">
+    <link rel="stylesheet" href="assets/css/admin/pending.css">
+    <link rel="stylesheet" href="assets/css/admin/sidebar.css">
 
 
 </head>

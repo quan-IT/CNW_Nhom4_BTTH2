@@ -9,67 +9,52 @@ $courses = [
 ];
 ?>
 
-<!DOCTYPE html>
-<html lang="vi">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khóa học của tôi</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
 
-<body>
+<div class="container">
+    <h1 class="page-title">Khóa học của tôi</h1>
+    <p class="page-subtitle">Tiếp tục hành trình học tập của bạn</p>
 
-    <div class="container">
-        <h1 class="page-title">Khóa học của tôi</h1>
-        <p class="page-subtitle">Tiếp tục hành trình học tập của bạn</p>
-
-        <div class="courses-grid">
-            <?php foreach ($courses as $course): ?>
-                <div class="course-card">
-                    <div class="course-thumb">
-                        <!-- ĐÃ SỬA: dùng đúng $course['img'] -->
-                        <img src="<?= htmlspecialchars($course['img']) ?>"
-                            alt="<?= htmlspecialchars($course['title']) ?>"
-                            class="img-cover">
+    <div class="courses-grid">
+        <?php foreach ($courses as $course): ?>
+            <div class="course-card">
+                <div class="course-thumb">
+                    <!-- ĐÃ SỬA: dùng đúng $course['img'] -->
+                    <img src="<?= htmlspecialchars($course['img']) ?>"
+                        alt="<?= htmlspecialchars($course['title']) ?>"
+                        class="img-cover">
 
 
 
 
-                    </div>
-
-                    <div class="course-body">
-                        <h3 class="course-title"><?= htmlspecialchars($course['title']) ?></h3>
-
-                        <p class="course-instructor">
-                            <i class="fas fa-chalkboard-teacher"></i> <?= htmlspecialchars($course['instructor']) ?>
-                        </p>
-
-                        <?php if ($course['progress'] > 0): ?>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: <?= $course['progress'] ?>%"></div>
-                                </div>
-                                <span class="progress-label">
-                                    <?= $course['progress'] == 100 ? 'Hoàn thành' : $course['progress'] . '% hoàn thành' ?>
-                                </span>
-                            </div>
-                        <?php else: ?>
-                            <p class="text-muted">Chưa bắt đầu học</p>
-                        <?php endif; ?>
-
-                        <a href="course-detail.php?id=<?= $course['id'] ?>" class="btn-action">
-                            <i class="fas fa-play-circle"></i>
-                            <?= $course['progress'] > 0 && $course['progress'] < 100 ? 'Tiếp tục học' : ($course['progress'] == 100 ? 'Xem lại khóa học' : 'Bắt đầu học') ?>
-                        </a>
-                    </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
+
+                <div class="course-body">
+                    <h3 class="course-title"><?= htmlspecialchars($course['title']) ?></h3>
+
+                    <p class="course-instructor">
+                        <i class="fas fa-chalkboard-teacher"></i> <?= htmlspecialchars($course['instructor']) ?>
+                    </p>
+
+                    <?php if ($course['progress'] > 0): ?>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: <?= $course['progress'] ?>%"></div>
+                            </div>
+                            <span class="progress-label">
+                                <?= $course['progress'] == 100 ? 'Hoàn thành' : $course['progress'] . '% hoàn thành' ?>
+                            </span>
+                        </div>
+                    <?php else: ?>
+                        <p class="text-muted">Chưa bắt đầu học</p>
+                    <?php endif; ?>
+
+                    <a href="course-detail.php?id=<?= $course['id'] ?>" class="btn-action">
+                        <i class="fas fa-play-circle"></i>
+                        <?= $course['progress'] > 0 && $course['progress'] < 100 ? 'Tiếp tục học' : ($course['progress'] == 100 ? 'Xem lại khóa học' : 'Bắt đầu học') ?>
+                    </a>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
-
-</body>
-
-</html>
+</div>

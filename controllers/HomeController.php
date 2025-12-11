@@ -1,6 +1,11 @@
 <?php
 class HomeController {
     public function index() {
-        require "./views/home/index.php";
+        include "./views/home/index.php";
+    }
+
+    public function courses(){
+        include "views/home/courses.php";
     }
 }
+    
