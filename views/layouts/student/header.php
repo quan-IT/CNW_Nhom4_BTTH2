@@ -3,12 +3,12 @@
         <a href="index.php?url=student/dashboard"><h1>My Dashboard</h1></a>
     </div>
 
-    <div class="header-center">
+    <!-- <div class="header-center">
         <div class="search-bar">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search courses..." id="searchCourse">
         </div>
-    </div>
+    </div> -->
 
     <div class="header-right">
         <!-- NOTIFICATION BELL + DROPDOWN -->
