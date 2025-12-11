@@ -10,7 +10,7 @@
 
     <nav class="sidebar-nav">
         <div class="nav-section">
-            <a href="index.php?url=test/instructor"
+            <a href="index.php?url=student/dashboard"
                 class="nav-item <?= ($current_url === 'student/dashboard') ? 'active' : '' ?>">
                 <i class="fas fa-th-large"></i> <span>Dashboard</span>
             </a>
