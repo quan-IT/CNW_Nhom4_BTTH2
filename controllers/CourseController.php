@@ -26,13 +26,14 @@ class CourseController
     public function courses()
     {
         $courses = $this->courseModel->getAllCourse();
+
         $view = 'views/courses/index.php';
         include 'views/layouts/student/student_layout.php';
     }
     //Chi tiết khóa học
-    public function detail()
+    public function detail($course_id)
     {
-        $course_id  = 5;
+        //   = 5;
 
         $course = $this->courseModel->getCourseById($course_id);
         $lessons = $this->lessonModel->getLessonsByCourse($course_id);

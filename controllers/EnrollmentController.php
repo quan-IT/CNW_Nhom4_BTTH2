@@ -1,5 +1,5 @@
 <?php
-
+// controllers/EnrollmentController.php
 require_once 'models/Enrollment.php';
 
 require_once "config/database.php";
@@ -30,12 +30,12 @@ class EnrollmentController
     public function my_courses()
     {
 
-        $student_id = 1;
+        $student_id = 2;
         // ------------------------------------------
 
         // Lấy danh sách khóa học của Sinh viên này
-        $stmt = $this->EnrollmentModel->getCourseByUser($student_id);
-        $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $courses = $this->EnrollmentModel->getCourseByUser($student_id);
 
         // Gọi view: views/instructor/course/manage.php
         include 'views/student/my_courses.php';
