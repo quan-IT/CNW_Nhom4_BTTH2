@@ -1,4 +1,4 @@
-<!-- views/layouts/admin/sidebar.php -->
+
 <div class="sidebar">
     <div class="logo">
         <i class="fas fa-graduation-cap"></i> Edukate
@@ -8,13 +8,13 @@
         <a href="?url=" class="<?= ($current_url == 'admin/dashboard') ? 'active' : '' ?>">
             <i class="fas fa-th-large"></i> Dashboard
         </a>
-        <a href="?url=test/manage" class="<?= (strpos($current_url, 'test/manage') !== false) ? 'active' : '' ?>">
+        <a href="?url=test/intructorcoursemanage" class="<?= (strpos($current_url, 'test/manage') !== false) ? 'active' : '' ?>">
             <i class="fas fa-users"></i> Quản lý khóa học
         </a>
-        <a href="?url=test/categories" class="<?= (strpos($current_url, 'admin/categories') !== false) ? 'active' : '' ?>">
+        <a href="?url=test/intructorlessonmanage" class="<?= (strpos($current_url, 'admin/categories') !== false) ? 'active' : '' ?>">
             <i class="fas fa-tags"></i> Quản lý bài học
         </a>
-        <a href="index.php?url=test/pending">
+        <a href="index.php?url=test/intructormaterialsmanage">
             <i class="fas fa-book"></i> Đăng tải tài liệu
         </a>
         <a href="?url=admin/reports">

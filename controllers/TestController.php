@@ -35,7 +35,24 @@ class TestController
         include 'views/layouts/instructor/instructor_layout.php';
     }
 
-    public function lesson(){
+    public function lesson()
+    {
         include 'views/student/detail_mycourses.php';
+    }
+
+    public function intructorcoursemanage()
+    {
+        $view = 'views/instructor/course/manage.php';
+        include 'views/layouts/instructor/instructor_layout.php';
+    }
+    public function intructorlessonmanage()
+    {
+        $view = 'views/instructor/lessons/manage.php';
+        include 'views/layouts/instructor/instructor_layout.php';
+    }
+    public function intructormaterialsmanage()
+    {
+        $view = 'views/instructor/materials/upload.php';
+        include 'views/layouts/instructor/instructor_layout.php';
     }
 }
