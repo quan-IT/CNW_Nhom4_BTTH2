@@ -48,7 +48,7 @@
                 class="nav-item <?= ($current_url === 'student/profile') ? 'active' : '' ?>">
                 <i class="fas fa-user-edit"></i> <span>Edit Profile</span>
             </a>
-            <a>
+            <a href = 'index.php?url=home/index'>
                 <i class="fas fa-sign-out-alt"></i> <span>Sign Out</span>
             </a>
         </div>
