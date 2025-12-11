@@ -1,0 +1,49 @@
+/* ================================
+   LAYOUT CƠ BẢN CHO INSTRUCTOR
+================================ */
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8fafc;
+    color: #334155;
+    min-height: 100vh;
+    display: flex;
+}
+
+/* WRAPPER CHUNG */
+.dashboard-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    margin-left: 220px;      /* Khớp với width sidebar */
+    padding: 30px;
+    transition: margin-left 0.3s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 80px;   /* Sidebar thu nhỏ */
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    .dashboard-wrapper {
+        flex-direction: column;
+    }
+}

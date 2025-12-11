@@ -9,12 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- <link rel="stylesheet" href="assets/css/instructor/sidebar.css"> -->
-    <link rel="stylesheet" href="/onlinecourse/assets/css/instructor/sidebar.css">
-    <link rel="stylesheet" href="/onlinecourse/assets/css/instructor/sidebar.css">
-    <link rel="stylesheet" href="assets/css/instructor/style.css">
-
-    <style>
-    </style>
+    <link rel="stylesheet" href="assets/css/instructor/instructor.css">
+    <link rel="stylesheet" href="assets/css/instructor/sidebar.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
 
 </head>
 
@@ -23,20 +20,18 @@
     <div class="dashboard-wrapper">
 
         <!-- SIDEBAR -->
-        <?php include './sidebar.php'; ?>
+        <?php include 'views/layouts/instructor/sidebar.php'; ?>
 
         <!-- MAIN CONTENT -->
         <main class="main-content">
-
-
-
+            <?php include $view; // Biến này từ Controller 
+            ?>
         </main>
     </div>
 
     <!-- FOOTER (nếu có) -->
-    <?php include 'views/layouts/admin/footer.php'; ?>
+    <!-- <?php include 'views/layouts/admin/footer.php'; ?> -->
 
 </body>
 
 </html>
-<?php echo realpath('assets/css/instructor/sidebar.css'); ?>

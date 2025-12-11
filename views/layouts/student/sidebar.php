@@ -17,7 +17,7 @@
 
             <a href="index.php?url=student/mycourse"
                 class="nav-item <?= ($current_url === 'student/mycourse') ? 'active' : '' ?>">
-                <i class="fas fa-book-reader"></i> <span>My Courses</span>
+                <i class="fas fa-book-reader"></i> <span>Khóa học của tôi</span>
             </a>
 
             <!-- <a href="index.php?url=student/document"
@@ -33,23 +33,20 @@
         <div class="nav-section">
             <div class="nav-section-title">LEARN</div>
             <a href="index.php?url=course/courses"
-                class="nav-item <?= ($current_url === 'courses') ? 'active' : '' ?>">
-                <i class="fas fa-book"></i> <span>All Courses</span>
+                class="nav-item <?= ($current_url === 'course/courses') ? 'active' : '' ?>">
+                <i class="fas fa-book"></i> <span>Tất cả khóa học</span>
             </a>
-            <!-- <a href="index.php?url=student/projects"
-                class="nav-item <?= ($current_url === 'student/projects') ? 'active' : '' ?>">
-                <i class="fas fa-code"></i> <span>Projects</span>
-            </a> -->
+
         </div>
 
         <div class="nav-section">
             <div class="nav-section-title">ACCOUNT</div>
             <a href="index.php?url=student/profile"
                 class="nav-item <?= ($current_url === 'student/profile') ? 'active' : '' ?>">
-                <i class="fas fa-user-edit"></i> <span>Edit Profile</span>
+                <i class="fas fa-user-edit"></i> <span>Cá nhân</span>
             </a>
             <a href = 'index.php?url=home/index'>
-                <i class="fas fa-sign-out-alt"></i> <span>Sign Out</span>
+                <i class="fas fa-sign-out-alt"></i> <span>Đăng xuất</span>
             </a>
         </div>
     </nav>
