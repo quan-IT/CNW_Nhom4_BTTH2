@@ -80,8 +80,8 @@ class User
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-
-        return $stmt;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // return $stmt;
     }
 
     /**

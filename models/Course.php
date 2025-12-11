@@ -7,12 +7,13 @@ class Course
 
     public function __construct()
     {
-        $database = new Database(); 
+        $database = new Database();
         $this->db = $database->getConnection();
     }
 
     // Lấy tất cả khóa học của một giảng viên
-    public function getCoursesByInstructor($instructor_id) {
+    public function getCoursesByInstructor($instructor_id)
+    {
         $query = "SELECT 
                     t1.*, 
                     t2.name AS category_name 
@@ -20,18 +21,35 @@ class Course
                   LEFT JOIN categories t2 ON t1.category_id = t2.id
                   WHERE t1.instructor_id = :instructor_id 
                   ORDER BY t1.created_at DESC";
-        
+
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':instructor_id', $instructor_id, PDO::PARAM_INT);
         $stmt->execute();
-        
+
         return $stmt;
     }
+    //Lấy tất cả khóa học
+    public function getAllCourse()
+    {
+        $sql = "
+        SELECT c.*, u.fullname AS instructor_name
+        FROM courses c
+        LEFT JOIN users u ON c.instructor_id = u.id
+    ";
 
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     // Lấy chi tiết một khóa học
     public function getCourseById($id, $instructor_id = null)
     {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
+        $query = "
+        SELECT c.*, u.fullname AS instructor_name,ca.name as category_name
+        FROM courses c
+        LEFT JOIN users u ON c.instructor_id = u.id
+        LEFT JOIN categories ca ON  c.category_id = ca.id
+        WHERE c.id = :id";
 
         if ($instructor_id !== null) {
             $query .= " AND instructor_id = :instructor_id";

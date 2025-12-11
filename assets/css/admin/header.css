@@ -1,0 +1,105 @@
+/* ========================================
+   ADMIN HEADER – Chỉ lời chào + chuông + avatar
+   100% giống Edukate 2025
+======================================== */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 32px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 30px;
+}
+
+/* Lời chào admin */
+.welcome {
+    font-size: 18px;
+    font-weight: 500;
+    color: #475569;
+}
+.welcome strong {
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* Các icon + avatar bên phải */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+/* Chuông thông báo */
+.user-actions .fa-bell {
+    font-size: 22px;
+    color: #64748b;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.user-actions .fa-bell:hover {
+    color: #3b82f6;
+    transform: scale(1.12);
+}
+
+/* Badge số thông báo (tùy chọn – bật khi có thông báo mới) */
+.user-actions .fa-bell::after {
+    content: '5';                    /* Thay số 5 thành số thông báo thực tế */
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: #ef4444;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+}
+
+/* Avatar admin */
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e0e7ff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.user-avatar:hover {
+    border-color: #3b82f6;
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .topbar {
+        padding: 16px 20px;
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+    .user-actions {
+        gap: 18px;
+    }
+    .welcome {
+        font-size: 16px;
+    }
+    .user-avatar {
+        width: 44px;
+        height: 44px;
+    }
+}

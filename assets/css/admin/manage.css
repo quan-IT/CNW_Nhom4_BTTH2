@@ -1,0 +1,203 @@
+/* ========================================
+   ADMIN - QUẢN LÝ NGƯỜI DÙNG (CHUẨN 100% ẢNH BẠN GỬI)
+   File: assets/css/admin/users.css
+======================================== */
+
+.page-header {
+    margin-bottom: 16px;
+}
+.page-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+.page-header p {
+    font-size: 14px;
+    color: #64748b;
+    margin: 6px 0 0;
+}
+
+/* Thanh tìm kiếm + nút */
+.users-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.filters {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    min-width: 300px;
+}
+.search-input {
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    background: #fff;
+    width: 260px;
+}
+.filter-select {
+    padding: 10px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    background: white;
+}
+.actions {
+    display: flex;
+    gap: 10px;
+}
+.btn-export, .btn-add {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-export { background:#10b981; color:white; }
+.btn-add { background:#3b82f6; color:white; }
+
+/* Bảng – NHỎ GỌN, KHÔNG BỊ BỂ */
+.table-container {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.users-table th {
+    background: #f8fafc;
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 600;
+    color: #475569;
+    font-size: 13px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.users-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+.users-table tr:hover {
+    background: #f8faff;
+}
+
+/* Cột họ tên + avatar */
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 140px;
+}
+.user-avatar-sm {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.user-cell span {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+/* Badge vai trò */
+.role-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.role-0 { background:#dbeafe; color:#1d4ed8; } /* Học viên */
+.role-1 { background:#fef3c7; color:#d97706; } /* Giảng viên */
+.role-2 { background:#fee2e2; color:#dc2626; } /* Quản trị viên */
+
+/* Trạng thái */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.status-badge.active { background:#dcfce7; color:#166534; }
+
+/* Nút hành động */
+.action-group {
+    display: flex;
+    gap: 6px;
+}
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+}
+.btn-icon { background:#e0e7ff; color:#4338ca; }
+.btn-icon.danger { background:#fee2e2; color:#dc2626; }
+.btn-icon:hover {
+    transform: translateY(-2px);
+}
+.btn-icon.disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Phân trang */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    color: #64748b;
+    font-size: 14px;
+}
+.page-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.page-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: #f1f5f9;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.page-btn.active { background:#3b82f6; color:white; }
+.page-btn:hover:not(.active) { background:#e0e7ff; }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .users-controls { flex-direction: column; align-items: stretch; }
+    .filters { max-width: 100%; }
+    .search-input { width: 100%; }
+}
+@media (max-width: 768px) {
+    .table-container { overflow-x: auto; }
+    .users-table { min-width: 850px; }
+    .page-header h1 { font-size: 22px; }
+}   

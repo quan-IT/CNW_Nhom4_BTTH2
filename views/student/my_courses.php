@@ -1,110 +1,72 @@
-    <h1 style="text-align:center; margin-bottom:50px; font-size:2.8rem; color:#1e293b; font-weight:700;">
-        My Courses
-    </h1>
+<?php
+$courses = [
+    ['id' => 1, 'title' => 'Học ReactJS Từ A-Z Cho Người Mới Bắt Đầu',               'instructor' => 'Nguyễn Văn A', 'progress' => 78, 'img' => 'assets/java.png'],
+    ['id' => 2, 'title' => 'Lập Trình Laravel 10 - Xây Dựng Website Bán Hàng',      'instructor' => 'Trần Thị B',   'progress' => 45, 'img' => 'assets/java.png'],
+    ['id' => 3, 'title' => 'Vue 3 + Vuex + Firebase - Fullstack Real Project',      'instructor' => 'Lê Văn C',     'progress' => 100, 'img' => 'assets/java.png'],
+    ['id' => 4, 'title' => 'HTML CSS Từ Zero đến Hero',                             'instructor' => 'Phạm Thị D',   'progress' => 0,  'img' => 'assets/java.png'],
+    ['id' => 5, 'title' => 'Node.js & Express - Xây dựng RESTful API',              'instructor' => 'Hoàng Văn E',  'progress' => 23, 'img' => 'assets/java.png'],
+    ['id' => 6, 'title' => 'Thiết Kế Giao Diện Web Với Figma 2025',                 'instructor' => 'Nguyễn Thị F', 'progress' => 95, 'img' => 'assets/java.png'],
+];
+?>
+
+
+
+<div class="container">
+    <div class="head-title">
+        <h1 class="page-title">Khóa học của tôi</h1>
+        <p class="page-subtitle">Tiếp tục hành trình học tập của bạn</p>
+
+        <div class="search-wrapper">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search courses..." id="searchCourse">
+            </div>
+
+            <button class="btn-search">Tìm kiếm</button>
+        </div>
+
+    </div>
 
     <div class="courses-grid">
+        <?php foreach ($courses as $course): ?>
+            <div class="course-card">
+                <div class="course-thumb">
+                    <!-- ĐÃ SỬA: dùng đúng $course['img'] -->
+                    <img src="<?= htmlspecialchars($course['img']) ?>"
+                        alt="<?= htmlspecialchars($course['title']) ?>"
+                        class="img-cover">
 
-        <!-- HTML5 Card -->
-        <div class="course-card">
-            <div class="course-thumb html">
-                <i class="fab fa-html5"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">HTML5 Mastery</h3>
-                <p class="course-desc">HTML Courses</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:100%"></div>
+
+
+
                 </div>
 
-                <span class="course-status completed">Completed</span>
+                <div class="course-body">
+                    <h3 class="course-title"><?= htmlspecialchars($course['title']) ?></h3>
 
-            </div>
-        </div>
+                    <p class="course-instructor">
+                        <i class="fas fa-chalkboard-teacher"></i> <?= htmlspecialchars($course['instructor']) ?>
+                    </p>
 
-        <!-- JavaScript Card -->
-        <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
+                    <?php if ($course['progress'] > 0): ?>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: <?= $course['progress'] ?>%"></div>
+                            </div>
+                            <span class="progress-label">
+                                <?= $course['progress'] == 100 ? 'Hoàn thành' : $course['progress'] . '% hoàn thành' ?>
+                            </span>
+                        </div>
+                    <?php else: ?>
+                        <p class="text-muted">Chưa bắt đầu học</p>
+                    <?php endif; ?>
 
-        <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
+                    <a href="index.php?url=test/lesson" class="btn-action">
+                        <i class="fas fa-play-circle"></i>
+                        <?= $course['progress'] > 0 && $course['progress'] < 100 ? 'Tiếp tục học' : ($course['progress'] == 100 ? 'Xem lại khóa học' : 'Bắt đầu học') ?>
+                    </a>
                 </div>
-                <span class="course-status in-progress">In Progress</span>
             </div>
-        </div>
-                <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-                <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-                <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-        v
-                <div class="course-card">
-            <div class="course-thumb js">
-                <i class="fab fa-js"></i>
-            </div>
-            <div class="course-body">
-                <h3 class="course-title">JavaScript Advanced</h3>
-                <p class="course-desc">Interactive Web Development</p>
-                <div class="progress-container">
-                    <div class="progress-fill" style="width:40%"></div>
-                </div>
-                <span class="course-status in-progress">In Progress</span>
-            </div>
-        </div>
-
-        <!-- Thêm bao nhiêu card cũng được, chỉ cần copy -->
-
+        <?php endforeach; ?>
     </div>
-    </div>
-    </div>
+</div>
