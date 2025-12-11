@@ -61,7 +61,7 @@ $courses = [
                         <p class="text-muted">Chưa bắt đầu học</p>
                     <?php endif; ?>
 
-                    <a href="course-detail.php?id=<?= $course['id'] ?>" class="btn-action">
+                    <a href="index.php?url=test/lesson" class="btn-action">
                         <i class="fas fa-play-circle"></i>
                         <?= $course['progress'] > 0 && $course['progress'] < 100 ? 'Tiếp tục học' : ($course['progress'] == 100 ? 'Xem lại khóa học' : 'Bắt đầu học') ?>
                     </a>

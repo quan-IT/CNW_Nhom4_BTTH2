@@ -15,7 +15,7 @@
 
                 <div class="info-item">
                     <i class="fas fa-user-tie"></i>
-                    <span><strong>Giảng viên:</strong> <?= htmlspecialchars($course['fullname']) ?></span>
+                    <span><strong>Giảng viên:</strong> <?= htmlspecialchars($course['fullname'] ?? 'Ẩn danh') ?></span>
                 </div>
 
                 <div class="info-item">

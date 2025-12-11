@@ -17,18 +17,25 @@ class TestController
         $view = 'views/admin/categories/list.php';
         include 'views/layouts/admin/admin_layout.php';
     }
-    public function categoriesEdit($id){
+    public function categoriesEdit($id)
+    {
         $view = 'views/admin/categories/list.php';
         include 'views/layouts/admin/admin_layout.php';
     }
 
-    public function pending(){
+    public function pending()
+    {
         $view = 'views/admin/courses/pending.php';
         include 'views/layouts/admin/admin_layout.php';
     }
 
-    public function instructor(){
+    public function instructor()
+    {
+        $view = 'views/instructor/dashboard.php';
         include 'views/layouts/instructor/instructor_layout.php';
     }
 
+    public function lesson(){
+        include 'views/student/detail_mycourses.php';
+    }
 }
