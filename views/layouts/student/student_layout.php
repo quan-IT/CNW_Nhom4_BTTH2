@@ -18,11 +18,12 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
     <link rel="stylesheet" href="assets/css/student/student.css">
     <!-- <link rel="stylesheet" href="assets/css/student/mycourse.css"> -->
     <link rel="stylesheet" href="assets/css/profile.css">
-     <link href="assets/css/Courses/course.css" rel="stylesheet">
-       <link href="assets/css/student/mycourse.css" rel="stylesheet">
+    <link href="assets/css/Courses/course.css" rel="stylesheet">
+    <link href="assets/css/student/mycourse.css" rel="stylesheet">
     <link href="assets/css/student/courseproress.css" rel="stylesheet">
+    <link href="assets/css/Courses/detail.css" rel="stylesheet">
 
-    </head>
+</head>
 
 <body>
 
@@ -39,7 +40,7 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
 
             <!-- NỘI DUNG CHÍNH -->
             <div class="dashboard-content">
-                
+
                 <?php include $view; // Biến này từ Controller 
                 ?>
             </div>

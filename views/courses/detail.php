@@ -1,90 +1,75 @@
-<!DOCTYPE html>
-<html lang="vi">
+<div class="course-detail-wrapper">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($course['title']) ?></title>
+    <!-- LEFT + RIGHT layout -->
+    <div class="course-top">
 
-    <link rel="stylesheet" href="assets/css/Courses/course_detail.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-
-<body>
-
-    <div class="detail-container">
-
-        <!-- LEFT -->
-        <div class="left-content">
+        <!-- LEFT CONTENT -->
+        <div class="course-left">
 
             <h1 class="course-title"><?= htmlspecialchars($course['title']) ?></h1>
+            <p class="course-description">
+                <?= nl2br(htmlspecialchars($course['description'])) ?>
+            </p>
 
-            <p class="course-desc"><?= nl2br(htmlspecialchars($course['description'])) ?></p>
+            <div class="course-info-list">
 
-            <div class="meta">
-                <p><i class="fas fa-user-tie"></i>
-                    Giảng viên: <strong><?= htmlspecialchars($course['instructor_name']) ?></strong>
-                </p>
+                <div class="info-item">
+                    <i class="fas fa-user-tie"></i>
+                    <span><strong>Giảng viên:</strong> <?= htmlspecialchars($course['fullname']) ?></span>
+                </div>
 
-                <p><i class="fas fa-list"></i>
-                    Danh mục: <?= htmlspecialchars($course['category_name']) ?>
-                </p>
+                <div class="info-item">
+                    <i class="fas fa-list"></i>
+                    <span><strong>Danh mục:</strong> <?= htmlspecialchars($course['category_name']) ?></span>
+                </div>
 
-                <p><i class="far fa-clock"></i>
-                    Thời lượng: <?= $course['duration_weeks'] ?> tuần
-                </p>
+                <div class="info-item">
+                    <i class="far fa-clock"></i>
+                    <span><strong>Thời lượng:</strong> <?= $course['duration_weeks'] ?> tuần</span>
+                </div>
 
-                <p><i class="fas fa-signal"></i>
-                    Trình độ:
-                    <?= $course['level'] == 'Beginner' ? 'Sơ cấp' : ($course['level'] == 'Intermediate' ? 'Trung cấp' : 'Nâng cao') ?>
-                </p>
-            </div>
+                <div class="info-item">
+                    <i class="fas fa-bolt"></i>
+                    <span><strong>Trình độ:</strong>
+                        <?= $course['level'] == 'Beginner' ? 'Sơ cấp' : ($course['level'] == 'Intermediate' ? 'Trung cấp' : 'Nâng cao') ?>
+                    </span>
+                </div>
 
-            <h2 class="lesson-title">Danh sách bài học</h2>
-
-            <div class="lesson-list">
-                <?php foreach ($lessons as $lesson): ?>
-                    <div class="lesson-item">
-                        <div>
-                            <h4><?= htmlspecialchars($lesson['title']) ?></h4>
-                            <small>Bài số: <?= $lesson['order'] ?></small>
-                        </div>
-                        <a href="index.php?url=lesson/detail&id=<?= $lesson['id'] ?>" class="btn-learn">
-                            Học ngay
-                        </a>
-                    </div>
-                <?php endforeach; ?>
             </div>
 
         </div>
 
         <!-- RIGHT SIDEBAR -->
-        <div class="right-sidebar">
+        <div class="course-right">
 
-            <div class="thumbnail">
-                <img src="assets/images/<?= $course['image'] ?>" alt="">
+            <!-- COURSE THUMBNAIL -->
+            <img src="<?= htmlspecialchars($course['thumbnail'] ?? 'assets/python.png') ?>"
+                alt="Course Thumbnail"
+                class="course-thumbnail">
+
+            <div class="price-box">
+                <div class="price">
+                    <?= number_format($course['price'], 0, ',', '.') ?> ₫
+                </div>
+
+                <button class="btn-enroll">
+                    <i class="fas fa-play-circle"></i> Bắt đầu học
+                </button>
             </div>
-
-            <div class="course-box">
-                <h3 class="price"><?= number_format($course['price'], 0, ',', '.') ?> ₫</h3>
-
-                <a href="index.php?url=enroll&course_id=<?= $course['id'] ?>" class="btn-enroll">
-                    Đăng ký học
-                </a>
-
-                <ul class="course-info">
-                    <li><i class="fas fa-users"></i> Trình độ: <?= $course['level'] ?></li>
-                    <li><i class="fas fa-video"></i> <?= count($lessons) ?> bài học</li>
-                    <li><i class="far fa-clock"></i> <?= $course['duration_weeks'] ?> tuần</li>
-                    <li><i class="fas fa-globe"></i> Học mọi lúc, mọi nơi</li>
-                </ul>
-            </div>
-
         </div>
 
     </div>
 
-</body>
+    <!-- LESSON LIST -->
+    <h3 class="lesson-list-title">Danh sách bài học</h3>
 
-</html>
+    <div class="lesson-list">
+        <?php foreach ($lessons as $l): ?>
+            <a href="course-detail.php?id=<?= $l['id'] ?>" class="lesson-item">
+                <i class="fas fa-book"></i>
+                <span><?= htmlspecialchars($l['title']) ?></span>
+            </a>
+        <?php endforeach; ?>
+    </div>
+
+</div>
