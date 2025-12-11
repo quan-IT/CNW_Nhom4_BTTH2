@@ -261,7 +261,7 @@ if (!isset($course) || !isset($lessons)) {
                                 <div class="actions">
                                     <a href="index.php?url=lesson/edit/<?= htmlspecialchars($lesson['id']) ?>"
                                        class="link link-blue">Sửa</a>
-                                    <a href="index.php?url=lessons/manage/<?= htmlspecialchars($lesson['id']) ?>"
+                                    <a href="index.php?url=lesson/delete/<?= htmlspecialchars($lesson['id']) ?>"
                                        class="link link-red"
                                        onclick="return confirm('Xóa bài học này sẽ xóa tất cả tài liệu liên quan. Bạn có chắc không?');">
                                         Xóa
