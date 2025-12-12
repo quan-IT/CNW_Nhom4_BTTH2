@@ -39,7 +39,12 @@ class CourseController
 
         $course = $this->courseModel->getCourseById($course_id);
         $lessons = $this->lessonModel->getLessonsByCourse($course_id);
-        $active = $this->enrollment->isRegistered($course_id, $course_id);
+        if ($_SESSION['id'] ?? false) {
+            $active = 0; //Đăng nhập
+        } else {
+            $active = $this->enrollment->isRegistered($course_id, $course_id);
+        }
+
         $view = 'views/courses/detail.php';
         include 'views/layouts/student/student_layout.php';
     }
