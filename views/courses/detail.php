@@ -52,7 +52,7 @@
                     <?= number_format($course['price'], 0, ',', '.') ?> ₫
                 </div>
 
-                <button class="btn-enroll">
+                <button class="btn-enroll" id="register_course">
                     <i class="fas fa-play-circle"></i> Bắt đầu học
                 </button>
             </div>
