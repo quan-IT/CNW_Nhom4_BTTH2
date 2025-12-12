@@ -91,7 +91,7 @@ $action = $_GET['action'] ?? 'default';
 
 switch ($action) {
     case 'register_course':
-        $EnrollmentControlle->register();
+        $EnrollmentControlle->register($id, $id);
         break;
     default:
         echo "404 Not Found";
