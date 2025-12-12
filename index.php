@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 // Autoload models, controllers
 spl_autoload_register(function ($class) {
     // Đảm bảo tìm kiếm cả trong thư mục con 'instructor/'
-    $paths = ['controllers/', 'models/', 'controllers/instructor/']; 
+    $paths = ['controllers/', 'models/', 'controllers/instructor/'];
     foreach ($paths as $path) {
         $file = $path . $class . '.php';
         if (file_exists($file)) {
@@ -42,7 +42,7 @@ $param = $parts[2] ?? null;
 
 // --- LOGIC XỬ LÝ CONTROLLER NAME VÀ VỊ TRÍ ---
 
-$instructorControllers = ['course', 'lesson', 'material']; 
+$instructorControllers = ['course', 'lesson', 'material'];
 $controllerName = ucfirst($requestedController) . "Controller";
 
 if (in_array($requestedController, $instructorControllers)) {
@@ -79,4 +79,21 @@ try {
     // Xử lý lỗi khác (ví dụ: lỗi cú pháp trong Controller/Model)
     die("Lỗi hệ thống không xác định: " . $e->getMessage());
 }
-?>
+
+
+////Router (Quân)
+require_once 'controllers/EnrollmentController.php';
+
+$EnrollmentControlle = new EnrollmentController();
+
+// Lấy action từ URL
+$action = $_GET['action'] ?? 'default';
+
+switch ($action) {
+    case 'register_course':
+        $EnrollmentControlle->register();
+        break;
+    default:
+        echo "404 Not Found";
+        break;
+}
