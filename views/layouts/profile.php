@@ -2,17 +2,17 @@
     <h2 class="section-title">Account</h2>
 
     <div class="account-card">
-
         <!-- Avatar Section -->
         <div class="avatar-section">
-            <img src="assets/img/avatar-default.jpg" class="avatar-img" alt="Avatar">
+            <img id="avatarPreview" src="assets/img/avatar-default.jpg" class="avatar-img" alt="Avatar">
 
             <div class="avatar-actions">
-                <button class="btn btn-update">Update</button>
-                <button class="btn btn-delete">Delete</button>
+                <button type="button" id="btnUpdateAvatar" class="btn btn-update">Update</button>
+                <button type="button" id="btnDeleteAvatar" class="btn btn-delete">Delete</button>
             </div>
 
-            <p class="avatar-note">PNG hoặc JPG, kích thước tối đa 800px.</p>
+            <p class="avatar-note">PNG hoặc JPG, kích thước tối đa 800x800px.</p>
+            <div id="avatarError" class="error-message"></div>
         </div>
 
         <hr>
@@ -21,51 +21,55 @@
         <h3 class="sub-title">Personal Details</h3>
         <p class="sub-desc">Update your profile information.</p>
 
-        <form class="profile-form">
+        <form id="profileForm" class="profile-form" novalidate>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label>First Name</label>
-                    <input type="text" placeholder="First Name">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                    <div class="error-message"></div>
                 </div>
 
                 <div class="form-group">
-                    <label>Last Name</label>
-                    <input type="text" placeholder="Last Name">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                    <div class="error-message"></div>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label>UserName</label>
-                    <input type="text" placeholder="UserName">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <div class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" placeholder="Email">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <div class="error-message"></div>
                 </div>
             </div>
+
             <div class="form-row">
                 <div class="form-group">
-                    <label>Old Password</label>
-                    <input type="password" placeholder="">
+                    <label for="oldPassword">Old Password</label>
+                    <input type="password" id="oldPassword" name="oldPassword">
+                    <div class="error-message"></div>
                 </div>
                 <div class="form-group">
-                    <label>New Password</label>
-                    <input type="password" placeholder="">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" name="newPassword">
+                    <div class="error-message"></div>
                 </div>
             </div>
 
-
-
-
-
-
-
-
-
-            <button class="btn btn-primary update-btn">Update Profile</button>
-
+            <button type="submit" id="btnSubmitProfile" class="btn btn-primary update-btn">Update Profile</button>
         </form>
     </div>
 </div>
+
+<!-- Toast Container - BẮT BUỘC PHẢI CÓ -->
+<div id="toastContainer"></div>
+
+<!-- Load JS (đặt cuối trang) -->
+<script src="assets/js/student/profile.js"></script>

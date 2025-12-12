@@ -4,6 +4,9 @@ class StudentController
 
     public function dashboard()
     {
+
+        // lay thong t
+
         $view = 'views/student/dashboard.php';
         include 'views/layouts/student/student_layout.php';
     }
@@ -21,9 +24,10 @@ class StudentController
     }
     public function profile()
     {
+
+
+
         $view = 'views/layouts/profile.php';
         include 'views/layouts/student/student_layout.php';
     }
-
-
 }

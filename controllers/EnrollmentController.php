@@ -18,15 +18,18 @@ class EnrollmentController
     // Đăng ký khóa học
     public function register($user_id, $course_id)
     {
-        if ($this->EnrollmentModel->isRegistered($user_id, $course_id)) {
-            return "Bạn đã đăng ký khóa học này!";
-        }
+        // if ($this->EnrollmentModel->isRegistered($user_id, $course_id)) {
+        //     return "Bạn đã đăng ký khóa học này!";
+        // }
 
-        $success = $this->EnrollmentModel->register($user_id, $course_id);
-        return $success ? "Đăng ký thành công!" : "Đăng ký thất bại!";
+        // $success = $this->EnrollmentModel->register($user_id, $course_id);
+        // return $success ? "Đăng ký thành công!" : "Đăng ký thất bại!";
+        // Kiểm tra user đã đăng ký chưa
+      
     }
 
     // Hiển thị danh sách khóa học của sinh viên đã đăng ký
+
     public function my_courses()
     {
 

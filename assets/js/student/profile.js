@@ -1,154 +1,170 @@
-// validate-profile.js
+// assets/js/student/profile.js
 
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('.profile-form');
-    const avatarImg = document.querySelector('.avatar-img');
-    const updateBtn = document.querySelector('.btn-update');
-    const deleteBtn = document.querySelector('.btn-delete');
+document.addEventListener("DOMContentLoaded", function () {
+    // Elements
+    const form = document.getElementById("profileForm");
+    const avatarPreview = document.getElementById("avatarPreview");
+    const avatarError = document.getElementById("avatarError");
+    const btnUpdateAvatar = document.getElementById("btnUpdateAvatar");
+    const btnDeleteAvatar = document.getElementById("btnDeleteAvatar");
+    const btnSubmitProfile = document.getElementById("btnSubmitProfile");
 
-    // Biến lưu file ảnh tạm thời
-    let tempAvatarFile = null;
+    // Inputs
+    const inputs = {
+        firstName: document.getElementById("firstName"),
+        lastName: document.getElementById("lastName"),
+        username: document.getElementById("username"),
+        email: document.getElementById("email"),
+        oldPassword: document.getElementById("oldPassword"),
+        newPassword: document.getElementById("newPassword")
+    };
 
-    // === 1. Xử lý upload và preview avatar ===
-    // Tạo input file ẩn để chọn ảnh
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/png,image/jpeg,image/jpg';
-    fileInput.style.display = 'none';
+    // Hidden file input for avatar
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/png,image/jpeg";
+    fileInput.style.display = "none";
     document.body.appendChild(fileInput);
 
-    // Khi click nút Update → mở chọn file
-    updateBtn.addEventListener('click', () => {
-        fileInput.click();
-    });
+    let selectedFile = null;
 
-    // Xử lý khi chọn file
-    fileInput.addEventListener('change', function (e) {
-        const file = e.target.files[0];
+    // ================================
+    // TOAST FUNCTION - ĐẸP NHƯ ẢNH BẠN GỬI
+    // ================================
+    function showToast(message, type = "success") {
+        const container = document.getElementById("toastContainer");
+        if (!container) return;
+
+        // Xóa toast cũ
+        document.querySelectorAll('.toast').forEach(t => t.remove());
+
+        const toast = document.createElement("div");
+        toast.className = `toast toast-${type}`;
+
+        const icons = {
+            info: "ℹ️",
+            success: "✅",
+            warning: "⚠️",
+            danger: "❌"
+        };
+
+        toast.innerHTML = `
+            <span class="toast-icon">${icons[type] || icons.success}</span>
+            <span>${message}</span>
+            <button type="button" class="close-btn">&times;</button>
+        `;
+
+        container.appendChild(toast);
+
+        setTimeout(() => toast.classList.add("show"), 100);
+
+        const timer = setTimeout(() => {
+            toast.classList.remove("show");
+            setTimeout(() => toast.remove(), 500);
+        }, 4000);
+
+        toast.querySelector(".close-btn").onclick = () => {
+            clearTimeout(timer);
+            toast.classList.remove("show");
+            setTimeout(() => toast.remove(), 500);
+        };
+    }
+
+    // ================================
+    // AVATAR HANDLING
+    // ================================
+    btnUpdateAvatar.addEventListener("click", () => fileInput.click());
+
+    fileInput.addEventListener("change", function () {
+        const file = this.files[0];
+        avatarError.textContent = "";
+
         if (!file) return;
 
-        // Kiểm tra định dạng
-        const validTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-        if (!validTypes.includes(file.type)) {
-            alert('Chỉ chấp nhận file PNG hoặc JPG/JPEG.');
+        if (!["image/png", "image/jpeg"].includes(file.type)) {
+            avatarError.textContent = "Chỉ chấp nhận PNG hoặc JPG!";
+            showToast("File không hợp lệ. Chỉ chấp nhận PNG hoặc JPG.", "danger");
             return;
         }
 
-        // Kiểm tra kích thước ảnh (tối đa 800x800px)
         const img = new Image();
-        const objectUrl = URL.createObjectURL(file);
         img.onload = function () {
             if (img.width > 800 || img.height > 800) {
-                alert('Kích thước ảnh tối đa là 800x800px.');
-                URL.revokeObjectURL(objectUrl);
+                avatarError.textContent = "Kích thước tối đa 800x800px!";
+                showToast("Ảnh quá lớn! Tối đa 800x800px.", "warning");
                 return;
             }
 
-            // Hiển thị preview
-            avatarImg.src = objectUrl;
-            tempAvatarFile = file; // Lưu tạm file để sau này submit nếu cần
-
-            // Thông báo thành công (tùy chọn)
-            console.log('Avatar tạm thời đã được chọn:', file.name);
-            URL.revokeObjectURL(objectUrl); // Giải phóng bộ nhớ (src đã được gán)
+            avatarPreview.src = URL.createObjectURL(file);
+            selectedFile = file;
+            showToast("Avatar đã được chọn thành công!", "success");
         };
-        img.src = objectUrl;
+        img.src = URL.createObjectURL(file);
     });
 
-    // Xóa avatar (quay về ảnh mặc định)
-    deleteBtn.addEventListener('click', function () {
-        if (confirm('Bạn có chắc muốn xóa avatar hiện tại?')) {
-            avatarImg.src = 'assets/img/avatar-default.jpg';
-            tempAvatarFile = null;
-            fileInput.value = ''; // Reset input file
+    btnDeleteAvatar.addEventListener("click", function () {
+        if (confirm("Bạn có chắc muốn xóa avatar?")) {
+            avatarPreview.src = "assets/img/avatar-default.jpg";
+            selectedFile = null;
+            fileInput.value = "";
+            showToast("Avatar đã được xóa!", "info");
         }
     });
 
-    // === 2. Validate form khi submit ===
-    form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Ngăn submit thật (vì đây chỉ là demo)
+    // ================================
+    // FORM VALIDATION & SUBMIT
+    // ================================
+    function clearErrors() {
+        document.querySelectorAll(".error-message").forEach(el => el.textContent = "");
+        document.querySelectorAll(".form-group input").forEach(input => input.classList.remove("error"));
+    }
 
-        let isValid = true;
-        let errorMessages = [];
-
-        // Lấy các trường
-        const firstName = form.querySelector('input[placeholder="First Name"]');
-        const lastName = form.querySelector('input[placeholder="Last Name"]');
-        const username = form.querySelector('input[placeholder="UserName"]');
-        const email = form.querySelector('input[placeholder="Email"]');
-        const oldPassword = form.querySelector('input[type="password"]:nth-of-type(1)');
-        const newPassword = form.querySelector('input[type="password"]:nth-of-type(2)');
-
-        // Reset border lỗi trước đó
-        [firstName, lastName, username, email, oldPassword, newPassword].forEach(input => {
-            input.style.borderColor = '';
-        });
-
-        // Validate First Name
-        if (!firstName.value.trim()) {
-            isValid = false;
-            firstName.style.borderColor = 'red';
-            errorMessages.push('Vui lòng nhập First Name.');
+    function showFieldError(id, message) {
+        const input = document.getElementById(id);
+        if (input) {
+            input.classList.add("error");
+            input.parentElement.querySelector(".error-message").textContent = message;
         }
+    }
 
-        // Validate Last Name
-        if (!lastName.value.trim()) {
-            isValid = false;
-            lastName.style.borderColor = 'red';
-            errorMessages.push('Vui lòng nhập Last Name.');
-        }
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        clearErrors();
 
-        // Validate Username (chỉ chữ cái, số, gạch dưới, ít nhất 3 ký tự)
-        const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
-        if (!username.value.trim()) {
-            isValid = false;
-            username.style.borderColor = 'red';
-            errorMessages.push('Vui lòng nhập Username.');
-        } else if (!usernameRegex.test(username.value)) {
-            isValid = false;
-            username.style.borderColor = 'red';
-            errorMessages.push('Username chỉ chứa chữ cái, số, gạch dưới và từ 3-20 ký tự.');
-        }
+        let valid = true;
 
-        // Validate Email
+        if (!inputs.firstName.value.trim()) { showFieldError("firstName", "Vui lòng nhập First Name"); valid = false; }
+        if (!inputs.lastName.value.trim()) { showFieldError("lastName", "Vui lòng nhập Last Name"); valid = false; }
+        if (!inputs.username.value.trim()) { showFieldError("username", "Vui lòng nhập Username"); valid = false; }
+        if (!inputs.email.value.trim()) { showFieldError("email", "Vui lòng nhập Email"); valid = false; }
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email.value.trim()) {
-            isValid = false;
-            email.style.borderColor = 'red';
-            errorMessages.push('Vui lòng nhập Email.');
-        } else if (!emailRegex.test(email.value)) {
-            isValid = false;
-            email.style.borderColor = 'red';
-            errorMessages.push('Email không hợp lệ.');
+        if (inputs.email.value.trim() && !emailRegex.test(inputs.email.value.trim())) {
+            showFieldError("email", "Email không hợp lệ");
+            valid = false;
         }
 
-        // Validate Password (nếu nhập New Password thì phải nhập Old Password)
-        if (newPassword.value && !oldPassword.value) {
-            isValid = false;
-            oldPassword.style.borderColor = 'red';
-            errorMessages.push('Vui lòng nhập Old Password nếu muốn đổi mật khẩu.');
+        if (inputs.newPassword.value.trim()) {
+            if (inputs.newPassword.value.length < 6) {
+                showFieldError("newPassword", "Mật khẩu mới ít nhất 6 ký tự");
+                valid = false;
+            }
+            if (!inputs.oldPassword.value.trim()) {
+                showFieldError("oldPassword", "Nhập mật khẩu cũ để thay đổi");
+                valid = false;
+            }
         }
 
-        if (newPassword.value && newPassword.value.length < 6) {
-            isValid = false;
-            newPassword.style.borderColor = 'red';
-            errorMessages.push('New Password phải có ít nhất 6 ký tự.');
-        }
-
-        // Hiển thị thông báo
-        if (!isValid) {
-            alert('Lỗi validate:\n• ' + errorMessages.join('\n• '));
+        if (!valid) {
+            showToast("Vui lòng kiểm tra lại thông tin!", "danger");
             return;
         }
 
-        // Nếu mọi thứ hợp lệ
-        alert('Tất cả thông tin hợp lệ! Sẵn sàng cập nhật profile.\n(Đây là demo - không gửi dữ liệu thật)');
+        // Thành công → hiện toast success
+        showToast("Cập nhật hồ sơ thành công!", "success");
 
-        // Ở đây bạn có thể thu thập dữ liệu để gửi AJAX
-        // Ví dụ:
-        // const formData = new FormData();
-        // formData.append('firstName', firstName.value);
-        // ... + append tempAvatarFile nếu có
-        // fetch('/update-profile', { method: 'POST', body: formData })
+        // Reset password fields (demo)
+        inputs.oldPassword.value = "";
+        inputs.newPassword.value = "";
     });
 });

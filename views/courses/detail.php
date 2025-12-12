@@ -52,8 +52,9 @@
                     <?= number_format($course['price'], 0, ',', '.') ?> ₫
                 </div>
 
-                <button class="btn-enroll">
-                    <i class="fas fa-play-circle"></i> Bắt đầu học
+                <!-- Sửa form: loại bỏ method="POST" tạm thời, thêm id cho button -->
+                <button type="button" id="btnEnroll" class="btn-enroll">
+                    <i class="fas fa-play-circle"></i> Đăng kí học
                 </button>
             </div>
         </div>
