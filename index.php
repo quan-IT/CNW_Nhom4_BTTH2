@@ -82,18 +82,18 @@ try {
 
 
 ////Router (Quân)
-require_once 'controllers/EnrollmentController.php';
+// require_once 'controllers/EnrollmentController.php';
 
-$EnrollmentControlle = new EnrollmentController();
+// $EnrollmentControlle = new EnrollmentController();
 
-// Lấy action từ URL
-$action = $_GET['action'] ?? 'default';
+// // Lấy action từ URL
+// $action = $_GET['action'] ?? 'default';
 
-switch ($action) {
-    case 'register_course':
-        $EnrollmentControlle->register($id, $id);
-        break;
-    default:
-        echo "404 Not Found";
-        break;
-}
+// switch ($action) {
+//     case 'register_course':
+//         $EnrollmentControlle->register($id, $id);
+//         break;
+//     default:
+//         echo "404 Not Found";
+//         break;
+// }
