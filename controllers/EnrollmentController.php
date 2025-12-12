@@ -37,7 +37,7 @@ class EnrollmentController
 
         $courses = $this->EnrollmentModel->getCourseByUser($student_id);
 
-        // Gọi view: views/instructor/course/manage.php
-        include 'views/student/my_courses.php';
+        $view = 'views/student/my_courses.php';
+        include 'views/layouts/student/student_layout.php';
     }
 }
