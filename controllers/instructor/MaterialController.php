@@ -44,33 +44,50 @@ class MaterialController {
      * Xử lý upload tài liệu mới
      * URL: index.php?url=material/store/{lesson_id}
      */
-    public function store($lesson_id) {
-    // ... (logic kiểm tra quyền) ...
+    // controllers/instructor/MaterialController.php (Sửa lại hàm store)
 
+public function store($lesson_id) {
+    
+    // ... (Logic kiểm tra quyền sở hữu lesson/course) ...
+    
+    // 1. Khởi tạo các biến quan trọng với NULL hoặc giá trị mặc định
+    // Đảm bảo PHP luôn biết về các biến này
+    $db_file_path = null; 
+    $filepath_full = null; 
+    $status = '';
+    
+    // 2. Chuẩn bị Uploader
     $uploader = new FileUploader(BASE_DIR . '/uploads/materials/'); 
     $upload_result = $uploader->handleUpload($_FILES['material_file']);
-
-    // Vấn đề: PHP không thể truy cập $upload_result['filepath_db'] nếu upload thất bại
     
     if ($upload_result['success']) {
-        // CHỈ THỰC HIỆN KHI UPLOAD THÀNH CÔNG
+        // --- CHỈ THỰC HIỆN KHU VỰC NÀY KHI UPLOAD VẬT LÝ THÀNH CÔNG ---
+        
+        // 3. Gán giá trị thực cho các biến
         $title = $_POST['title'] ?? $upload_result['original_name'];
-        $file_path_db = $upload_result['filepath_db']; 
+        $db_file_path = $upload_result['filepath_db']; 
         $file_type = $upload_result['file_type'];
-
-        // 3. Lưu vào Database
-        if ($this->materialModel->uploadMaterial($lesson_id, $title, $file_path_db, $file_type)) {
+        $filepath_full = $upload_result['filepath_full']; // Được sử dụng để unlink nếu DB lỗi
+        
+        // 4. Lưu vào Database
+        if ($this->materialModel->uploadMaterial($lesson_id, $title, $db_file_path, $file_type)) {
             $status = "uploaded";
         } else {
-            // Lỗi CSDL (File đã upload nhưng lỗi DB)
-            @unlink($upload_result['filepath_full']);
+            // Lỗi CSDL -> Xóa file đã upload
+            @unlink($filepath_full);
             $status = "db_error";
         }
+        
     } else {
-        // XỬ LÝ KHI UPLOAD THẤT BẠI (Lỗi file/size/permission)
+        // --- XỬ LÝ KHI UPLOAD VẬT LÝ THẤT BẠI ---
+        
+        // Lỗi upload file
         $status = "upload_failed&error=" . urlencode($upload_result['error']);
     }
-    
+
+    // 5. Chuyển hướng
+    // Dòng này không sử dụng $db_file_path, nhưng nếu bạn có code dùng nó
+    // sau khối if/else thì việc khởi tạo là bắt buộc.
     header("Location: index.php?url=material/manage/$lesson_id&status=$status");
     exit;
 }

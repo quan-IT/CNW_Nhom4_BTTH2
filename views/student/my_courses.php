@@ -32,7 +32,7 @@ $courses = [
             <div class="course-card">
                 <div class="course-thumb">
                     <!-- ĐÃ SỬA: dùng đúng $course['img'] -->
-                    <img src="<?= htmlspecialchars($course['img']) ?>"
+                    <img src="<?= htmlspecialchars($course['img'] ?? 'assets/java.png') ?>"
                         alt="<?= htmlspecialchars($course['title']) ?>"
                         class="img-cover">
 
@@ -45,7 +45,7 @@ $courses = [
                     <h3 class="course-title"><?= htmlspecialchars($course['title']) ?></h3>
 
                     <p class="course-instructor">
-                        <i class="fas fa-chalkboard-teacher"></i> <?= htmlspecialchars($course['instructor']) ?>
+                        <i class="fas fa-chalkboard-teacher"></i> <?= htmlspecialchars($course['instructor'] ?? 'Ẩn danh') ?>
                     </p>
 
                     <?php if ($course['progress'] > 0): ?>

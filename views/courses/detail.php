@@ -1,37 +1,48 @@
 <div class="course-detail-wrapper">
-
+    <?php
+    // đảm bảo các trường tồn tại
+    $id = $course['id'];
+    $title = $course['title'] ?? 'Không tên';
+    $description = $course['description'] ?? '';
+    $image = $course['imag'] ?? 'assets/java.png';      //image
+    $instructorName = $course['instructor_name'] ?? 'Ẩn danh';
+    $category_name = $course['category_name'] ?? '';
+    $levelLabel = ($course['level'] == 'Beginner') ? 'Sơ cấp' : (($course['level'] == 'Intermediate') ? 'Trung cấp' : 'Nâng cao');
+    $duration = isset($course['duration_weeks']) ? (int)$course['duration_weeks'] : 0;
+    $priceFormatted = isset($course['price']) ? number_format($course['price'], 0, ',', '.') . ' ₫' : 'Miễn phí';
+    ?>
     <!-- LEFT + RIGHT layout -->
     <div class="course-top">
 
         <!-- LEFT CONTENT -->
         <div class="course-left">
 
-            <h1 class="course-title"><?= htmlspecialchars($course['title']) ?></h1>
+            <h1 class="course-title"><?= htmlspecialchars($title) ?></h1>
             <p class="course-description">
-                <?= nl2br(htmlspecialchars($course['description'])) ?>
+                <?= nl2br(htmlspecialchars($description)) ?>
             </p>
 
             <div class="course-info-list">
 
                 <div class="info-item">
                     <i class="fas fa-user-tie"></i>
-                    <span><strong>Giảng viên:</strong> <?= htmlspecialchars($course['fullname'] ?? 'Ẩn danh') ?></span>
+                    <span><strong>Giảng viên:</strong> <?= htmlspecialchars($instructorName) ?></span>
                 </div>
 
                 <div class="info-item">
                     <i class="fas fa-list"></i>
-                    <span><strong>Danh mục:</strong> <?= htmlspecialchars($course['category_name']) ?></span>
+                    <span><strong>Danh mục:</strong> <?= htmlspecialchars($category_name) ?></span>
                 </div>
 
                 <div class="info-item">
                     <i class="far fa-clock"></i>
-                    <span><strong>Thời lượng:</strong> <?= $course['duration_weeks'] ?> tuần</span>
+                    <span><strong>Thời lượng:</strong> <?= $duration ?> tuần</span>
                 </div>
 
                 <div class="info-item">
                     <i class="fas fa-bolt"></i>
                     <span><strong>Trình độ:</strong>
-                        <?= $course['level'] == 'Beginner' ? 'Sơ cấp' : ($course['level'] == 'Intermediate' ? 'Trung cấp' : 'Nâng cao') ?>
+                        <?= $levelLabel ?>
                     </span>
                 </div>
 
@@ -43,7 +54,7 @@
         <div class="course-right">
 
             <!-- COURSE THUMBNAIL -->
-            <img src="<?= htmlspecialchars($course['thumbnail'] ?? 'assets/python.png') ?>"
+            <img src="<?= htmlspecialchars($image) ?>"
                 alt="Course Thumbnail"
                 class="course-thumbnail">
             <?php if (!$active): ?>
@@ -75,11 +86,16 @@
 
     <div class="lesson-list">
         <?php foreach ($lessons as $l): ?>
-            <a href="course-detail.php?id=<?= $l['id'] ?>" class="lesson-item">
+            <?php
+            $id = $l['id'];
+            $title = $l['title'];
+            ?>
+            <a href="course-detail.php?id=<?= $id ?>" class="lesson-item">
                 <i class="fas fa-book"></i>
-                <span><?= htmlspecialchars($l['title']) ?></span>
+                <span><?= htmlspecialchars($title) ?></span>
             </a>
         <?php endforeach; ?>
     </div>
 
 </div>
+<script src="assets/js/register/register.js"></script>
