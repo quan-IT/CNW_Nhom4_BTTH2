@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 // controllers/AuthController.php
 
 require_once 'models/User.php';
@@ -124,14 +123,4 @@ class AuthController
         header("Location: /login");
         exit;
     }
-=======
-class AuthController{
-  public function login(){
-    include "./views/auth/login.php";
-  }
-
-  public function register(){
-    include "./views/auth/register.php";
-  }
->>>>>>> 588dd344f340677b78e53db84f6e74df4336bb81
 }

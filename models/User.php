@@ -1,5 +1,7 @@
 <?php
 // models/User.php
+
+// ✅ Đã xác nhận: File Database.php của bạn là hợp lệ
 require_once 'config/Database.php';
 
 class User
@@ -9,18 +11,23 @@ class User
 
     public function __construct()
     {
-        $database = new Database();
+        // Khởi tạo Database (Code này đã được xác nhận là đúng cú pháp)
+        $database = new Database(); 
         $this->db = $database->getConnection();
     }
 
+    /* ======================================= */
+    /* ======== CHỨC NĂNG XÁC THỰC (AUTH) ======== */
+    /* ======================================= */
+
     /**
-     * Đăng ký tài khoản
+     * Đăng ký tài khoản (Mặc định: is_active = 1)
      */
     public function register($username, $email, $password, $fullname, $role = 0)
     {
         $sql = "INSERT INTO {$this->table_name}
-                (username, email, password, fullname, role, created_at)
-                VALUES (:username, :email, :password, :fullname, :role, NOW())";
+                (username, email, password, fullname, role, is_active, created_at)
+                VALUES (:username, :email, :password, :fullname, :role, 1, NOW())";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':username', $username);
@@ -37,9 +44,10 @@ class User
      */
     public function login($username, $password)
     {
+        // Kiểm tra is_active = 1 (chỉ cho phép đăng nhập nếu tài khoản đang hoạt động)
         $sql = "SELECT * FROM {$this->table_name}
-                WHERE username = :username OR email = :username
-                LIMIT 1";
+                WHERE (username = :username OR email = :username) AND is_active = 1
+                LIMIT 1"; 
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':username', $username);
@@ -54,11 +62,31 @@ class User
     }
 
     /**
-     * Lấy user theo ID
+     * Kiểm tra tồn tại username hoặc email
+     */
+    public function checkExists($username, $email)
+    {
+        $sql = "SELECT id FROM {$this->table_name}
+                WHERE username = :username OR email = :email";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
+    }
+
+    /* ======================================= */
+    /* ======== CHỨC NĂNG QUẢN TRỊ (ADMIN) ======== */
+    /* ======================================= */
+
+    /**
+     * Lấy user theo ID (Dùng cho AdminController::editUser)
      */
     public function getUserById($id)
     {
-        $sql = "SELECT id, username, email, fullname, role, created_at
+        $sql = "SELECT id, username, email, fullname, role, is_active, created_at
                 FROM {$this->table_name}
                 WHERE id = :id";
 
@@ -70,11 +98,11 @@ class User
     }
 
     /**
-     * Lấy tất cả user (ADMIN)
+     * Lấy tất cả user (Dùng cho AdminController::manageUsers)
      */
     public function getAllUsers()
     {
-        $sql = "SELECT id, username, email, fullname, role, created_at
+        $sql = "SELECT id, username, email, fullname, role, is_active, created_at
                 FROM {$this->table_name}
                 ORDER BY created_at DESC";
 
@@ -83,9 +111,34 @@ class User
 
         return $stmt;
     }
+    
+    /**
+     * Thay đổi trạng thái kích hoạt (active/inactive) (Dùng cho AdminController::toggleUserStatus)
+     */
+    public function toggleUserStatus($id)
+    {
+        $sql = "UPDATE {$this->table_name} SET is_active = 1 - is_active WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
 
     /**
-     * Cập nhật thông tin user
+     * Đếm số người dùng theo vai trò (Dùng cho AdminController::statistics)
+     */
+    public function countByRole($role)
+    {
+        $sql = "SELECT COUNT(*) FROM {$this->table_name} WHERE role = :role";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':role', $role, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    /**
+     * Cập nhật thông tin user (fullname, email)
+     * ✅ ĐỒNG BỘ: Hàm này nhận 3 tham số để khớp với AdminController.php
      */
     public function updateUser($id, $fullname, $email)
     {
@@ -102,7 +155,8 @@ class User
     }
 
     /**
-     * Đổi mật khẩu
+     * Đổi mật khẩu (changePassword)
+     * ✅ ĐỒNG BỘ: AdminController sử dụng tên hàm này
      */
     public function changePassword($id, $newPassword)
     {
@@ -119,7 +173,6 @@ class User
 
     /**
      * Cập nhật quyền (ADMIN)
-     * 0: học viên | 1: giảng viên | 2: admin
      */
     public function updateRole($id, $role)
     {
@@ -146,21 +199,5 @@ class User
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         return $stmt->execute();
-    }
-
-    /**
-     * Kiểm tra tồn tại username hoặc email
-     */
-    public function checkExists($username, $email)
-    {
-        $sql = "SELECT id FROM {$this->table_name}
-                WHERE username = :username OR email = :email";
-
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
-        return $stmt->rowCount() > 0;
     }
 }
