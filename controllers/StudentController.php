@@ -24,6 +24,4 @@ class StudentController
         $view = 'views/layouts/profile.php';
         include 'views/layouts/student/student_layout.php';
     }
-
-
 }
