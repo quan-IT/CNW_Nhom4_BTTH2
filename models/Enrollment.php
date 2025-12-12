@@ -27,8 +27,9 @@ class Enrollment
     // Kiểm tra xem học viên đã đăng ký hay chưa
     public function isRegistered($user_id, $course_id)
     {
+        $user_id = 2;
         $sql = "SELECT * FROM enrollments 
-                WHERE user_id = :user_id AND course_id = :course_id";
+                WHERE student_id = :user_id AND course_id = :course_id";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':user_id', $user_id);
