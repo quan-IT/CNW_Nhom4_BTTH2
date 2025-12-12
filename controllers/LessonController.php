@@ -30,9 +30,10 @@ class LessonController {
         // Lấy danh sách bài học và gọi fetchAll()
         $stmt = $this->lessonModel->getLessonsByCourse($course_id);
         $lessons = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $view = 'views/instructor/lessons/manage.php';
 
         // Tải view
-        include 'views/instructor/lessons/manage.php';
+        include 'views/layouts/instructor/instructor_layout.php';
     }
     
     // Hiển thị form tạo bài học mới cho một khóa học cụ thể
