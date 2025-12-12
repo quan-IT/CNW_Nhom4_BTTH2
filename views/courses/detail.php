@@ -57,16 +57,26 @@
             <img src="<?= htmlspecialchars($image) ?>"
                 alt="Course Thumbnail"
                 class="course-thumbnail">
+            <?php if (!$active): ?>
+                <!-- CHƯA ĐĂNG KÍ -->
+                <div class="price-box">
+                    <div class="price">
+                        <?= number_format($course['price'], 0, ',', '.') ?> ₫
+                    </div>
 
-            <div class="price-box">
-                <div class="price">
-                    <?= htmlspecialchars($priceFormatted) ?>
+                    <form method="POST">
+                        <button name="enroll" class="btn-enroll">
+                            <i class="fas fa-play-circle"></i> Đăng kí học
+                        </button>
+                    </form>
                 </div>
 
-                <button class="btn-enroll" id="register_course">
-                    <i class="fas fa-play-circle"></i> Bắt đầu học
-                </button>
-            </div>
+            <?php else: ?>
+                <!-- ĐÃ ĐĂNG KÍ -->
+                <a href="mycourse_detail.php?id=<?= $course['id'] ?>" class="btn-enroll">
+                    <i class="fas fa-door-open"></i> Cút con mm
+                </a>
+            <?php endif; ?>
         </div>
 
     </div>

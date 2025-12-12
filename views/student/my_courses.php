@@ -1,13 +1,13 @@
-<?php
-// $courses = [
-//     ['id' => 1, 'title' => 'Học ReactJS Từ A-Z Cho Người Mới Bắt Đầu',               'instructor' => 'Nguyễn Văn A', 'progress' => 78, 'img' => 'assets/java.png'],
-//     ['id' => 2, 'title' => 'Lập Trình Laravel 10 - Xây Dựng Website Bán Hàng',      'instructor' => 'Trần Thị B',   'progress' => 45, 'img' => 'assets/java.png'],
-//     ['id' => 3, 'title' => 'Vue 3 + Vuex + Firebase - Fullstack Real Project',      'instructor' => 'Lê Văn C',     'progress' => 100, 'img' => 'assets/java.png'],
-//     ['id' => 4, 'title' => 'HTML CSS Từ Zero đến Hero',                             'instructor' => 'Phạm Thị D',   'progress' => 0,  'img' => 'assets/java.png'],
-//     ['id' => 5, 'title' => 'Node.js & Express - Xây dựng RESTful API',              'instructor' => 'Hoàng Văn E',  'progress' => 23, 'img' => 'assets/java.png'],
-//     ['id' => 6, 'title' => 'Thiết Kế Giao Diện Web Với Figma 2025',                 'instructor' => 'Nguyễn Thị F', 'progress' => 95, 'img' => 'assets/java.png'],
-// ];
-?>
+ <?php
+$courses = [
+    ['id' => 1, 'title' => 'Học ReactJS Từ A-Z Cho Người Mới Bắt Đầu',               'instructor' => 'Nguyễn Văn A', 'progress' => 78, 'img' => 'assets/java.png'],
+    ['id' => 2, 'title' => 'Lập Trình Laravel 10 - Xây Dựng Website Bán Hàng',      'instructor' => 'Trần Thị B',   'progress' => 45, 'img' => 'assets/java.png'],
+    ['id' => 3, 'title' => 'Vue 3 + Vuex + Firebase - Fullstack Real Project',      'instructor' => 'Lê Văn C',     'progress' => 100, 'img' => 'assets/java.png'],
+    ['id' => 4, 'title' => 'HTML CSS Từ Zero đến Hero',                             'instructor' => 'Phạm Thị D',   'progress' => 0,  'img' => 'assets/java.png'],
+    ['id' => 5, 'title' => 'Node.js & Express - Xây dựng RESTful API',              'instructor' => 'Hoàng Văn E',  'progress' => 23, 'img' => 'assets/java.png'],
+    ['id' => 6, 'title' => 'Thiết Kế Giao Diện Web Với Figma 2025',                 'instructor' => 'Nguyễn Thị F', 'progress' => 95, 'img' => 'assets/java.png'],
+];
+?> 
 
 
 

@@ -41,7 +41,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="index.html" class="nav-item nav-link active">Trang Quản Trị</a>
                     <a href="index.php?url=test/dashboard" class="nav-item nav-link">About</a>
                     <a href="index.php?url=student/dashboard" class="nav-item nav-link">Courses</a>
                     <div class="nav-item dropdown">
@@ -53,7 +53,7 @@
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                         </div>
                     </div>
-                    <a href="index.php?url=test/instructor" class="nav-item nav-link">Contact</a>
+                    <a href="index.php?url=test/instructor" class="nav-item nav-link">Trang Giảng viên</a>
                 </div>
                 <a href="index.php?url=auth/login" class="btn btn-primary py-2 px-4 d-none d-lg-block">Login</a>
                 <a href="index.php?url=auth/register" class="btn btn-primary py-2 px-4 d-none d-lg-block mr-2">Register</a>
