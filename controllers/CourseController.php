@@ -36,7 +36,7 @@ class CourseController
 
         $course = $this->courseModel->getCourseById($course_id);
         $lessons = $this->lessonModel->getLessonsByCourse($course_id);
-
+        $active = false;
         $view = 'views/courses/detail.php';
         include 'views/layouts/student/student_layout.php';
     }
