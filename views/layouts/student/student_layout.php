@@ -22,7 +22,7 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
     <link href="assets/css/student/mycourse.css" rel="stylesheet">
     <link href="assets/css/student/courseproress.css" rel="stylesheet">
     <link href="assets/css/Courses/detail.css" rel="stylesheet">
-     <link href="assets/css/student/mycourse_detail.css" rel="stylesheet">
+    <link href="assets/css/student/mycourse_detail.css" rel="stylesheet">
 
 </head>
 
@@ -48,11 +48,9 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
 
         </main>
     </div>
-
-    <!-- FOOTER (nếu có) -->
-    <?php include 'views/layouts/student/footer.php'; ?>
+    <script src="assets/js/student/student.js"></script>
+    <script src="assets/js/student/profile.js"></script>
 
 </body>
 
 </html>
-<script src="assets/js/student/student.js"></script>
