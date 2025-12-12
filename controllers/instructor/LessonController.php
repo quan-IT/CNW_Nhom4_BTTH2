@@ -208,7 +208,6 @@ public function storeMaterial($lesson_id) {
     public function delete($lesson_id) {
         $instructor_id = 1; // ID Tạm thời
         
-        // 1. Lấy thông tin bài học
         $lesson = $this->lessonModel->getLessonById($lesson_id);
         if (!$lesson) { 
             header('Location: index.php?url=course/manage');
