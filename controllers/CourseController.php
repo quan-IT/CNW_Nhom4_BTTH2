@@ -4,12 +4,14 @@
 require_once 'models/Course.php';
 require_once 'models/Lesson.php';
 require_once 'models/Category.php'; // Cần Category Model để lấy danh mục
+require_once 'models/Enrollment.php';
 
 class CourseController
 {
     private $courseModel;
     private $lessonModel;
     private $categoryModel;
+    private $enrollment;
 
     // Giả định có hàm checkAuth() để kiểm tra Giảng viên đã đăng nhập và có vai trò hợp lệ không [cite: 100]
 
@@ -18,6 +20,7 @@ class CourseController
         $this->courseModel = new Course();
         $this->lessonModel = new Lesson();
         $this->categoryModel = new Category();
+        $this->enrollment = new Enrollment();
 
         // Kiểm tra quyền truy cập giảng viên ở đây
         // if (!$this->checkInstructorAuth()) { header('Location: /login'); exit; }
@@ -36,7 +39,7 @@ class CourseController
 
         $course = $this->courseModel->getCourseById($course_id);
         $lessons = $this->lessonModel->getLessonsByCourse($course_id);
-        $active = false;
+        $active = $this->enrollment->isRegistered($course_id, $course_id);
         $view = 'views/courses/detail.php';
         include 'views/layouts/student/student_layout.php';
     }
