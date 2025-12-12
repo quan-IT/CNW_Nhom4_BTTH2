@@ -1,0 +1,59 @@
+/* assets/css/admin/categories.css */
+.page-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 30px; flex-wrap: wrap; gap: 16px;
+}
+.page-header h1 { font-size:32px; font-weight:700; color:#1e293b; margin:0; }
+
+.btn-primary, .btn-submit {
+    background:#3b82f6; color:white; padding:14px 24px; border-radius:14px;
+    text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    font-weight:600; font-size:15px; transition:.3s; box-shadow:0 6px 20px rgba(59,130,246,.3);
+}
+.btn-primary:hover, .btn-submit:hover { background:#2563eb; transform:translateY(-3px); }
+
+.btn-back, .btn-cancel {
+    color:#64748b; font-weight:500; text-decoration:none;
+}
+.btn-back:hover, .btn-cancel:hover { color:#1e293b; }
+
+/* Bảng danh sách */
+.table-container { background:white; border-radius:18px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.08); }
+.data-table { width:100%; border-collapse:collapse; }
+.data-table th { background:#f8fafc; padding:18px; text-align:left; font-weight:600; color:#475569; border-bottom:2px solid #e2e8f0; }
+.data-table td { padding:18px; border-bottom:1px solid #f1f5f9; }
+.data-table tr:hover { background:#f8faff; }
+
+.category-title { display:flex; align-items:center; gap:12px; }
+.category-title i { font-size:24px; color:#3b82f6; }
+.desc { color:#64748b; font-size:14.5px; max-width:380px; }
+.badge.blue { background:#dbeafe; color:#1d4ed8; padding:6px 14px; border-radius:20px; font-weight:700; font-size:14px; }
+
+/* Nút hành động */
+.btn-icon { width:42px; height:42px; border:none; border-radius:12px; cursor:pointer; font-size:16px; transition:.3s; }
+.btn-icon.edit { background:#fef3c7; color:#d97706; }
+.btn-icon.delete { background:#fee2e2; color:#dc2626; }
+.btn-icon:hover { transform:translateY(-4px); box-shadow:0 10px 25px rgba(0,0,0,.15); }
+
+/* Form thêm/sửa */
+.form-container {
+    background:white; padding:30px; border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08); max-width:700px;
+}
+.form-group { margin-bottom:24px; }
+.form-group label { display:block; margin-bottom:8px; font-weight:600; color:#1e293b; }
+.form-group label .required { color:#ef4444; }
+.form-group input, .form-group textarea {
+    width:100%; padding:14px 16px; border:1px solid #e2e8f0; border-radius:12px;
+    font-size:15px; font-family:inherit;
+}
+.form-group textarea { resize:vertical; }
+.form-info small { color:#94a3b8; }
+.form-actions { display:flex; gap:12px; margin-top:30px; }
+
+/* Responsive */
+@media (max-width:768px) {
+    .page-header { flex-direction:column; align-items:stretch; }
+    .table-container { overflow-x:auto; }
+    .data-table { min-width:800px; }
+}

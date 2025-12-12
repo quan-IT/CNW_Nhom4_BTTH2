@@ -1,0 +1,261 @@
+/* ========================================
+   ADMIN DASHBOARD - Edukate (2025)
+   File: assets/css/admin/dashboard.css
+======================================== */
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8fafc;
+  color: #334155;
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Wrapper */
+.dashboard-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  margin-left: 200px;
+  padding: 30px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Header */
+.main-content .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.main-content .header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e293b;
+}
+.search-bar {
+  position: relative;
+  width: 320px;
+}
+.search-bar input {
+  width: 100%;
+  padding: 14px 50px 14px 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  font-size: 15px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.search-bar i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 18px;
+}
+
+/* Stats Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.stat-card {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+.stat-card i {
+  font-size: 44px;
+  color: #3b82f6;
+}
+.stat-card.pending i {
+  color: #f59e0b;
+}
+.stat-card h3 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #1e293b;
+}
+.stat-card p {
+  color: #64748b;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.widget {
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+.widget h2 {
+  font-size: 21px;
+  margin-bottom: 20px;
+  color: #1e293b;
+  position: relative;
+  padding-bottom: 12px;
+}
+.widget h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: #3b82f6;
+  border-radius: 2px;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.table th,
+.table td {
+  padding: 14px 0;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9;
+}
+.table th {
+  color: #64748b;
+  font-weight: 600;
+  font-size: 13.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.table td {
+  font-size: 15px;
+}
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.status.active {
+  background: #dcfce7;
+  color: #166534;
+}
+.status.pending {
+  background: #fef9c3;
+  color: #ca8a04;
+}
+
+/* Pending Courses */
+.badge {
+  background: #ef4444;
+  color: white;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+.pending-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+.pending-item:last-child {
+  border-bottom: none;
+}
+.pending-item h4 {
+  font-size: 17px;
+  margin-bottom: 8px;
+  color: #1e293b;
+}
+.pending-item p {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+.actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+.btn-approve {
+  background: #10b981;
+  color: white;
+}
+.btn-approve:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+.btn-reject {
+  background: #ef4444;
+  color: white;
+}
+.btn-reject:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 992px) {
+  .main-content {
+    margin-left: 80px;
+  }
+  .search-bar {
+    width: 250px;
+  }
+}
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .search-bar {
+    width: 100%;
+  }
+}

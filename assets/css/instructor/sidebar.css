@@ -1,0 +1,36 @@
+.sidebar {
+    width: 220px;
+    background: white;
+    padding: 30px 20px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.08);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar .logo {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.sidebar .nav-menu a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    color: #475569;
+    text-decoration: none;
+    border-radius: 12px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-menu a:hover,
+.sidebar .nav-menu a.active {
+    background: #3b82f6;
+    color: white;
+}

@@ -1,0 +1,179 @@
+/* ================================
+   Instructor Dashboard Content
+================================ */
+
+/* Layout tổng quát */
+.instructor-main {
+    flex: 1;
+    padding: 30px 40px;
+    background: #f8fafc;
+    color: #334155;
+    min-height: 100vh;
+}
+
+/* Nội dung chính */
+.content h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.content .subtitle {
+    color: #64748b;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+/* ================================
+   Stats Cards
+================================ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: .3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.12);
+}
+
+.stat-card i {
+    font-size: 40px;
+    color: #3b82f6;
+}
+
+.stat-card h3 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.stat-card p {
+    color: #64748b;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* ================================
+   Recent Activity
+================================ */
+.activity-section {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+}
+
+.activity-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #1e293b;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.activity-section h2::after {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background: #3b82f6;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.activity-item {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.activity-item i {
+    font-size: 28px;
+    color: #3b82f6;
+    background: #eff6ff;
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.activity-item p {
+    color: #334155;
+    font-size: 15px;
+}
+
+.activity-item small {
+    color: #94a3b8;
+}
+
+/* ================================
+   Quick Actions
+================================ */
+.quick-actions {
+    margin-top: 14px;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.quick-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #3b82f6;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 6px 15px rgba(59,130,246,0.3);
+    transition: .25s ease;
+}
+
+.quick-btn:hover {
+    background: #2563eb;
+    transform: translateY(-3px);
+}
+
+.quick-btn i {
+    font-size: 18px;
+}
+
+/* ================================
+   Responsive
+================================ */
+@media (max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .instructor-main {
+        padding: 20px;
+    }
+}
