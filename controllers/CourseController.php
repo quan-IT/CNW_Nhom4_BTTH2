@@ -53,7 +53,8 @@ class CourseController
         $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Gọi view: views/instructor/course/manage.php
-        include 'views/instructor/course/manage.php';
+        $view = 'views/instructor/course/manage.php';
+        include 'views/layouts/instructor/instructor_layout.php';
     }
 
     // Hiển thị form tạo khóa học
@@ -61,7 +62,8 @@ class CourseController
     {
         $categories = $this->categoryModel->getAllCategories(); // <<< Dòng này phải chạy đúng
         // Gọi view: views/instructor/course/create.php 
-        include 'views/instructor/course/create.php';
+        $view = 'views/instructor/course/create.php';
+        include 'views/layouts/instructor/instructor_layout.php';
     }
 
     // Xử lý tạo khóa học mới
@@ -123,12 +125,14 @@ class CourseController
         $categories = $this->categoryModel->getAllCategories();
 
         if (!$course) {
+
             header('Location: index.php?url=course/manage');
             exit;
         }
 
         // 2. Gọi view: views/instructor/course/edit.php 
-        include 'views/instructor/course/edit.php';
+        $view = 'views/instructor/course/edit.php';
+        include 'views/layouts/instructor/instructor_layout.php';
     }
 
     // Xử lý cập nhật khóa học

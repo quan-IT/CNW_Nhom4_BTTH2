@@ -5,13 +5,13 @@
     </div>
 
     <nav class="nav-menu">
-        <a href="?url=" class="<?= ($current_url == 'admin/dashboard') ? 'active' : '' ?>">
+        <a href="index.php?url=" class="<?= ($current_url == 'instructor/dashboard') ? 'active' : '' ?>">
             <i class="fas fa-th-large"></i> Dashboard
         </a>
-        <a href="?url=test/intructorcoursemanage" class="<?= (strpos($current_url, 'test/manage') !== false) ? 'active' : '' ?>">
+        <a href="?url=course/manage" class="<?= (strpos($current_url, 'course/manage') !== false) ? 'active' : '' ?>">
             <i class="fas fa-users"></i> Quản lý khóa học
         </a>
-        <a href="?url=test/intructorlessonmanage" class="<?= (strpos($current_url, 'admin/categories') !== false) ? 'active' : '' ?>">
+        <a href="index.php?url=lesson/manage/4" class="<?= (strpos($current_url, 'admin/categories') !== false) ? 'active' : '' ?>">
             <i class="fas fa-tags"></i> Quản lý bài học
         </a>
         <a href="index.php?url=test/intructormaterialsmanage">
