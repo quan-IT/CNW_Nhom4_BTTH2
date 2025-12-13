@@ -40,9 +40,8 @@ class Enrollment
     }
 
     // Lấy danh sách khóa học mà học viên đã đăng ký
-    public function getCourseByUser()
+    public function getCourseByUser($user_id)
     {
-        $user_id = $_SESSION['id'];
         $sql = "SELECT c.*, e.enrolled_date as enrolled_at
             FROM enrollments e
             JOIN courses c ON e.course_id = c.id
