@@ -52,13 +52,15 @@ class AuthController
           include 'views/layouts/admin/admin_layout.php';
           break;
         default:
-          include "./views/auth/login.php";
+          include "./views/auth/showlogin.php";
           echo "Role không hợp lệ!";
           break;
       }
 
+
       exit;
     }
+    include "./views/auth/login.php";
   }
 
   public function showregister()
