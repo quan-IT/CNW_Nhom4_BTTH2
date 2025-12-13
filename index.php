@@ -1,11 +1,6 @@
 <?php
 // index.php
 session_start();
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 6f342188e1b4af685418892c8310edd245758403
 // Bật lỗi (tắt khi lên host)  
 define('BASE_DIR', __DIR__);
 ini_set('display_errors', 1);

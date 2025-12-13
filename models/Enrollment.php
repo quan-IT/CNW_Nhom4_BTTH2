@@ -57,7 +57,6 @@ public function isRegistered($user_id, $course_id)
     // Lấy danh sách khóa học mà học viên đã đăng ký
     public function getCourseByUser($user_id)
     {
-<<<<<<< HEAD
         $sql = "SELECT 
                 c.id,
                 c.title,
@@ -68,18 +67,10 @@ public function isRegistered($user_id, $course_id)
                 u.fullname AS instructor_name,
                 e.enrolled_date AS enrolled_at,
                 e.progress
-=======
-          $sql = "SELECT c.*, e.enrolled_date as enrolled_at
-
->>>>>>> 6f342188e1b4af685418892c8310edd245758403
             FROM enrollments e
 
             JOIN courses c ON e.course_id = c.id
-<<<<<<< HEAD
             JOIN users u ON c.instructor_id = u.id
-=======
-
->>>>>>> 6f342188e1b4af685418892c8310edd245758403
             WHERE e.student_id = :user_id
 
             ORDER BY e.enrolled_date DESC";
@@ -90,7 +81,6 @@ public function isRegistered($user_id, $course_id)
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-<<<<<<< HEAD
     // Lấy enrollment của 1 học viên trong 1 khóa
     public function getEnrollment($course_id, $student_id)
     {
@@ -107,29 +97,20 @@ public function isRegistered($user_id, $course_id)
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-=======
-    // models/Enrollment.php
+    // Lấy enrollment của 1 học viên trong 1 khóa
+    public function getEnrollment($course_id, $student_id)
+    {
+        $sql = "
+            SELECT *
+            FROM enrollments
+            WHERE course_id = :cid AND student_id = :sid
+        ";
 
-public function getStudentsByCourse($course_id)
-{
-    // Lấy thông tin học viên (users) đã đăng ký (enrollments)
-    $sql = "SELECT 
-                u.id as student_id,
-                u.fullname,           
-                u.email,
-                e.enrolled_date
-            FROM enrollments e
-            JOIN users u ON e.student_id = u.id 
-            WHERE e.course_id = :course_id
-            ORDER BY e.enrolled_date DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':cid', $course_id);
+        $stmt->bindValue(':sid', $student_id);
+        $stmt->execute();
 
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindValue(':course_id', $course_id, PDO::PARAM_INT);
-    
-    // Thực thi và trả về kết quả
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-    
->>>>>>> 6f342188e1b4af685418892c8310edd245758403
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
