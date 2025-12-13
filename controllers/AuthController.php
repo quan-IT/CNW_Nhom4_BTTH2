@@ -40,7 +40,8 @@ class AuthController
 
       switch ((int)$_SESSION['role']) {
         case 0:
-          include "./views/student/dashboard.php";
+          $view = 'views/student/dashboard.php';
+          include 'views/layouts/student/student_layout.php';
           break;
         case 1:
           $view = 'views/instructor/dashboard.php';
