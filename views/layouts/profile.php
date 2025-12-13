@@ -4,7 +4,7 @@
     <div class="account-card">
         <!-- Avatar Section -->
         <div class="avatar-section">
-            <img id="avatarPreview" src="assets/img/avatar-default.jpg" class="avatar-img" alt="Avatar">
+            <img id="avatarPreview" src="assets/avatar-default.jpg" class="avatar-img" alt="Avatar">
 
             <div class="avatar-actions">
                 <button type="button" id="btnUpdateAvatar" class="btn btn-update">Update</button>
@@ -21,7 +21,7 @@
         <h3 class="sub-title">Personal Details</h3>
         <p class="sub-desc">Update your profile information.</p>
 
-        <form id="profileForm" class="profile-form" novalidate>
+        <form id="profileForm" class="profile-form" method="POST" action="index.php?url=student/updateprofile" novalidate>
 
             <div class="form-row">
                 <div class="form-group">
@@ -72,4 +72,3 @@
 <div id="toastContainer"></div>
 
 <!-- Load JS (đặt cuối trang) -->
-<script src="assets/js/student/profile.js"></script>

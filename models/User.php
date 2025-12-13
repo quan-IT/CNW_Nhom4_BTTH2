@@ -84,19 +84,51 @@ class User
     /**
      * Cập nhật thông tin user
      */
-    public function updateUser($id, $fullname, $email)
-    {
-        $sql = "UPDATE {$this->table_name}
-                SET fullname = :fullname, email = :email
-                WHERE id = :id";
+    // public function updateUser($id, $fullname, $email)
+    // {
+    //     $sql = "UPDATE {$this->table_name}
+    //             SET fullname = :fullname, email = :email
+    //             WHERE id = :id";
 
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':fullname', $fullname);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->bindParam(':fullname', $fullname);
+    //     $stmt->bindParam(':email', $email);
+    //     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-        return $stmt->execute();
-    }
+    //     return $stmt->execute();
+    // }
+        public function updateUser($id, $data)
+        {
+            // Ngăn không cho cập nhật cột id
+            unset($data['id']);
+
+            // Nếu không có field nào để update thì return false
+            if (empty($data)) {
+                return false;
+            }
+
+            $fields = [];
+            foreach ($data as $key => $value) {
+                // Optional: validate/sanitize key nếu cần (ngăn injection qua tên cột)
+                // Ví dụ chỉ cho phép các cột hợp lệ
+                $fields[] = "$key = :$key";
+            }
+
+            $sql = "UPDATE users SET " . implode(", ", $fields) . " WHERE id = :id";
+
+            $stmt = $this->db->prepare($sql);
+
+            // Bind các giá trị từ $data
+            foreach ($data as $key => $value) {
+                $stmt->bindValue(":$key", $value);
+            }
+
+            // Bind id riêng (luôn là giá trị gốc)
+            $stmt->bindValue(":id", $id);
+
+            return $stmt->execute();
+        }
+
 
     /**
      * Đổi mật khẩu

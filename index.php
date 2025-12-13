@@ -73,6 +73,7 @@ try {
     } else {
         $controller->$action();
     }
+    return;
 } catch (Error $e) {
     // Bắt lỗi khi Class không được tìm thấy (Autoload thất bại)
     if (strpos($e->getMessage(), "Class '{$controllerName}' not found") !== false) {
