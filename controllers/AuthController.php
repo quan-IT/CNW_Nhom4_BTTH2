@@ -1,5 +1,4 @@
 <?php
-
 require_once 'models/User.php';
 // require_once 'models/Category.php';
 // require_once 'models/Course.php';
@@ -65,12 +64,16 @@ class AuthController
       $_SESSION['user_id'] = $user['id'];
       $_SESSION['user_name'] = $user['username'];
       $_SESSION['role'] = $user['role'];
+      $id = $user['id'];
 
       switch ((int)$_SESSION['role']) {
         case 0:
+          
           $view = 'views/student/dashboard.php';
-          include 'views/layouts/student/student_layout.php';
+          header("Location: index.php?url=student/dashboard/{$id}");
+          exit();
           break;
+
         case 1:
           $view = 'views/instructor/dashboard.php';
           include 'views/layouts/instructor/instructor_layout.php';

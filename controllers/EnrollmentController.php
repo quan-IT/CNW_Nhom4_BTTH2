@@ -1,14 +1,9 @@
 <?php
-// controllers/EnrollmentController.php
 require_once 'models/Enrollment.php';
-
-require_once "config/database.php";
-$db = new Database();
 
 class EnrollmentController
 {
-    public $EnrollmentModel;
-
+    private $EnrollmentModel;
 
     public function __construct()
     {
@@ -16,6 +11,32 @@ class EnrollmentController
     }
 
     // Đăng ký khóa học
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public function register()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            die("Bạn chưa đăng nhập");
+        }
+
+        if (!isset($_GET['course_id'])) {
+            die("Thiếu course_id");
+        }
+
+        $student_id = $_SESSION['user_id'];
+        $course_id = $_GET['course_id'];
+
+        // Gọi model thực hiện INSERT
+        $this->EnrollmentModel->register($student_id, $course_id);
+
+        // Chuyển hướng về trang học
+        header("Location: index.php?url=lesson/learn&course_id=$course_id");
+        exit;
+    }
+
+    // Trang khóa học đã đăng ký
+    public function my_courses()
+=======
     public function register($course_id = null) 
     {
         // 1. Gán cứng ID học viên (cho mục đích debug/test)
@@ -75,14 +96,48 @@ public function view_students($course_id = null)
     // Gán biến $courseTitle và $students vào View để hiển thị
     include BASE_DIR . '/views/layouts/student/student_layout.php'; // Sử dụng layout của bạn
 }    public function my_courses()
+>>>>>>> 6f342188e1b4af685418892c8310edd245758403
+=======
+    public function register()
+>>>>>>> ea67f7423d4d8fb6e011d790b7c0ac32007cc69a
     {
+        if (!isset($_SESSION['user_id'])) {
+            die("Bạn chưa đăng nhập");
+        }
 
+<<<<<<< HEAD
+        $student_id = $_SESSION['user_id'];
+<<<<<<< HEAD
+=======
+=======
+        $course_id = $_GET['course_id'];
+
+        // Gọi model thực hiện INSERT
+        $this->EnrollmentModel->register($student_id, $course_id);
+
+        // Chuyển hướng về trang học
+        header("Location: index.php?url=lesson/learn&course_id=$course_id");
+        exit;
+    }
+
+    // Trang khóa học đã đăng ký
+    public function my_courses()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            die("Bạn chưa đăng nhập");
+        }
+
+>>>>>>> ea67f7423d4d8fb6e011d790b7c0ac32007cc69a
         $student_id = 1;
         // ------------------------------------------
     //     $courses = $this->EnrollmentModel->getCourseByUser($student_id); 
     
     // echo "<pre>"; print_r($courses); echo "</pre>"; exit; // THÊM DÒNG NÀY ĐỂ DEBUG
         // Lấy danh sách khóa học của Sinh viên này
+<<<<<<< HEAD
+>>>>>>> 6f342188e1b4af685418892c8310edd245758403
+=======
+>>>>>>> ea67f7423d4d8fb6e011d790b7c0ac32007cc69a
 
         $courses = $this->EnrollmentModel->getCourseByUser($student_id);
 

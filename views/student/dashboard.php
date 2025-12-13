@@ -7,8 +7,8 @@ $enrolledCourses = $courses['enrolled'] ?? [];
 // Các biến tiện ích
 $userId = $user['id'] ?? 'N/A';
 $userName = $user['username'] ?? 'Student';
-$userAvatar = $user['avatar'] ?? 'assets/img/avatar-default.jpg';
-$currentCourse = $user['current_course'] ?? 'Chưa chọn khóa học';
+$userAvatar = $user['avatar'] ?? 'assets/avatar-default.jpg';
+$currentCourse = $_SESSION['user']['avatar'] ?? 'Chưa chọn khóa học';
 $profileCompletion = $user['profile_completion'] ?? 0;
 $hasStreak = $user['has_streak'] ?? false;
 $unlockedBadges = $user['unlocked_badges'] ?? 0;
@@ -18,7 +18,7 @@ $totalBadges = 7; // Có thể thay đổi sau
     <!-- User Profile Card -->
     <div class="card profile-card">
         <div class="profile-avatar">
-            <img src="assets\VN.png" alt="User Avatar">
+            <img src="<?= htmlspecialchars($userAvatar) ?>" alt="User Avatar">
         </div>
         <h3 class="profile-name">Hey, <?= htmlspecialchars($userName) ?>!</h3>
         <p class="profile-id">ID: <?= htmlspecialchars($userId) ?> </p>

@@ -28,6 +28,7 @@ class CourseController
     //Xem danh sách tất cả khóa học
     public function courses()
     {
+        
         $courses = $this->courseModel->getAllCourse();
 
         $view = 'views/courses/index.php';

@@ -1,170 +1,112 @@
-// assets/js/student/profile.js
+const form = document.getElementById("profileForm");
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Elements
-    const form = document.getElementById("profileForm");
-    const avatarPreview = document.getElementById("avatarPreview");
-    const avatarError = document.getElementById("avatarError");
-    const btnUpdateAvatar = document.getElementById("btnUpdateAvatar");
-    const btnDeleteAvatar = document.getElementById("btnDeleteAvatar");
-    const btnSubmitProfile = document.getElementById("btnSubmitProfile");
+const inputs = {
+  firstName: document.getElementById("firstName"),
+  lastName: document.getElementById("lastName"),
+  username: document.getElementById("username"),
+  email: document.getElementById("email"),
+  oldPassword: document.getElementById("oldPassword"),
+  newPassword: document.getElementById("newPassword"),
+};
 
-    // Inputs
-    const inputs = {
-        firstName: document.getElementById("firstName"),
-        lastName: document.getElementById("lastName"),
-        username: document.getElementById("username"),
-        email: document.getElementById("email"),
-        oldPassword: document.getElementById("oldPassword"),
-        newPassword: document.getElementById("newPassword")
-    };
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    // Hidden file input for avatar
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.accept = "image/png,image/jpeg";
-    fileInput.style.display = "none";
-    document.body.appendChild(fileInput);
+  clearErrors();
+  let valid = true;
 
-    let selectedFile = null;
+  // ===== 1. Validate rỗng =====
+  const requiredFields = [
+    { el: inputs.firstName, msg: "Vui lòng nhập First Name" },
+    { el: inputs.lastName, msg: "Vui lòng nhập Last Name" },
+    { el: inputs.username, msg: "Vui lòng nhập Username" },
+    { el: inputs.email, msg: "Vui lòng nhập Email" },
+  ];
 
-    // ================================
-    // TOAST FUNCTION - ĐẸP NHƯ ẢNH BẠN GỬI
-    // ================================
-    function showToast(message, type = "success") {
-        const container = document.getElementById("toastContainer");
-        if (!container) return;
-
-        // Xóa toast cũ
-        document.querySelectorAll('.toast').forEach(t => t.remove());
-
-        const toast = document.createElement("div");
-        toast.className = `toast toast-${type}`;
-
-        const icons = {
-            info: "ℹ️",
-            success: "✅",
-            warning: "⚠️",
-            danger: "❌"
-        };
-
-        toast.innerHTML = `
-            <span class="toast-icon">${icons[type] || icons.success}</span>
-            <span>${message}</span>
-            <button type="button" class="close-btn">&times;</button>
-        `;
-
-        container.appendChild(toast);
-
-        setTimeout(() => toast.classList.add("show"), 100);
-
-        const timer = setTimeout(() => {
-            toast.classList.remove("show");
-            setTimeout(() => toast.remove(), 500);
-        }, 4000);
-
-        toast.querySelector(".close-btn").onclick = () => {
-            clearTimeout(timer);
-            toast.classList.remove("show");
-            setTimeout(() => toast.remove(), 500);
-        };
+  requiredFields.forEach(({ el, msg }) => {
+    if (!el.value.trim()) {
+      showError(el, msg);
+      valid = false;
     }
+  });
 
-    // ================================
-    // AVATAR HANDLING
-    // ================================
-    btnUpdateAvatar.addEventListener("click", () => fileInput.click());
-
-    fileInput.addEventListener("change", function () {
-        const file = this.files[0];
-        avatarError.textContent = "";
-
-        if (!file) return;
-
-        if (!["image/png", "image/jpeg"].includes(file.type)) {
-            avatarError.textContent = "Chỉ chấp nhận PNG hoặc JPG!";
-            showToast("File không hợp lệ. Chỉ chấp nhận PNG hoặc JPG.", "danger");
-            return;
-        }
-
-        const img = new Image();
-        img.onload = function () {
-            if (img.width > 800 || img.height > 800) {
-                avatarError.textContent = "Kích thước tối đa 800x800px!";
-                showToast("Ảnh quá lớn! Tối đa 800x800px.", "warning");
-                return;
-            }
-
-            avatarPreview.src = URL.createObjectURL(file);
-            selectedFile = file;
-            showToast("Avatar đã được chọn thành công!", "success");
-        };
-        img.src = URL.createObjectURL(file);
-    });
-
-    btnDeleteAvatar.addEventListener("click", function () {
-        if (confirm("Bạn có chắc muốn xóa avatar?")) {
-            avatarPreview.src = "assets/img/avatar-default.jpg";
-            selectedFile = null;
-            fileInput.value = "";
-            showToast("Avatar đã được xóa!", "info");
-        }
-    });
-
-    // ================================
-    // FORM VALIDATION & SUBMIT
-    // ================================
-    function clearErrors() {
-        document.querySelectorAll(".error-message").forEach(el => el.textContent = "");
-        document.querySelectorAll(".form-group input").forEach(input => input.classList.remove("error"));
+  // ===== 2. Validate Email =====
+  if (inputs.email.value.trim()) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(inputs.email.value.trim())) {
+      showError(inputs.email, "Email không hợp lệ");
+      valid = false;
     }
+  }
 
-    function showFieldError(id, message) {
-        const input = document.getElementById(id);
-        if (input) {
-            input.classList.add("error");
-            input.parentElement.querySelector(".error-message").textContent = message;
-        }
+  // ===== 3. Validate đổi mật khẩu =====
+  const oldPass = inputs.oldPassword.value.trim();
+  const newPass = inputs.newPassword.value.trim();
+
+  if (newPass) {
+    if (!oldPass) {
+      showError(inputs.oldPassword, "Vui lòng nhập mật khẩu cũ");
+      valid = false;
     }
+    if (newPass.length < 6) {
+      showError(inputs.newPassword, "Mật khẩu mới tối thiểu 6 ký tự");
+      valid = false;
+    }
+  }
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        clearErrors();
+  if (!valid) {
+    showToast("Vui lòng kiểm tra lại thông tin!", "danger");
+    return;
+  }
 
-        let valid = true;
+  // ===== 4. Gửi dữ liệu =====
+  const formData = new FormData(form);
 
-        if (!inputs.firstName.value.trim()) { showFieldError("firstName", "Vui lòng nhập First Name"); valid = false; }
-        if (!inputs.lastName.value.trim()) { showFieldError("lastName", "Vui lòng nhập Last Name"); valid = false; }
-        if (!inputs.username.value.trim()) { showFieldError("username", "Vui lòng nhập Username"); valid = false; }
-        if (!inputs.email.value.trim()) { showFieldError("email", "Vui lòng nhập Email"); valid = false; }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (inputs.email.value.trim() && !emailRegex.test(inputs.email.value.trim())) {
-            showFieldError("email", "Email không hợp lệ");
-            valid = false;
-        }
-
-        if (inputs.newPassword.value.trim()) {
-            if (inputs.newPassword.value.length < 6) {
-                showFieldError("newPassword", "Mật khẩu mới ít nhất 6 ký tự");
-                valid = false;
-            }
-            if (!inputs.oldPassword.value.trim()) {
-                showFieldError("oldPassword", "Nhập mật khẩu cũ để thay đổi");
-                valid = false;
-            }
-        }
-
-        if (!valid) {
-            showToast("Vui lòng kiểm tra lại thông tin!", "danger");
-            return;
-        }
-
-        // Thành công → hiện toast success
-        showToast("Cập nhật hồ sơ thành công!", "success");
-
-        // Reset password fields (demo)
-        inputs.oldPassword.value = "";
-        inputs.newPassword.value = "";
+  fetch("index.php?url=student/updateprofile", {
+    method: "POST",
+    body: formData,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.status === "success") {
+        showToast("Cập nhật thành công!", "success");
+        setTimeout(() => {
+          window.location.href = "index.php?url=student/profile";
+        }, 1000);
+      } else {
+        showToast(data.message || "Có lỗi xảy ra!", "danger");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      showToast("Lỗi kết nối server!", "danger");
     });
 });
+
+/* ================== FUNCTIONS ================== */
+
+function showError(input, message) {
+  input.classList.add("is-invalid");
+  const errorDiv = input.parentElement.querySelector(".error-message");
+  errorDiv.innerText = message;
+}
+
+function clearErrors() {
+  document
+    .querySelectorAll(".is-invalid")
+    .forEach((el) => el.classList.remove("is-invalid"));
+  document
+    .querySelectorAll(".error-message")
+    .forEach((el) => (el.innerText = ""));
+}
+function showToast(message, type = "info") {
+  const toast = document.createElement("div");
+  toast.className = `toast toast-${type}`;
+  toast.innerText = message;
+
+  document.getElementById("toastContainer").appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}

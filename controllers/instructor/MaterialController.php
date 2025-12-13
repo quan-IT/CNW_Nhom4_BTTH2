@@ -121,5 +121,11 @@ public function store($lesson_id) {
         header('Location: index.php?url=course/manage');
         exit;
     }
+    //manage document
+     public function document(){
+        $view = 'views/instructor/materials/upload.php';
+        include 'views/layouts/instructor/instructor_layout.php';
+
+    }
 }
 ?>

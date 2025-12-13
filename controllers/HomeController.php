@@ -13,7 +13,7 @@ class HomeController {
     public function courses(){
         include "views/home/courses.php";
     }
-    public function instructorDashboard() {
+    public function instructordashboard() {
         if ($this->current_user_role !== 'instructor') {
             // Nếu không phải Instructor, chuyển hướng về trang chủ
             header('Location: index.php');
