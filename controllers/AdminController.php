@@ -15,11 +15,7 @@ class AdminController
 
     public function __construct()
     {
-        // 1. Sửa lỗi: Đảm bảo session được khởi tạo (Mặc dù bạn đã có session_start(), 
-        // nhưng tốt nhất nên dùng cách này để đảm bảo)
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        
         
         // 2. Sửa lỗi: Kiểm tra quyền Admin và chuyển hướng
         // Trong file gốc của bạn là header("Location: /login"); -> Đã sửa thành /auth/login
