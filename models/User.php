@@ -35,22 +35,19 @@ class User
     /**
      * Đăng nhập (username hoặc email)
      */
-    public function login($username, $password)
+    public function login($email, $pass)
     {
-        $sql = "SELECT * FROM {$this->table_name}
-                WHERE username = :username OR email = :username
-                LIMIT 1";
-
+        $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':username', $username);
+        $stmt->bindValue(':email', $email);
         $stmt->execute();
-
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
-            return $user;
+        if ($user && $pass === $user['password']) {
+            return $user; // login thành công
+        } else {
+            return false; // login thất bại
         }
-        return false;
     }
 
     /**
