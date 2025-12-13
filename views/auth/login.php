@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/'; ?>">
 	<title>Login V1</title>
@@ -24,7 +25,7 @@
 					<img src="assets/css/login/images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="POST" action="index.php?url=auth/login">
 					<span class="login100-form-title">Member Login</span>
 
 					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
@@ -44,7 +45,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<a class="login100-form-btn" href="index.php?url=student/dashboard"> Login </a>
+						<button class="login100-form-btn"> Login </button>
 					</div>
 
 					<div class="text-center p-t-12">
@@ -71,7 +72,9 @@
 	<script src="assets/css/login/vendor/select2/select2.min.js"></script>
 	<script src="assets/css/login/vendor/tilt/tilt.jquery.min.js"></script>
 	<script>
-		$('.js-tilt').tilt({ scale: 1.1 })
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
 	</script>
 	<script src="assets/js/login/login.js"></script>
 </body>
