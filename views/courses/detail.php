@@ -44,14 +44,15 @@
         <div class="course-right">
             <img src="<?= htmlspecialchars($image) ?>" class="course-thumbnail">
 
-            <?php if (!$active): ?>
-                <div class="price-box">
-                    <div class="price"><?= $priceFormatted ?></div>
-                    <button type="button" id="btnEnroll" class="btn-enroll">
-                        <i class="fas fa-play-circle"></i> Đăng kí học
-                    </button>
-                </div>
-            <?php else: ?>
+           // ...
+            <?php if (!$active): ?>
+                <div class="price-box">
+                    <div class="price"><?= $priceFormatted ?></div>
+                                        <a href="index.php?url=enrollment/register/<?= $id ?>" class="btn-enroll">
+                        <i class="fas fa-play-circle"></i> Đăng kí học
+                    </a>
+                </div>
+            <?php else: ?>
                 <a href="mycourse_detail.php?id=<?= $course['id'] ?>" class="btn-enroll">
                     <i class="fas fa-door-open"></i> Vào học
                 </a>
