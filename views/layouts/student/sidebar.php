@@ -15,8 +15,8 @@
                 <i class="fas fa-th-large"></i> <span>Dashboard</span>
             </a>
 
-            <a href="index.php?url=student/mycourse"
-                class="nav-item <?= ($current_url === 'student/mycourse') ? 'active' : '' ?>">
+            <a href="index.php?url=enrollment/my_courses"
+                class="nav-item <?= ($current_url === 'enrollment/my_courses') ? 'active' : '' ?>">
                 <i class="fas fa-book-reader"></i> <span>Khóa học của tôi</span>
             </a>
 
@@ -45,7 +45,7 @@
                 class="nav-item <?= ($current_url === 'student/profile') ? 'active' : '' ?>">
                 <i class="fas fa-user-edit"></i> <span>Cá nhân</span>
             </a>
-            <a href = 'index.php?url=home/index'>
+            <a href='index.php?url=home/index'>
                 <i class="fas fa-sign-out-alt"></i> <span>Đăng xuất</span>
             </a>
         </div>
