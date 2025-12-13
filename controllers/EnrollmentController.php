@@ -39,7 +39,12 @@ class EnrollmentController
             die("Bạn chưa đăng nhập");
         }
 
-        $student_id = $_SESSION['user_id'];
+        $student_id = 1;
+        // ------------------------------------------
+    //     $courses = $this->EnrollmentModel->getCourseByUser($student_id); 
+    
+    // echo "<pre>"; print_r($courses); echo "</pre>"; exit; // THÊM DÒNG NÀY ĐỂ DEBUG
+        // Lấy danh sách khóa học của Sinh viên này
 
         $courses = $this->EnrollmentModel->getCourseByUser($student_id);
 

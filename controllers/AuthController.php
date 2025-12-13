@@ -12,6 +12,34 @@ class AuthController
     $this->userModel = new User();
   }
 
+  public function showdashboard()
+  {
+    $x = $_SESSION['user_id'] ?? -1;
+    if ($x == -1) {
+      echo "không hợp lệ!";
+    } else {
+      $user = $this->userModel->getUserById($_SESSION['user_id']);
+      switch ((int)$_SESSION['role']) {
+        case 0:
+          $view = 'views/student/dashboard.php';
+          include 'views/layouts/student/student_layout.php';
+          break;
+        case 1:
+          $view = 'views/instructor/dashboard.php';
+          include 'views/layouts/instructor/instructor_layout.php';
+          break;
+        case 2:
+          $view = 'views/admin/dashboard.php';
+          include 'views/layouts/admin/admin_layout.php';
+          break;
+        default:
+          include "./views/auth/showlogin.php";
+          echo "Role không hợp lệ!";
+          break;
+      }
+    }
+  }
+
   public function showlogin()
   {
     include "./views/auth/login.php";
@@ -63,11 +91,13 @@ class AuthController
 
       exit;
     }
-    include "./views/auth/login.php";
+    include "./views/auth/showlogin.php";
   }
 
   public function showregister()
   {
     include "./views/auth/register.php";
   }
+
+  public function logout() {}
 }
