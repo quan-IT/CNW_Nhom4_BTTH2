@@ -1,6 +1,8 @@
 <header class="dashboard-header">
     <div class="header-left">
-        <a href="index.php?url=student/dashboard"><h1>My Dashboard</h1></a>
+        <a href="index.php?url=student/dashboard">
+            <h1>My Dashboard</h1>
+        </a>
     </div>
 
     <!-- <div class="header-center">
@@ -61,7 +63,7 @@
 
         <!-- User Avatar -->
         <div class="user-profile">
-            <img src="assets/VN.png" alt="User">
+            <img src="<?= htmlspecialchars($_SESSION['user']['avatar'] ?? 'assets/avatar-default.jpg') ?>" alt="User">
         </div>
     </div>
 </header>
