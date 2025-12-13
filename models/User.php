@@ -55,7 +55,7 @@ class User
      */
     public function getUserById($id)
     {
-        $sql = "SELECT id, username, email, fullname, role, created_at
+        $sql = "SELECT *
                 FROM {$this->table_name}
                 WHERE id = :id";
 

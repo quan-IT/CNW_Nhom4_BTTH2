@@ -98,19 +98,4 @@ public function isRegistered($user_id, $course_id)
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     // Lấy enrollment của 1 học viên trong 1 khóa
-    public function getEnrollment($course_id, $student_id)
-    {
-        $sql = "
-            SELECT *
-            FROM enrollments
-            WHERE course_id = :cid AND student_id = :sid
-        ";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':cid', $course_id);
-        $stmt->bindValue(':sid', $student_id);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
 }
