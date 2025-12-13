@@ -40,13 +40,14 @@ class Enrollment
     }
 
     // Lấy danh sách khóa học mà học viên đã đăng ký
-    public function getCourseByUser($user_id)
+    public function getCourseByUser()
     {
-        $sql = "SELECT c.*, e.created_at as enrolled_at
+        $user_id = $_SESSION['id'];
+        $sql = "SELECT c.*, e.enrolled_date as enrolled_at
             FROM enrollments e
             JOIN courses c ON e.course_id = c.id
-            WHERE e.user_id = :user_id
-            ORDER BY e.created_at DESC";
+            WHERE e.student_id = :user_id
+            ORDER BY e.enrolled_date DESC";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
