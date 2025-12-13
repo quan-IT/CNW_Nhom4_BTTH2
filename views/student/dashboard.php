@@ -1,18 +1,18 @@
 <?php
 
-    $user = $courses['user'] ?? [];  
+// $user = $courses['user'] ?? [];
 
-    $enrolledCourses = $courses['enrolled'] ?? [];  
+$enrolledCourses = $courses['enrolled'] ?? [];
 
-    // Các biến tiện ích
-    $userId = $user['id'] ?? 'N/A';
-    $userName = $user['full_name'] ?? 'Student';
-    $userAvatar = $user['avatar'] ?? 'assets/img/avatar-default.jpg';
-    $currentCourse = $user['current_course'] ?? 'Chưa chọn khóa học';
-    $profileCompletion = $user['profile_completion'] ?? 0;
-    $hasStreak = $user['has_streak'] ?? false;
-    $unlockedBadges = $user['unlocked_badges'] ?? 0;
-    $totalBadges = 7; // Có thể thay đổi sau
+// Các biến tiện ích
+$userId = $user['id'] ?? 'N/A';
+$userName = $user['username'] ?? 'Student';
+$userAvatar = $user['avatar'] ?? 'assets/img/avatar-default.jpg';
+$currentCourse = $user['current_course'] ?? 'Chưa chọn khóa học';
+$profileCompletion = $user['profile_completion'] ?? 0;
+$hasStreak = $user['has_streak'] ?? false;
+$unlockedBadges = $user['unlocked_badges'] ?? 0;
+$totalBadges = 7; // Có thể thay đổi sau
 ?>
 <div class="dashboard-grid">
     <!-- User Profile Card -->
@@ -20,8 +20,8 @@
         <div class="profile-avatar">
             <img src="assets\VN.png" alt="User Avatar">
         </div>
-        <h3 class="profile-name">Hey, Student!</h3>
-        <p class="profile-id">ID: 28782</p>
+        <h3 class="profile-name">Hey, <?= htmlspecialchars($userName) ?>!</h3>
+        <p class="profile-id">ID: <?= htmlspecialchars($userId) ?> </p>
 
         <div class="profile-course">
             <label>Current Course:</label>
