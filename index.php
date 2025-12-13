@@ -6,6 +6,7 @@ define('BASE_DIR', __DIR__);
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+
 // Autoload models, controllers
 spl_autoload_register(function ($class) {
     // Đảm bảo tìm kiếm cả trong thư mục con 'instructor/'

@@ -97,4 +97,5 @@ public function isRegistered($user_id, $course_id)
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    // Lấy enrollment của 1 học viên trong 1 khóa
 }

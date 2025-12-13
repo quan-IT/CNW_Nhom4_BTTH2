@@ -52,8 +52,8 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
         </main>
     </div>
     <script src="assets/js/student/student.js"></script>
-    <script src="assets/js/student/profile.js"></script>
     <script src="assets/js/student/detail.js"></script>
+    <script src="assets/js/student/profile.js"></script>
 
 </body>
 
