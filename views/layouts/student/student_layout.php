@@ -1,6 +1,7 @@
 <?php
 // views/layouts/student/layout.php
 $current_url = $_GET['url'] ?? 'student/dashboard';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -42,9 +42,19 @@ class Enrollment
     // Lấy danh sách khóa học mà học viên đã đăng ký
     public function getCourseByUser($user_id)
     {
-        $sql = "SELECT c.*, e.enrolled_date as enrolled_at
+        $sql = "SELECT 
+                c.id,
+                c.title,
+                c.image,
+                c.level,
+                c.duration_weeks,
+                c.price,
+                u.fullname AS instructor_name,
+                e.enrolled_date AS enrolled_at,
+                e.progress
             FROM enrollments e
             JOIN courses c ON e.course_id = c.id
+            JOIN users u ON c.instructor_id = u.id
             WHERE e.student_id = :user_id
             ORDER BY e.enrolled_date DESC";
 
@@ -53,5 +63,21 @@ class Enrollment
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    // Lấy enrollment của 1 học viên trong 1 khóa
+    public function getEnrollment($course_id, $student_id)
+    {
+        $sql = "
+            SELECT *
+            FROM enrollments
+            WHERE course_id = :cid AND student_id = :sid
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':cid', $course_id);
+        $stmt->bindValue(':sid', $student_id);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

@@ -98,7 +98,10 @@ class LessonController {
         // Tải view
         include 'views/instructor/lessons/manage.php';
     }
-    
+    public function document(){
+        $view = 'views/instructor/materials/upload.php';
+        include 'views/layouts/instructor/instructor_layout.php';
+    }
     // Hiển thị form tạo bài học mới cho một khóa học cụ thể
     public function create($course_id) {
         global $instructor_id;

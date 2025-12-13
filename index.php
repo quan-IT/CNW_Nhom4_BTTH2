@@ -1,5 +1,7 @@
 <?php
 // index.php
+session_start();
+
 
 // Bật lỗi (tắt khi lên host)  
 define('BASE_DIR', __DIR__);

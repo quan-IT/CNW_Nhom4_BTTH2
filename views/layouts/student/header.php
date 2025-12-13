@@ -61,7 +61,7 @@
 
         <!-- User Avatar -->
         <div class="user-profile">
-            <img src="assets/VN.png" alt="User">
+            <img src=<?php $avatar ?> alt="User">
         </div>
     </div>
 </header>

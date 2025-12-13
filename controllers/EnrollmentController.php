@@ -1,14 +1,9 @@
 <?php
-// controllers/EnrollmentController.php
 require_once 'models/Enrollment.php';
-
-require_once "config/database.php";
-$db = new Database();
 
 class EnrollmentController
 {
-    public $EnrollmentModel;
-
+    private $EnrollmentModel;
 
     public function __construct()
     {
@@ -16,27 +11,35 @@ class EnrollmentController
     }
 
     // Đăng ký khóa học
-    public function register($user_id, $course_id)
+    public function register()
     {
-        // if ($this->EnrollmentModel->isRegistered($user_id, $course_id)) {
-        //     return "Bạn đã đăng ký khóa học này!";
-        // }
+        if (!isset($_SESSION['user_id'])) {
+            die("Bạn chưa đăng nhập");
+        }
 
-        // $success = $this->EnrollmentModel->register($user_id, $course_id);
-        // return $success ? "Đăng ký thành công!" : "Đăng ký thất bại!";
-        // Kiểm tra user đã đăng ký chưa
+        if (!isset($_GET['course_id'])) {
+            die("Thiếu course_id");
+        }
 
+        $student_id = $_SESSION['user_id'];
+        $course_id = $_GET['course_id'];
+
+        // Gọi model thực hiện INSERT
+        $this->EnrollmentModel->register($student_id, $course_id);
+
+        // Chuyển hướng về trang học
+        header("Location: index.php?url=lesson/learn&course_id=$course_id");
+        exit;
     }
 
-    // Hiển thị danh sách khóa học của sinh viên đã đăng ký
-
+    // Trang khóa học đã đăng ký
     public function my_courses()
     {
+        if (!isset($_SESSION['user_id'])) {
+            die("Bạn chưa đăng nhập");
+        }
 
-        $student_id = 2;
-        // ------------------------------------------
-
-        // Lấy danh sách khóa học của Sinh viên này
+        $student_id = $_SESSION['user_id'];
 
         $courses = $this->EnrollmentModel->getCourseByUser($student_id);
 
