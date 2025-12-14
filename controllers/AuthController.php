@@ -1,103 +1,122 @@
-<?php
+<<?php
+// controllers/AuthController.php
+
 require_once 'models/User.php';
-// require_once 'models/Category.php';
-// require_once 'models/Course.php';
-// require_once 'models/Enrollment.php';
 
 class AuthController
 {
-  public $userModel;
-  public function __construct()
-  {
-    $this->userModel = new User();
-  }
+    private $userModel;
 
-  public function showdashboard()
-  {
-    $x = $_SESSION['user_id'] ?? -1;
-    if ($x == -1) {
-      echo "không hợp lệ!";
-    } else {
-      $user = $this->userModel->getUserById($_SESSION['user_id']);
-      switch ((int)$_SESSION['role']) {
-        case 0:
-          $view = 'views/student/dashboard.php';
-          include 'views/layouts/student/student_layout.php';
-          break;
-        case 1:
-          $view = 'views/instructor/dashboard.php';
-          include 'views/layouts/instructor/instructor_layout.php';
-          break;
-        case 2:
-          $view = 'views/admin/dashboard.php';
-          include 'views/layouts/admin/admin_layout.php';
-          break;
-        default:
-          include "./views/auth/showlogin.php";
-          echo "Role không hợp lệ!";
-          break;
-      }
-    }
-  }
-
-  public function showlogin()
-  {
-    include "./views/auth/login.php";
-  }
-
-  public function login()
-  {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['pass'] ?? '';
-
-    if (!$email || !$password) {
-      echo json_encode([
-        'success' => false,
-        'message' => 'ko email'
-      ]);
-      exit;
+    public function __construct()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $this->userModel = new User();
     }
 
-    // kiểm tra login với model
-    $user = $this->userModel->login($email, $password);
-    if ($user) {
-      $_SESSION['user_id'] = $user['id'];
-      $_SESSION['user_name'] = $user['username'];
-      $_SESSION['role'] = $user['role'];
-      $id = $user['id'];
+    /**
+     * Hiển thị trang đăng ký và xử lý logic đăng ký
+     * URL: /register
+     */
+    public function register()
+    {
+        $message = ''; // Biến để lưu thông báo lỗi/thành công
 
-      switch ((int)$_SESSION['role']) {
-        case 0:
-          
-          $view = 'views/student/dashboard.php';
-          header("Location: index.php?url=student/dashboard/{$id}");
-          exit();
-          break;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = trim($_POST['username'] ?? '');
+            $email    = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
+            $fullname = trim($_POST['fullname'] ?? '');
 
-        case 1:
-          $view = 'views/instructor/dashboard.php';
-          include 'views/layouts/instructor/instructor_layout.php';
-          break;
-        case 2:
-          $view = 'views/admin/dashboard.php';
-          include 'views/layouts/admin/admin_layout.php';
-          break;
-        default:
-          include "./views/auth/showlogin.php";
-          echo "Role không hợp lệ!";
-          break;
-      }
+            // 1. Kiểm tra dữ liệu bắt buộc
+            if (empty($username) || empty($email) || empty($password) || empty($fullname)) {
+                $message = "Vui lòng điền đầy đủ các trường.";
+            } 
+            // 2. Kiểm tra tồn tại
+            else if ($this->userModel->checkExists($username, $email)) {
+                $message = "Tên người dùng hoặc Email đã tồn tại.";
+            } 
+            // 3. Tiến hành đăng ký
+            else {
+                // Băm mật khẩu (Hashing) trước khi lưu vào CSDL
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                
+                // Mặc định role = 0 (Học viên)
+                if ($this->userModel->register($username, $email, $hashed_password, $fullname, 0)) {
+                    $message = "Đăng ký thành công! Vui lòng đăng nhập.";
+                    // Có thể chuyển hướng thẳng về trang đăng nhập
+                    header("Location: /login");
+                    exit;
+                } else {
+                    $message = "Đăng ký thất bại. Vui lòng thử lại sau.";
+                }
+            }
+        }
 
-
-      exit;
+        // Tải View đăng ký, truyền thông báo nếu có
+        include 'views/auth/register.php';
     }
-    include "./views/auth/showlogin.php";
-  }
 
-  public function showregister()
-  {
-    include "./views/auth/register.php";
-  }
+    /**
+     * Hiển thị trang đăng nhập và xử lý logic đăng nhập
+     * URL: /login
+     */
+    public function login()
+    {
+        $message = ''; // Biến để lưu thông báo lỗi
 
-  public function logout() {}
+        // Kiểm tra nếu đã đăng nhập rồi thì chuyển hướng về trang chủ
+        if (isset($_SESSION['user'])) {
+            header("Location: /");
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = trim($_POST['username'] ?? ''); // Có thể là username hoặc email
+            $password = $_POST['password'] ?? '';
+
+            if (empty($username) || empty($password)) {
+                $message = "Vui lòng nhập Tên người dùng/Email và Mật khẩu.";
+            } else {
+                // Gọi hàm login trong User Model
+                $user = $this->userModel->login($username, $password);
+
+                if ($user) {
+                    // Đăng nhập thành công, lưu thông tin vào session
+                    $_SESSION['user'] = $user;
+
+                    // Chuyển hướng theo vai trò (role)
+                    if ($user['role'] == 2) {
+                        // Admin: Chuyển hướng đến trang quản trị
+                        header("Location: /admin/dashboard");
+                    } else {
+                        // Học viên/Giảng viên: Chuyển hướng đến trang chủ
+                        header("Location: /");
+                    }
+                    exit;
+                } else {
+                    $message = "Tên người dùng hoặc Mật khẩu không đúng, hoặc tài khoản đang bị vô hiệu hóa.";
+                }
+            }
+        }
+
+        // Tải View đăng nhập, truyền thông báo nếu có
+        include 'views/auth/login.php';
+    }
+
+    /**
+     * Đăng xuất
+     * URL: /logout
+     */
+    public function logout()
+    {
+        // Hủy session của người dùng
+        session_unset();
+        session_destroy();
+
+        // Chuyển hướng về trang chủ hoặc trang đăng nhập
+        header("Location: /login"); 
+        exit;
+    }
 }
