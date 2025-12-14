@@ -98,7 +98,10 @@ class LessonController {
         // Tải view
         include 'views/instructor/lessons/manage.php';
     }
-    
+    public function document(){
+        $view = 'views/instructor/materials/upload.php';
+        include 'views/layouts/instructor/instructor_layout.php';
+    }
     // Hiển thị form tạo bài học mới cho một khóa học cụ thể
     public function create($course_id) {
         global $instructor_id;
@@ -208,7 +211,6 @@ public function storeMaterial($lesson_id) {
     public function delete($lesson_id) {
         $instructor_id = 1; // ID Tạm thời
         
-        // 1. Lấy thông tin bài học
         $lesson = $this->lessonModel->getLessonById($lesson_id);
         if (!$lesson) { 
             header('Location: index.php?url=course/manage');

@@ -1,12 +1,27 @@
-<!-- Profile Card & Projects Section -->
+<?php
+
+// $user = $courses['user'] ?? [];
+
+$enrolledCourses = $courses['enrolled'] ?? [];
+
+// Các biến tiện ích
+$userId = $user['id'] ?? 'N/A';
+$userName = $user['username'] ?? 'Student';
+$userAvatar = $user['avatar'] ?? 'assets/avatar-default.jpg';
+$currentCourse = $_SESSION['user']['avatar'] ?? 'Chưa chọn khóa học';
+$profileCompletion = $user['profile_completion'] ?? 0;
+$hasStreak = $user['has_streak'] ?? false;
+$unlockedBadges = $user['unlocked_badges'] ?? 0;
+$totalBadges = 7; // Có thể thay đổi sau
+?>
 <div class="dashboard-grid">
     <!-- User Profile Card -->
     <div class="card profile-card">
         <div class="profile-avatar">
-            <img src="assets\VN.png" alt="User Avatar">
+            <img src="<?= htmlspecialchars($userAvatar) ?>" alt="User Avatar">
         </div>
-        <h3 class="profile-name">Hey, Student!</h3>
-        <p class="profile-id">ID: 28782</p>
+        <h3 class="profile-name">Hey, <?= htmlspecialchars($userName) ?>!</h3>
+        <p class="profile-id">ID: <?= htmlspecialchars($userId) ?> </p>
 
         <div class="profile-course">
             <label>Current Course:</label>
@@ -33,10 +48,10 @@
         <div class="projects-content">
             <h2>Real World Projects</h2>
             <p>Engage with real-world challenges using our projects directory. Apply your knowledge to real scenarios in a practical environment.</p>
-            <button class="btn-primary">Start Project</button>
+            <button class="btn-primary">Start Projects</button>
         </div>
         <div class="projects-illustration">
-            <img src="assets\vietnamese-national-day-slide14.png" alt="Projects">
+            <img src="assets\vietnamese-national-day-slide14.png" alt="Project  ss">
         </div>
         <div class="carousel-dots">
             <span class="dot"></span>
@@ -104,6 +119,5 @@
             <button class="course-status not-started">Not Started</button>
         </div>
 
-        <!-- React Course -->
 
     </div>

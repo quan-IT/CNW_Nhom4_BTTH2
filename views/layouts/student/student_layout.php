@@ -1,6 +1,7 @@
 <?php
 // views/layouts/student/layout.php
 $current_url = $_GET['url'] ?? 'student/dashboard';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +23,8 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
     <link href="assets/css/student/mycourse.css" rel="stylesheet">
     <link href="assets/css/student/courseproress.css" rel="stylesheet">
     <link href="assets/css/Courses/detail.css" rel="stylesheet">
+    <link href="assets/css/student/mycourse_detail.css" rel="stylesheet">
+    <link href="assets/css/toest.css" rel="stylesheet">
 
 </head>
 
@@ -44,14 +47,14 @@ $current_url = $_GET['url'] ?? 'student/dashboard';
                 <?php include $view; // Biến này từ Controller 
                 ?>
             </div>
+            <div id="toastContainer"></div>
 
         </main>
     </div>
-
-    <!-- FOOTER (nếu có) -->
-    <?php include 'views/layouts/student/footer.php'; ?>
+    <script src="assets/js/student/student.js"></script>
+    <script src="assets/js/student/detail.js"></script>
+    <script src="assets/js/student/profile.js"></script>
 
 </body>
 
 </html>
-<script src="assets/js/student/student.js"></script>

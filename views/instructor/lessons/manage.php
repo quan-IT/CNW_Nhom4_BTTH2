@@ -254,7 +254,7 @@ if (!isset($course) || !isset($lessons)) {
                                 <?php endif; ?>
                             </td>
                             <td class="col-center">
-                                <a href="index.php?url=material/manage/<?= htmlspecialchars($lesson['id']) ?>"
+                                <a href="index.php?url=material/document/<?= htmlspecialchars($lesson['id']) ?>"
                                    class="link link-blue">QL Tài liệu</a>
                             </td>
                             <td class="col-center">

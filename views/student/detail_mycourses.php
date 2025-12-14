@@ -1,50 +1,50 @@
 <?php
 // ====== SAMPLE DATA (CHUẨN THEO CẤU TRÚC BẢNG) ====== //
 
-// COURSE
-$course = [
-    'id' => 10,
-    'title' => "Kiến Thức Nhập Môn IT",
-    'description' => "Khóa học cung cấp kiến thức nền tảng về CNTT.",
-    'instructor_id' => 3,
-    'category_id' => 1,
-    'price' => 0.00,
-    'duration_weeks' => 4,
-    'level' => "Beginner",
-    'image' => "uploads/courses/course10.jpg",
-    'created_at' => "2024-01-10 08:00:00",
-    'updated_at' => "2024-02-01 14:22:00"
-];
 
-// ENROLLMENT
-$enrollment = [
-    'id' => 55,
-    'course_id' => 10,
-    'student_id' => 7,
-    'enrolled_date' => "2024-03-01 09:15:00",
-    'status' => "active",
-    'progress' => 25
-];
+// $course = [
+//     'id' => 10,
+//     'title' => "Kiến Thức Nhập Môn IT",
+//     'description' => "Khóa học cung cấp kiến thức nền tảng về CNTT.",
+//     'instructor_id' => 3,
+//     'category_id' => 1,
+//     'price' => 0.00,
+//     'duration_weeks' => 4,
+//     'level' => "Beginner",
+//     'image' => "uploads/courses/course10.jpg",
+//     'created_at' => "2024-01-10 08:00:00",
+//     'updated_at' => "2024-02-01 14:22:00"
+// ];
 
-// CURRENT LESSON
-$lesson = [
-    'id' => 1,
-    'course_id' => 10,
-    'title' => "Mô hình Client - Server là gì?",
-    'content' => "Giải thích chi tiết mô hình Client - Server...",
-    'video_url' => "uploads/videos/client_server.mp4",
-    'order' => 1,
-    'created_at' => "2024-01-12 10:00:00",
-    'duration' => "11:35"
-];
+// // ENROLLMENT
+// $enrollment = [
+//     'id' => 55,
+//     'course_id' => 10,
+//     'student_id' => 7,
+//     'enrolled_date' => "2024-03-01 09:15:00",
+//     'status' => "active",
+//     'progress' => 25
+// ];
 
-// ALL LESSONS
-$lessons = [
-    ['id' => 1, 'course_id' => 10, 'title' => "Mô hình Client - Server là gì?", 'duration' => "11:35", 'order' => 1],
-    ['id' => 2, 'course_id' => 10, 'title' => "Domain là gì? Tên miền là gì?", 'duration' => "10:34", 'order' => 2],
-    ['id' => 3, 'course_id' => 10, 'title' => "Mua tên miền & Hosting", 'duration' => "09:00", 'order' => 3],
-    ['id' => 4, 'course_id' => 10, 'title' => "HTTP hoạt động như thế nào?", 'duration' => "12:40", 'order' => 4],
-];
+// // CURRENT LESSON
+// $lesson = [
+//     'id' => 1,
+//     'course_id' => 10,
+//     'title' => "Mô hình Client - Server là gì?",
+//     'content' => "Giải thích chi tiết mô hình Client - Server...",
+//     'video_url' => "uploads/videos/client_server.mp4",
+//     'order' => 1,
+//     'created_at' => "2024-01-12 10:00:00",
+//     'duration' => "11:35"
+// ];
+
+// // ALL LESSONS
+// $lessons = [
+//     ['id' => 1, 'course_id' => 10, 'title' => "Mô hình Client - Server là gì?", 'duration' => "11:35", 'order' => 1],
+//     ['id' => 2, 'course_id' => 10, 'title' => "Domain là gì? Tên miền là gì?", 'duration' => "10:34", 'order' => 2],
+//     ['id' => 3, 'course_id' => 10, 'title' => "Mua tên miền & Hosting", 'duration' => "09:00", 'order' => 3],
+//     ['id' => 4, 'course_id' => 10, 'title' => "HTTP hoạt động như thế nào?", 'duration' => "12:40", 'order' => 4],
+// ];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +53,7 @@ $lessons = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/onlinecourse/CNW_Nhom4_BTTH2/assets/css/student/mycoursedetail.css" rel="stylesheet">
-
+    <link href="/onlinecourse/CNW_Nhom4_BTTH2/assets/css/student/mycourse_detail.css" rel="stylesheet">
 </head>
 
 <body>
@@ -83,9 +82,9 @@ $lessons = [
 
             <div class="video-container">
                 <!-- <video controls>
-                <source src="" type="video/mp4">
-                
-            </video> -->
+                    <source src="" type="video/mp4">
+                    
+                </video> -->
                 <iframe
                     src="https://www.youtube.com/embed/zoELAirXMJY?si=abc123"
                     width="100%"
@@ -95,7 +94,7 @@ $lessons = [
 
             </div>
 
-            <h2 class="lesson-title"><?= htmlspecialchars($lesson['title']) ?></h2>
+                <h2 class="lesson-title"><?= ($lesson['title']) ?></h2>
 
 
             <div class="lesson-description">
@@ -128,7 +127,7 @@ $lessons = [
                                 <i class="fas fa-play-circle"></i>
                                 <span><?= htmlspecialchars($ls['title']) ?></span>
                             </div>
-                            <span class="lesson-time"><?= $ls['duration'] ?></span>
+                            <span class="lesson-time"><?= $ls['duration'] ?? '' ?></span>
                         </a>
                     </div>
                 <?php endforeach; ?>

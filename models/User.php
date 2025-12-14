@@ -42,7 +42,7 @@ class User
     /**
      * Đăng nhập (username hoặc email)
      */
-    public function login($username, $password)
+    public function login($email, $pass)
     {
         // Kiểm tra is_active = 1 (chỉ cho phép đăng nhập nếu tài khoản đang hoạt động)
         $sql = "SELECT * FROM {$this->table_name}
@@ -50,15 +50,15 @@ class User
                 LIMIT 1"; 
 
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':username', $username);
+        $stmt->bindValue(':email', $email);
         $stmt->execute();
-
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
-            return $user;
+        if ($user && $pass === $user['password']) {
+            return $user; // login thành công
+        } else {
+            return false; // login thất bại
         }
-        return false;
     }
 
     /**
@@ -140,19 +140,51 @@ class User
      * Cập nhật thông tin user (fullname, email)
      * ✅ ĐỒNG BỘ: Hàm này nhận 3 tham số để khớp với AdminController.php
      */
-    public function updateUser($id, $fullname, $email)
-    {
-        $sql = "UPDATE {$this->table_name}
-                SET fullname = :fullname, email = :email
-                WHERE id = :id";
+    // public function updateUser($id, $fullname, $email)
+    // {
+    //     $sql = "UPDATE {$this->table_name}
+    //             SET fullname = :fullname, email = :email
+    //             WHERE id = :id";
 
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':fullname', $fullname);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->bindParam(':fullname', $fullname);
+    //     $stmt->bindParam(':email', $email);
+    //     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-        return $stmt->execute();
-    }
+    //     return $stmt->execute();
+    // }
+        public function updateUser($id, $data)
+        {
+            // Ngăn không cho cập nhật cột id
+            unset($data['id']);
+
+            // Nếu không có field nào để update thì return false
+            if (empty($data)) {
+                return false;
+            }
+
+            $fields = [];
+            foreach ($data as $key => $value) {
+                // Optional: validate/sanitize key nếu cần (ngăn injection qua tên cột)
+                // Ví dụ chỉ cho phép các cột hợp lệ
+                $fields[] = "$key = :$key";
+            }
+
+            $sql = "UPDATE users SET " . implode(", ", $fields) . " WHERE id = :id";
+
+            $stmt = $this->db->prepare($sql);
+
+            // Bind các giá trị từ $data
+            foreach ($data as $key => $value) {
+                $stmt->bindValue(":$key", $value);
+            }
+
+            // Bind id riêng (luôn là giá trị gốc)
+            $stmt->bindValue(":id", $id);
+
+            return $stmt->execute();
+        }
+
 
     /**
      * Đổi mật khẩu (changePassword)
