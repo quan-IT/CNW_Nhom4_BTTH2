@@ -1,11 +1,15 @@
 <?php
-// Bật lỗi (tắt khi lên host)  
+// index.php
+
+// Bật lỗi (tắt khi lên host)  
+define('BASE_DIR', __DIR__);
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Autoload models, controllers
 spl_autoload_register(function ($class) {
-    $paths = ['controllers/', 'models/'];
+    // Đảm bảo tìm kiếm cả trong thư mục con 'instructor/'
+    $paths = ['controllers/', 'models/', 'controllers/instructor/']; 
     foreach ($paths as $path) {
         $file = $path . $class . '.php';
         if (file_exists($file)) {
@@ -19,31 +23,60 @@ spl_autoload_register(function ($class) {
 require_once 'config/Database.php';
 
 // Lấy URL: domain.com/index.php?url=controller/action/param
-$url = isset($_GET['url']) ? $_GET['url'] : 'home/index';
+$url = isset($_GET['url']) ? $_GET['url'] : 'home/index'; // Default to 'home/index'
 $url = trim($url, '/');
+
+// Xử lý URL thành các phần tử (đảm bảo luôn có ít nhất 1 phần tử)
 $parts = explode('/', $url);
 
+// Đảm bảo $parts không rỗng nếu $url bị trống (mặc dù default là 'home/index' đã đảm bảo)
+if (empty($parts) || $parts[0] === '') {
+    $parts = ['home', 'index'];
+}
+
 // Controller
-$controllerName = ucfirst($parts[0]) . "Controller";
+$requestedController = $parts[0]; // home, course, lesson, etc.
 $action = $parts[1] ?? 'index';
 $param = $parts[2] ?? null;
 
-// Kiểm tra controller tồn tại
-if (!file_exists("controllers/$controllerName.php")) {
-    die("Controller '$controllerName' không tồn tại!");
-}
 
-// Gọi controller
-$controller = new $controllerName();
+// --- LOGIC XỬ LÝ CONTROLLER NAME VÀ VỊ TRÍ ---
 
-// Kiểm tra action
-if (!method_exists($controller, $action)) {
-    die("Action '$action' không tồn tại trong controller '$controllerName'");
-}
+$instructorControllers = ['course', 'lesson', 'material']; 
+$controllerName = ucfirst($requestedController) . "Controller";
 
-// Gọi hàm xử lý
-if ($param !== null) {
-    $controller->$action($param);
+if (in_array($requestedController, $instructorControllers)) {
+    // Nếu Controller thuộc khu vực Instructor, tên Class vẫn là CourseController
+    // và Autoload sẽ tìm file trong controllers/instructor/
+    // (Không cần sửa $controllerName hay $controllerPath ở đây vì Autoload đã lo)
 } else {
-    $controller->$action();
+    // Controller thường (home, auth,...)
+    // Autoload sẽ tìm file trong controllers/
 }
+
+// --- KẾT THÚC LOGIC XỬ LÝ ---
+
+// Gọi controller (Autoload sẽ tự tìm file và require_once)
+try {
+    $controller = new $controllerName();
+
+    // Kiểm tra action
+    if (!method_exists($controller, $action)) {
+        die("Action '$action' không tồn tại trong controller '$controllerName'");
+    }
+
+    // Gọi hàm xử lý
+    if ($param !== null) {
+        $controller->$action($param);
+    } else {
+        $controller->$action();
+    }
+} catch (Error $e) {
+    // Bắt lỗi khi Class không được tìm thấy (Autoload thất bại)
+    if (strpos($e->getMessage(), "Class '{$controllerName}' not found") !== false) {
+        die("Controller '$controllerName' không tồn tại!");
+    }
+    // Xử lý lỗi khác (ví dụ: lỗi cú pháp trong Controller/Model)
+    die("Lỗi hệ thống không xác định: " . $e->getMessage());
+}
+?>

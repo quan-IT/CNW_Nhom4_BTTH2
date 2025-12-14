@@ -1,64 +1,75 @@
-<!DOCTYPE html>
-<html lang="vi">
+<div class="course-detail-wrapper">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tất cả khóa học</title>
-    <link rel="stylesheet" href="assets/css\Courses/courses.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
+    <!-- LEFT + RIGHT layout -->
+    <div class="course-top">
 
-<body>
+        <!-- LEFT CONTENT -->
+        <div class="course-left">
 
-    <div class="container">
-        <h1>Chi tiết khóa học</h1>
-        <p class="subtitle">Khám phá các khóa học chất lượng cao</p>
+            <h1 class="course-title"><?= htmlspecialchars($course['title']) ?></h1>
+            <p class="course-description">
+                <?= nl2br(htmlspecialchars($course['description'])) ?>
+            </p>
 
-        <!-- Tiêu đề khóa học -->
-        <h3 class="title"><?= htmlspecialchars($course['title']) ?></h3>
+            <div class="course-info-list">
 
-        <!-- Mô tả -->
-        <p><?= nl2br(htmlspecialchars($course['description'])) ?></p>
+                <div class="info-item">
+                    <i class="fas fa-user-tie"></i>
+                    <span><strong>Giảng viên:</strong> <?= htmlspecialchars($course['fullname'] ?? 'Ẩn danh') ?></span>
+                </div>
 
-        <!-- Giảng viên -->
-        <p class="instructor">
-            <i class="fas fa-user-tie"></i>
-            <?= htmlspecialchars($course['instructor_name'] ?? 'Ẩn danh') ?>
-        </p>
+                <div class="info-item">
+                    <i class="fas fa-list"></i>
+                    <span><strong>Danh mục:</strong> <?= htmlspecialchars($course['category_name']) ?></span>
+                </div>
 
-        <!-- Danh mục -->
-        <p class="instructor">
-            <i class="fas fa-list"></i>
-            <?= htmlspecialchars($course['category_name'] ?? 'Chưa phân loại') ?>
-        </p>
+                <div class="info-item">
+                    <i class="far fa-clock"></i>
+                    <span><strong>Thời lượng:</strong> <?= $course['duration_weeks'] ?> tuần</span>
+                </div>
 
-        <!-- Giá -->
-        <div class="price">
-            <?= number_format($course['price'], 0, ',', '.') ?> ₫
+                <div class="info-item">
+                    <i class="fas fa-bolt"></i>
+                    <span><strong>Trình độ:</strong>
+                        <?= $course['level'] == 'Beginner' ? 'Sơ cấp' : ($course['level'] == 'Intermediate' ? 'Trung cấp' : 'Nâng cao') ?>
+                    </span>
+                </div>
+
+            </div>
+
         </div>
 
-        <!-- Thời lượng -->
-        <span class="duration">
-            <i class="far fa-clock"></i> <?= $course['duration_weeks'] ?> tuần
-        </span>
+        <!-- RIGHT SIDEBAR -->
+        <div class="course-right">
 
-        <!-- Trình độ -->
-        <span class="level">
-            <?= $course['level'] == 'Beginner' ? 'Sơ cấp' : ($course['level'] == 'Intermediate' ? 'Trung cấp' : 'Nâng cao') ?>
-        </span>
+            <!-- COURSE THUMBNAIL -->
+            <img src="<?= htmlspecialchars($course['thumbnail'] ?? 'assets/python.png') ?>"
+                alt="Course Thumbnail"
+                class="course-thumbnail">
 
-        <div class="lesson-grid">
-            <?php foreach ($lessons as $l): ?>
-                <a href="course-detail.php?id=<?= $l['id'] ?>" class="course-card">
-                    <h3 class="title"><?= htmlspecialchars($l['title']) ?></h3>
-                </a>
-            <?php endforeach; ?>
+            <div class="price-box">
+                <div class="price">
+                    <?= number_format($course['price'], 0, ',', '.') ?> ₫
+                </div>
+
+                <button class="btn-enroll">
+                    <i class="fas fa-play-circle"></i> Bắt đầu học
+                </button>
+            </div>
         </div>
 
     </div>
 
+    <!-- LESSON LIST -->
+    <h3 class="lesson-list-title">Danh sách bài học</h3>
 
-</body>
+    <div class="lesson-list">
+        <?php foreach ($lessons as $l): ?>
+            <a href="course-detail.php?id=<?= $l['id'] ?>" class="lesson-item">
+                <i class="fas fa-book"></i>
+                <span><?= htmlspecialchars($l['title']) ?></span>
+            </a>
+        <?php endforeach; ?>
+    </div>
 
-</html>
+</div>

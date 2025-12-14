@@ -1,28 +1,22 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- base name folder -->
-  <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/'; ?>">
+	<base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/'; ?>">
 	<title>Login V1</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
+
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/login/vendor/animate/animate.css">
-<!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="assets/css/login/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/css/login/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/css/login/util.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/login/main.css">
-<!--===============================================================================================-->
 </head>
+
+<body>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -31,11 +25,9 @@
 				</div>
 
 				<form class="login100-form validate-form">
-					<span class="login100-form-title">
-						Member Login
-					</span>
+					<span class="login100-form-title">Member Login</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -43,28 +35,23 @@
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<input class="input100" type="password" name="pass" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
-					</div>	
-					
+					</div>
+
 					<div class="container-login100-form-btn">
-						<a class="login100-form-btn" href="index.php?url=student/dashboard">
-							Login
-						</a>
+						<a class="login100-form-btn" href="index.php?url=student/dashboard"> Login </a>
 					</div>
 
 					<div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
-						<a class="txt2" href="#">
-							Username / Password?
-						</a>
+						<span class="txt1">Forgot</span>
+						<a class="txt2" href="#"> Username / Password? </a>
 					</div>
+
 					<div class="text-center p-t-136">
 						<a class="txt2" href="index.php?url=auth/register">
 							Create your Account
@@ -72,29 +59,21 @@
 						</a>
 					</div>
 				</form>
+
 			</div>
 		</div>
 	</div>
-	
-	
 
-	
-<!--===============================================================================================-->	
+	<!-- SCRIPTS PHẢI NẰM TRONG BODY -->
 	<script src="assets/css/login/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
 	<script src="assets/css/login/bootstrap/js/popper.js"></script>
 	<script src="assets/css/login/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
 	<script src="assets/css/login/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
 	<script src="assets/css/login/vendor/tilt/tilt.jquery.min.js"></script>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
+	<script>
+		$('.js-tilt').tilt({ scale: 1.1 })
 	</script>
-<!--===============================================================================================-->
 	<script src="assets/js/login/login.js"></script>
-
 </body>
+
 </html>

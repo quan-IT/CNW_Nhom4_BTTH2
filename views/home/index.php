@@ -43,7 +43,7 @@
                 <div class="navbar-nav mx-auto py-0">
                     <a href="index.html" class="nav-item nav-link active">Home</a>
                     <a href="index.php?url=test/dashboard" class="nav-item nav-link">About</a>
-                    <a href="index.php?url=home/courses" class="nav-item nav-link">Courses</a>
+                    <a href="index.php?url=student/dashboard" class="nav-item nav-link">Courses</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
@@ -53,7 +53,7 @@
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="index.php?url=test/instructor" class="nav-item nav-link">Contact</a>
                 </div>
                 <a href="index.php?url=auth/login" class="btn btn-primary py-2 px-4 d-none d-lg-block">Login</a>
                 <a href="index.php?url=auth/register" class="btn btn-primary py-2 px-4 d-none d-lg-block mr-2">Register</a>

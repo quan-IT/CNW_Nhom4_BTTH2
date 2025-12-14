@@ -44,7 +44,12 @@ class Course
     // Lấy chi tiết một khóa học
     public function getCourseById($id, $instructor_id = null)
     {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
+        $query = "
+        SELECT c.*, u.fullname AS instructor_name,ca.name as category_name
+        FROM courses c
+        LEFT JOIN users u ON c.instructor_id = u.id
+        LEFT JOIN categories ca ON  c.category_id = ca.id
+        WHERE c.id = :id";
 
         if ($instructor_id !== null) {
             $query .= " AND instructor_id = :instructor_id";

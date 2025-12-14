@@ -12,8 +12,20 @@ $courses = [
 
 
 <div class="container">
-    <h1 class="page-title">Khóa học của tôi</h1>
-    <p class="page-subtitle">Tiếp tục hành trình học tập của bạn</p>
+    <div class="head-title">
+        <h1 class="page-title">Khóa học của tôi</h1>
+        <p class="page-subtitle">Tiếp tục hành trình học tập của bạn</p>
+
+        <div class="search-wrapper">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search courses..." id="searchCourse">
+            </div>
+
+            <button class="btn-search">Tìm kiếm</button>
+        </div>
+
+    </div>
 
     <div class="courses-grid">
         <?php foreach ($courses as $course): ?>
@@ -49,7 +61,7 @@ $courses = [
                         <p class="text-muted">Chưa bắt đầu học</p>
                     <?php endif; ?>
 
-                    <a href="course-detail.php?id=<?= $course['id'] ?>" class="btn-action">
+                    <a href="index.php?url=test/lesson" class="btn-action">
                         <i class="fas fa-play-circle"></i>
                         <?= $course['progress'] > 0 && $course['progress'] < 100 ? 'Tiếp tục học' : ($course['progress'] == 100 ? 'Xem lại khóa học' : 'Bắt đầu học') ?>
                     </a>
